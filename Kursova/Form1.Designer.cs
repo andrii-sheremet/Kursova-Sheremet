@@ -409,6 +409,7 @@
             statyaField.Name = "statyaField";
             statyaField.Size = new Size(71, 23);
             statyaField.TabIndex = 7;
+            statyaField.SelectedIndexChanged += statyaField_SelectedIndexChanged;
             // 
             // label4
             // 

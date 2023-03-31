@@ -21,27 +21,34 @@ namespace Kursova
 
         }
 
+        static Poisk p = new Poisk();
         private void termBar1_Scroll(object sender, EventArgs e)
         {
             switch (termBar1.Value)
             {
                 case 1:
                     label1.Text = "1 роки";
+                    p.Term = 1;
                     break;
                 case 2:
                     label1.Text = "2 роки";
+                    p.Term = 2;
                     break;
                 case 3:
                     label1.Text = "3 років";
+                    p.Term = 3;
                     break;
                 case 4:
                     label1.Text = "5 років";
+                    p.Term = 5;
                     break;
                 case 5:
                     label1.Text = "8 років";
+                    p.Term = 8;
                     break;
                 case 6:
                     label1.Text = "15 років";
+                    p.Term = 15;
                     break;
             }
         }
@@ -69,16 +76,14 @@ namespace Kursova
             table.Columns.Add("Камера", typeof(string));
             table.Columns.Add("Більше", typeof(Button));
 
-            Poisk p = new Poisk();
-            table.Rows.Add($"Шеремет Андрій Григорович", new DateTime(2004, 11, 16), $"ст.115 ККУ", $"№ 4", new Button());
-
             foreach (var i in Data.data)
             {
-                if(i.FirstName == p.FirstName
+                if (i.FirstName == p.FirstName
                     && i.SecondName == p.SecondName
                     && i.Statya == p.Statya
-                    && i.NumKam == p.NumKam)
-                table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}", new Button());
+                    && i.NumKam == p.NumKam
+                    && i.ThirdName == p.ThirdName)
+                    table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}", new Button());
             }
 
             dataGridView1.DataSource = table;
@@ -98,20 +103,23 @@ namespace Kursova
         {
             DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
         }
-
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            p.SecondName = PrizvTextBox.Text.Trim();
         }
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            p.FirstName = ImyaTextBox.Text.Trim();
         }
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            p.ThirdName = PBTextBox.Text.Trim();
+        }
+        private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            p.Statya = Convert.ToInt32(statyaField.Text[3..]);
         }
     }
     class Data
@@ -141,7 +149,7 @@ namespace Kursova
             };
         static DateTime DN()
         {
-            Random r = new Random();
+            /*Random r = new Random();
             int y = r.Next(1950, 1996);
             int m = r.Next(1, 13);
             int d = 0;
@@ -152,12 +160,13 @@ namespace Kursova
             else if (m == 2) d = r.Next(1, y % 4 == 0 ? 30 : 29);
             else d = r.Next(1, 31);
 
-            return new DateTime(y, m, d);
+            return new DateTime(y, m, d);*/
+            return new DateTime(2004, 11, 16);
 
         }
         static DateTime DU()
         {
-            Random r = new Random();
+            /*Random r = new Random();
             int y = r.Next(1990, 2023);
             int m = r.Next(1, 13);
             int d = 0;
@@ -168,7 +177,9 @@ namespace Kursova
             else if (m == 2) d = r.Next(0, y % 4 == 0 ? 30 : 29);
             else d = r.Next(1, 31);
 
-            return new DateTime(y, m, d);
+            return new DateTime(y, m, d);*/
+
+            return new DateTime(2004, 11, 16);
 
         }
     }
@@ -216,66 +227,19 @@ namespace Kursova
     class Poisk : Form1
     {
         public int[] ids;
-        public string FirstName { get; }
-        public string SecondName { get; }
-        public string ThirdName { get; }
-        public DateTime DateNar { get; }
-        public string Stat { get; }
-        public int Statya { get; }
-        public DateTime DateUvyaz { get; }
-        public int Term { get; }
-        public string Rod { get; }
-        public int NumKam { get; }
-        public string Ierarh { get; }
-        public string Haract { get; }
-
-        public Poisk()
-        {
-
-            SecondName = PrizvTextBox.Text;
-            FirstName = ImyaTextBox.Text;
-            ThirdName = PBTextBox.Text;
-
-            Stat = statField.Text;
-
-            Statya = Convert.ToInt32(statyaField.Text);
-
-            DateNar = DataNarTimePicker.Value;
-
-            DateUvyaz = DataUvyazTimePicker.Value;
-
-            Stat = statField.Text.ToString();
-
-            switch (termBar1.Value)
-            {
-                case 1:
-                    Term = 1;
-                    break;
-                case 2:
-                    Term = 2;
-                    break;
-                case 3:
-                    Term = 3;
-                    break;
-                case 4:
-                    Term = 5;
-                    break;
-                case 5:
-                    Term = 8;
-                    break;
-                case 6:
-                    Term = 15;
-                    break;
-            }
-
-            NumKam = (int)KamNum.Value;
-
-            Ierarh = ierarhField.Text;
-
-            Haract = haractField.Text;
-
-            string r;
-
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string ThirdName { get; set; }
+        public DateTime DateNar { get; set; }
+        public string Stat { get; set; }
+        public int Statya { get; set;
         }
+        public DateTime DateUvyaz { get; set; }
+        public int Term { get; set; }
+        public string Rod { get; set; }
+        public int NumKam { get; set; }
+        public string Ierarh { get; set; }
+        public string Haract { get; set; }
+
     }
 }
