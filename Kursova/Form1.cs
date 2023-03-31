@@ -70,7 +70,7 @@ namespace Kursova
             table.Columns.Add("Більше", typeof(Button));
 
             Poisk p = new Poisk();
-            table.Rows.Add($"Шеремет Андрій Григорович", new DateTime(2004, 11, 16), $"ст.{i.Statya} ККУ", $"№ {i.NumKam}", new Button());
+            table.Rows.Add($"Шеремет Андрій Григорович", new DateTime(2004, 11, 16), $"ст.115 ККУ", $"№ 4", new Button());
 
             foreach (var i in Data.data)
             {
