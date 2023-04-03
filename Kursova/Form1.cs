@@ -21,35 +21,38 @@ namespace Kursova
 
         }
 
-        static Poisk p = new Poisk();
         private void termBar1_Scroll(object sender, EventArgs e)
         {
             switch (termBar1.Value)
             {
                 case 1:
                     label1.Text = "1 роки";
-                    p.Term = 1;
+                    Poisk.Term = 1;
                     break;
                 case 2:
                     label1.Text = "2 роки";
-                    p.Term = 2;
+                    Poisk.Term = 2;
                     break;
                 case 3:
                     label1.Text = "3 років";
-                    p.Term = 3;
+                    Poisk.Term = 3;
                     break;
                 case 4:
                     label1.Text = "5 років";
-                    p.Term = 5;
+                    Poisk.Term = 5;
                     break;
                 case 5:
                     label1.Text = "8 років";
-                    p.Term = 8;
+                    Poisk.Term = 8;
                     break;
                 case 6:
                     label1.Text = "15 років";
-                    p.Term = 15;
+                    Poisk.Term = 15;
                     break;
+                default:
+                    Poisk.Term = -1;
+                    break;
+
             }
         }
 
@@ -76,15 +79,16 @@ namespace Kursova
             table.Columns.Add("Камера", typeof(string));
             table.Columns.Add("Більше", typeof(Button));
 
-            foreach (var i in Data.data)
+            /*foreach (var i in Data.data)
             {
                 if (i.FirstName == p.FirstName
                     && i.SecondName == p.SecondName
                     && i.Statya == p.Statya
                     && i.NumKam == p.NumKam
                     && i.ThirdName == p.ThirdName)
-                    table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}", new Button());
-            }
+                    table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}", new Button());*/
+                    table.Rows.Add($"{Poisk.SecondName} {Poisk.FirstName} {Poisk.ThirdName}", Poisk.DateNar, $"ст.{Poisk.Statya} ККУ", $"№ {Poisk.NumKam}", new Button());
+            //}
 
             dataGridView1.DataSource = table;
         }
@@ -97,6 +101,7 @@ namespace Kursova
         private void checkDataNar_CheckedChanged(object sender, EventArgs e)
         {
             DataNarTimePicker.Enabled = !checkDataNar.Checked;
+            Poisk.Term = -1;
         }
 
         private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
@@ -105,22 +110,53 @@ namespace Kursova
         }
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
-            p.SecondName = PrizvTextBox.Text.Trim();
+            Poisk.SecondName = PrizvTextBox.Text.Trim();
         }
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
-            p.FirstName = ImyaTextBox.Text.Trim();
+            Poisk.FirstName = ImyaTextBox.Text.Trim();
         }
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
-            p.ThirdName = PBTextBox.Text.Trim();
+            Poisk.ThirdName = PBTextBox.Text.Trim();
         }
         private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            p.Statya = Convert.ToInt32(statyaField.Text[3..]);
+            Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
         }
+
+        private void statField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            switch (statField.SelectedIndex)
+            {
+                case 0:
+                    Poisk.Stat = "N";
+                    break;
+                case 1:
+                    Poisk.Stat = "М";
+                    break;
+                case 2:
+                    Poisk.Stat = "Ж";
+                    break;
+                default:
+                    Poisk.Stat = "N";
+                    break;
+            }
+        }
+
+        private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Poisk.Ierarh = ierarhField.Text.Trim();
+        }
+
+        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Poisk.Haract = haractField.Text.Trim();
+        }
+
     }
     class Data
     {
@@ -224,22 +260,32 @@ namespace Kursova
         }
     }
 
-    class Poisk : Form1
+    static class Poisk
     {
-        public int[] ids;
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string ThirdName { get; set; }
-        public DateTime DateNar { get; set; }
-        public string Stat { get; set; }
-        public int Statya { get; set;
+        public static string FirstName { get; set; }
+        public static string SecondName { get; set; }
+        public static string ThirdName { get; set; }
+        public static DateTime DateNar { get; set; }
+        public static string Stat { get; set; }
+        public static int Statya { get; set; }
+        public static DateTime DateUvyaz { get; set; }
+        public static int Term { get; set; }
+        public static string Rod { get; set; }
+        public static int NumKam { get; set; }
+        public static string Ierarh { get; set; }
+        public static string Haract { get; set; }
+        static Poisk()
+        {
+            FirstName = SecondName = ThirdName = "-";
+            DateNar = new(1900, 01, 01);
+            Stat = "-";
+            Statya = -1;
+            DateUvyaz = new(1900, 01, 01);
+            Term = -1;
+            Rod = "";
+            NumKam = -1;
+            Ierarh = "";
+            Haract = "";
         }
-        public DateTime DateUvyaz { get; set; }
-        public int Term { get; set; }
-        public string Rod { get; set; }
-        public int NumKam { get; set; }
-        public string Ierarh { get; set; }
-        public string Haract { get; set; }
-
     }
 }

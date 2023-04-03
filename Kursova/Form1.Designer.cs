@@ -198,6 +198,7 @@
             haractField.Name = "haractField";
             haractField.Size = new Size(143, 23);
             haractField.TabIndex = 9;
+            haractField.SelectedIndexChanged += haractField_SelectedIndexChanged;
             // 
             // label13
             // 
@@ -231,6 +232,7 @@
             ierarhField.Name = "ierarhField";
             ierarhField.Size = new Size(143, 23);
             ierarhField.TabIndex = 8;
+            ierarhField.SelectedIndexChanged += ierarhField_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -264,6 +266,7 @@
             statField.Name = "statField";
             statField.Size = new Size(51, 23);
             statField.TabIndex = 8;
+            statField.SelectedIndexChanged += statField_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -550,7 +553,7 @@
             // 
             DataNarTimePicker.Location = new Point(6, 24);
             DataNarTimePicker.Name = "DataNarTimePicker";
-            DataNarTimePicker.Size = new Size(120, 23);
+            DataNarTimePicker.Size = new Size(154, 23);
             DataNarTimePicker.TabIndex = 2;
             // 
             // groupBox11
@@ -764,9 +767,6 @@
         private GroupBox groupBox8;
         private Label label11;
         private CheckBox checkBro;
-        private CheckBox checkBox2;
-        private CheckBox checkBox3;
-        private CheckBox checkBox4;
         private CheckBox checkHusb;
         private CheckBox checkKid;
         private CheckBox checkMama;
@@ -777,10 +777,6 @@
         private Label label13;
         private Splitter splitter1;
         private DataGridView dataGridView1;
-        private DataGridViewLinkColumn Column2;
-        private DataGridViewLinkColumn Column3;
-        private DataGridViewLinkColumn Column5;
-        private DataGridViewButtonColumn Column6;
         public TextBox PrizvTextBox;
         public TextBox PBTextBox;
         public TextBox ImyaTextBox;
