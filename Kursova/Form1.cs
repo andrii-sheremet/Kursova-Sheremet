@@ -25,7 +25,7 @@ namespace Kursova
 
             Poisk.DateNar = new(1900, 01, 01);
 
-            Poisk.Stat = "-";
+            Poisk.Stat = "”Ò≥";
 
             Poisk.Statya = -1;
 
@@ -100,11 +100,13 @@ namespace Kursova
             table.Columns.Add("—Ú‡ÚÚˇ", typeof(string));
             table.Columns.Add(" ‡ÏÂ‡", typeof(string));
 
+
+
             foreach (var i in Data.data)
             {
                 Poisk.Go(i);
 
-                if(i.FirstName == Poisk.FirstName
+                if (i.FirstName == Poisk.FirstName
                     && i.SecondName == Poisk.SecondName
                     && i.ThirdName == Poisk.ThirdName
                     && i.DateNar == Poisk.DateNar
@@ -116,13 +118,14 @@ namespace Kursova
                     && i.Ierarh == Poisk.Ierarh
                     && i.NumKam == Poisk.NumKam
                     && i.Term == Poisk.Term)
-                    table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ÒÚ.{i.Statya}   ”", $"π {i.NumKam}");
-
-
+                {
+                    table.Rows.Add
+                        ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
+                        i.DateNar, $"ÒÚ.{i.Statya}   ”", $"π {i.NumKam}");
+                }
             }
 
             dataGridView1.DataSource = table;
-
         }
 
         private void checkKamNum_CheckedChanged(object sender, EventArgs e)
@@ -136,14 +139,28 @@ namespace Kursova
         {
             DataNarTimePicker.Enabled = !checkDataNar.Checked;
 
-            if (checkDataNar.Checked) Poisk.DateNar = new(1900, 01, 01);
+            if (checkDataNar.Checked)
+            {
+                Poisk.DateNar = new(1900, 01, 01);
+            }
+            else
+            {
+                Poisk.DateNar = DataNarTimePicker.Value;
+            }
         }
 
         private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
         {
             DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
 
-
+            if (checkDataUvyaz.Checked)
+            {
+                Poisk.DateUvyaz = new(1900, 01, 01);
+            }
+            else
+            {
+                Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            }
         }
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -161,7 +178,14 @@ namespace Kursova
         }
         private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
+            if (statyaField.Text == "-" || statyaField.Text == "")
+            {
+                Poisk.Statya = -1;
+            }
+            else
+            {
+                Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
+            }
         }
 
         private void statField_SelectedIndexChanged(object sender, EventArgs e)
@@ -170,13 +194,13 @@ namespace Kursova
             switch (statField.SelectedIndex)
             {
                 case 0:
-                    Poisk.Stat = "N";
+                    Poisk.Stat = "”Ò≥";
                     break;
                 case 1:
-                    Poisk.Stat = "Ã";
+                    Poisk.Stat = "M";
                     break;
                 case 2:
-                    Poisk.Stat = "∆";
+                    Poisk.Stat = "W";
                     break;
             }
         }
@@ -191,6 +215,20 @@ namespace Kursova
             Poisk.Haract = haractField.Text.Trim();
         }
 
+        private void KamNum_ValueChanged(object sender, EventArgs e)
+        {
+            Poisk.NumKam = Convert.ToInt32(KamNum.Value);
+        }
+
+        private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            Poisk.DateNar = DataNarTimePicker.Value;
+        }
+
+        private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+        }
     }
     class Data
     {
@@ -269,7 +307,7 @@ namespace Kursova
         public string Ierarh { get; }
         public string Haract { get; }
 
-        public Person( string name, DateTime dateNar, string stat,
+        public Person(string name, DateTime dateNar, string stat,
             int statya, DateTime dateUvyaz, int term, string rod,
             int numKam, string ierarh, string haract)
         {
@@ -308,14 +346,19 @@ namespace Kursova
         public static void Go(Person p)
         {
 
-            FirstName = FirstName == "-" ? p.FirstName : FirstName;
-            SecondName = SecondName == "-" ? p.SecondName : SecondName;
-            ThirdName = ThirdName == "-" ? p.ThirdName : ThirdName;
+            FirstName = FirstName == "-" || FirstName == ""
+                ? p.FirstName : FirstName;
 
-            DateNar = DateNar == new DateTime(1900, 01, 01) 
+            SecondName = SecondName == "-" || SecondName == ""
+                ? p.SecondName : SecondName;
+
+            ThirdName = ThirdName == "-" || ThirdName == ""
+                ? p.ThirdName : ThirdName;
+
+            DateNar = DateNar == new DateTime(1900, 01, 01)
                 ? p.DateNar : DateNar;
 
-            Stat = Stat == "-" ? p.Stat : Stat;
+            Stat = Stat == "”Ò≥" ? p.Stat : Stat;
 
             Statya = Statya == -1 ? p.Statya : Statya;
 

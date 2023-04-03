@@ -467,6 +467,7 @@
             DataUvyazTimePicker.Name = "DataUvyazTimePicker";
             DataUvyazTimePicker.Size = new Size(143, 23);
             DataUvyazTimePicker.TabIndex = 2;
+            DataUvyazTimePicker.ValueChanged += DataUvyazTimePicker_ValueChanged;
             // 
             // groupBox2
             // 
@@ -513,6 +514,7 @@
             KamNum.Size = new Size(104, 23);
             KamNum.TabIndex = 0;
             KamNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            KamNum.ValueChanged += KamNum_ValueChanged;
             // 
             // groupBox1
             // 
@@ -555,6 +557,7 @@
             DataNarTimePicker.Name = "DataNarTimePicker";
             DataNarTimePicker.Size = new Size(154, 23);
             DataNarTimePicker.TabIndex = 2;
+            DataNarTimePicker.ValueChanged += DataNarTimePicker_ValueChanged;
             // 
             // groupBox11
             // 
