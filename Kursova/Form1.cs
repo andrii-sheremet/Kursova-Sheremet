@@ -1,6 +1,8 @@
 using System.Data;
 using System.Data.Common;
 using System.Security.Cryptography.X509Certificates;
+using static System.Windows.Forms.AxHost;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Kursova
 {
@@ -18,6 +20,26 @@ namespace Kursova
 
             checkKamNum.Checked = checkDataNar.Checked = checkRod.Checked
                 = checkTerm.Checked = checkDataUvyaz.Checked = true;
+
+            Poisk.FirstName = Poisk.SecondName = Poisk.ThirdName = "-";
+
+            Poisk.DateNar = new(1900, 01, 01);
+
+            Poisk.Stat = "-";
+
+            Poisk.Statya = -1;
+
+            Poisk.DateUvyaz = new(1900, 01, 01);
+
+            Poisk.Term = -1;
+
+            Poisk.Rod = "";
+
+            Poisk.NumKam = -1;
+
+            Poisk.Ierarh = "";
+
+            Poisk.Haract = "";
 
         }
 
@@ -49,10 +71,6 @@ namespace Kursova
                     label1.Text = "15 років";
                     Poisk.Term = 15;
                     break;
-                default:
-                    Poisk.Term = -1;
-                    break;
-
             }
         }
 
@@ -60,6 +78,8 @@ namespace Kursova
         {
 
             termBar1.Enabled = label1.Visible = !checkTerm.Checked;
+
+            if (checkTerm.Checked) Poisk.Term = -1;
         }
 
         private void checkRod_CheckedChanged(object sender, EventArgs e)
@@ -67,6 +87,8 @@ namespace Kursova
             checkMama.Enabled = checkKid.Enabled
                 = checkDad.Enabled = checkBro.Enabled
                 = checkHusb.Enabled = !checkRod.Checked;
+
+            if (checkRod.Checked) Poisk.Rod = "";
         }
 
         private void findButton_Click(object sender, EventArgs e)
@@ -77,36 +99,51 @@ namespace Kursova
             table.Columns.Add("Дата нар.", typeof(DateTime));
             table.Columns.Add("Стаття", typeof(string));
             table.Columns.Add("Камера", typeof(string));
-            table.Columns.Add("Більше", typeof(Button));
 
-            /*foreach (var i in Data.data)
+            foreach (var i in Data.data)
             {
-                if (i.FirstName == p.FirstName
-                    && i.SecondName == p.SecondName
-                    && i.Statya == p.Statya
-                    && i.NumKam == p.NumKam
-                    && i.ThirdName == p.ThirdName)
-                    table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}", new Button());*/
-                    table.Rows.Add($"{Poisk.SecondName} {Poisk.FirstName} {Poisk.ThirdName}", Poisk.DateNar, $"ст.{Poisk.Statya} ККУ", $"№ {Poisk.NumKam}", new Button());
-            //}
+                Poisk.Go(i);
+
+                if(i.FirstName == Poisk.FirstName
+                    && i.SecondName == Poisk.SecondName
+                    && i.ThirdName == Poisk.ThirdName
+                    && i.DateNar == Poisk.DateNar
+                    && i.DateUvyaz == Poisk.DateUvyaz
+                    && i.Statya == Poisk.Statya
+                    && i.Stat == Poisk.Stat
+                    && i.Rod == Poisk.Rod
+                    && i.Haract == Poisk.Haract
+                    && i.Ierarh == Poisk.Ierarh
+                    && i.NumKam == Poisk.NumKam
+                    && i.Term == Poisk.Term)
+                    table.Rows.Add($"{i.SecondName} {i.FirstName} {i.ThirdName}", i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}");
+
+
+            }
 
             dataGridView1.DataSource = table;
+
         }
 
         private void checkKamNum_CheckedChanged(object sender, EventArgs e)
         {
             KamNum.Enabled = !checkKamNum.Checked;
+
+            if (checkKamNum.Checked) Poisk.NumKam = -1;
         }
 
         private void checkDataNar_CheckedChanged(object sender, EventArgs e)
         {
             DataNarTimePicker.Enabled = !checkDataNar.Checked;
-            Poisk.Term = -1;
+
+            if (checkDataNar.Checked) Poisk.DateNar = new(1900, 01, 01);
         }
 
         private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
         {
             DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
+
+
         }
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -141,9 +178,6 @@ namespace Kursova
                 case 2:
                     Poisk.Stat = "Ж";
                     break;
-                default:
-                    Poisk.Stat = "N";
-                    break;
             }
         }
 
@@ -162,26 +196,26 @@ namespace Kursova
     {
         public static List<Person> data = new()
             {
-                new Person(0, "Білоус Єлизавета Олександрівна", DN(), "W", 152, DU(), 3, "Мати Брат", 1, "Опущені", "Агресивний"),
-                new Person(1, "Гончаренко Андрій Віталійович", DN(), "M", 156, DU(), 5, "Сестра Шлюб Діти", 3, "Опущені", "Шістка"),
-                new Person(2, "Кравченко Максим Володимирович", DN(), "M", 185, DU(), 8, "Мати Брат", 4, "Мужики", "Спокійний"),
-                new Person(3, "Петренко Микита Олегович", DN(), "M", 152, DU(), 3, "Шлюб Діти", 9, "Блатні", "Нестійкий"),
-                new Person(4, "Шевченко Андрій Сергійович", DN(), "M", 121, DU(), 8, "Шлюб Діти", 2, "Мужики", "Агресивний"),
-                new Person(5, "Кравченко Дмитро Сергійович", DN(), "M", 125, DU(), 3, "Мати Брат", 3, "Опущені", "Нестійкий"),
-                new Person(6, "Ковальчук Наталія Миколаївна", DN(), "W", 115, DU(), 15, "Шлюб Діти", 8, "Блатні", "Нестійкий"),
-                new Person(7, "Мельник Віталій Ігорович", DN(), "M", 156, DU(), 5, "Мати", 7, "Козли", "Нестійкий"),
-                new Person(8, "Мельник Юлія Василівна", DN(), "W", 151, DU(), 1, "Мати", 4, "Мужики", "Агресивний"),
-                new Person(9, "Олійник Ірина Анатоліївна", DN(), "W", 115, DU(), 15, "Мати", 5, "Блатні", "Агресивний"),
-                new Person(10, "Петренко Олег Віталійович", DN(), "M", 185, DU(), 8, "Мати Шлюб", 10, "Опущені", "Нестійкий"),
-                new Person(11, "Петренко Ігор Володимирович", DN(), "M", 125, DU(), 3, "Сестра Шлюб Діти", 6, "Козли", "Спокійний"),
-                new Person(12, "Сидоренко Дмитро Сергійович", DN(), "M", 121, DU(), 8, "Мати Брат", 9, "Мужики", "Шістка"),
-                new Person(13, "Тарасенко Марія Олександрівна", DN(), "M", 115, DU(), 15, "Мати Батько Діти", 5, "Блатні", "Спокійний"),
-                new Person(14, "Ушаков Сергій Юрійович", DN(), "M", 126, DU(), 2, "Батько", 6, "Опущені", "Спокійний"),
-                new Person(15, "Ковальчук Дмитро Олександрович", DN(), "M", 156, DU(), 5, "Мати Батько Діти", 8, "Козли", "Нестійкий"),
-                new Person(16, "Харченко Юлія Іванівна", DN(), "W", 121, DU(), 8, "Батько", 9, "Блатні", "Спокійний"),
-                new Person(17, "Царенко Анна Віталіївна", DN(), "W", 122, DU(), 3, "Мати Шлюб", 10, "Заполоскані", "Нестійкий"),
-                new Person(18, "Лисенко Олександр Миколайович", DN(), "M", 125, DU(), 3, "Мати Батько Діти", 10, "Козли", "Шістка"),
-                new Person(19, "Шевченко Денис Васильович", DN(), "M", 122, DU(), 3, "Мати Шлюб", 1, "Заполоскані", "Агресивний")
+                new Person( "Білоус Єлизавета Олександрівна", DN(), "W", 152, DU(), 3, "Мати Брат", 1, "Опущені", "Агресивний"),
+                new Person( "Гончаренко Андрій Віталійович", DN(), "M", 156, DU(), 5, "Сестра Шлюб Діти", 3, "Опущені", "Шістка"),
+                new Person( "Кравченко Максим Володимирович", DN(), "M", 185, DU(), 8, "Мати Брат", 4, "Мужики", "Спокійний"),
+                new Person( "Петренко Микита Олегович", DN(), "M", 152, DU(), 3, "Шлюб Діти", 9, "Блатні", "Нестійкий"),
+                new Person( "Шевченко Андрій Сергійович", DN(), "M", 121, DU(), 8, "Шлюб Діти", 2, "Мужики", "Агресивний"),
+                new Person( "Кравченко Дмитро Сергійович", DN(), "M", 125, DU(), 3, "Мати Брат", 3, "Опущені", "Нестійкий"),
+                new Person( "Ковальчук Наталія Миколаївна", DN(), "W", 115, DU(), 15, "Шлюб Діти", 8, "Блатні", "Нестійкий"),
+                new Person( "Мельник Віталій Ігорович", DN(), "M", 156, DU(), 5, "Мати", 7, "Козли", "Нестійкий"),
+                new Person( "Мельник Юлія Василівна", DN(), "W", 151, DU(), 1, "Мати", 4, "Мужики", "Агресивний"),
+                new Person( "Олійник Ірина Анатоліївна", DN(), "W", 115, DU(), 15, "Мати", 5, "Блатні", "Агресивний"),
+                new Person( "Петренко Олег Віталійович", DN(), "M", 185, DU(), 8, "Мати Шлюб", 10, "Опущені", "Нестійкий"),
+                new Person( "Петренко Ігор Володимирович", DN(), "M", 125, DU(), 3, "Сестра Шлюб Діти", 6, "Козли", "Спокійний"),
+                new Person( "Сидоренко Дмитро Сергійович", DN(), "M", 121, DU(), 8, "Мати Брат", 9, "Мужики", "Шістка"),
+                new Person( "Тарасенко Марія Олександрівна", DN(), "M", 115, DU(), 15, "Мати Батько Діти", 5, "Блатні", "Спокійний"),
+                new Person( "Ушаков Сергій Юрійович", DN(), "M", 126, DU(), 2, "Батько", 6, "Опущені", "Спокійний"),
+                new Person( "Ковальчук Дмитро Олександрович", DN(), "M", 156, DU(), 5, "Мати Батько Діти", 8, "Козли", "Нестійкий"),
+                new Person( "Харченко Юлія Іванівна", DN(), "W", 121, DU(), 8, "Батько", 9, "Блатні", "Спокійний"),
+                new Person( "Царенко Анна Віталіївна", DN(), "W", 122, DU(), 3, "Мати Шлюб", 10, "Заполоскані", "Нестійкий"),
+                new Person( "Лисенко Олександр Миколайович", DN(), "M", 125, DU(), 3, "Мати Батько Діти", 10, "Козли", "Шістка"),
+                new Person( "Шевченко Денис Васильович", DN(), "M", 122, DU(), 3, "Мати Шлюб", 1, "Заполоскані", "Агресивний")
             };
         static DateTime DN()
         {
@@ -222,7 +256,6 @@ namespace Kursova
 
     class Person
     {
-        public int Id { get; }
         public string FirstName { get; }
         public string SecondName { get; }
         public string ThirdName { get; }
@@ -236,12 +269,10 @@ namespace Kursova
         public string Ierarh { get; }
         public string Haract { get; }
 
-        public Person(int id, string name, DateTime dateNar, string stat,
+        public Person( string name, DateTime dateNar, string stat,
             int statya, DateTime dateUvyaz, int term, string rod,
             int numKam, string ierarh, string haract)
         {
-
-            Id = id;
 
             string[] n = name.Split(' ');
             SecondName = n[0];
@@ -274,18 +305,32 @@ namespace Kursova
         public static int NumKam { get; set; }
         public static string Ierarh { get; set; }
         public static string Haract { get; set; }
-        static Poisk()
+        public static void Go(Person p)
         {
-            FirstName = SecondName = ThirdName = "-";
-            DateNar = new(1900, 01, 01);
-            Stat = "-";
-            Statya = -1;
-            DateUvyaz = new(1900, 01, 01);
-            Term = -1;
-            Rod = "";
-            NumKam = -1;
-            Ierarh = "";
-            Haract = "";
+
+            FirstName = FirstName == "-" ? p.FirstName : FirstName;
+            SecondName = SecondName == "-" ? p.SecondName : SecondName;
+            ThirdName = ThirdName == "-" ? p.ThirdName : ThirdName;
+
+            DateNar = DateNar == new DateTime(1900, 01, 01) 
+                ? p.DateNar : DateNar;
+
+            Stat = Stat == "-" ? p.Stat : Stat;
+
+            Statya = Statya == -1 ? p.Statya : Statya;
+
+            DateUvyaz = DateUvyaz == new DateTime(1900, 01, 01)
+                ? p.DateUvyaz : DateUvyaz;
+
+            Term = Term == -1 ? p.Term : Term;
+
+            Rod = Rod == "" ? p.Rod : Rod;
+
+            NumKam = NumKam == -1 ? p.NumKam : NumKam;
+
+            Ierarh = Ierarh == "" ? p.Ierarh : Ierarh;
+
+            Haract = Haract == "" ? p.Haract : Haract;
         }
     }
 }

@@ -407,7 +407,7 @@
             // 
             statyaField.DropDownStyle = ComboBoxStyle.DropDownList;
             statyaField.FormattingEnabled = true;
-            statyaField.Items.AddRange(new object[] { "-", "ст. 115", "ст. 125", "ст. 122", "ст. 121", "ст. 156", "ст. 185", "ст. 152", "ст. 151(1)", "ст. 126(1)" });
+            statyaField.Items.AddRange(new object[] { "-", "ст. 115", "ст. 125", "ст. 122", "ст. 121", "ст. 156", "ст. 185", "ст. 152", "ст. 151", "ст. 126" });
             statyaField.Location = new Point(6, 23);
             statyaField.Name = "statyaField";
             statyaField.Size = new Size(71, 23);
