@@ -73,11 +73,24 @@ namespace Kursova
                     break;
             }
             Poisk.Term = term;
+            int count = 0;
+            foreach (var i in Data.data)
+            {
+                if (Poisk.Term == -1)
+                {
+                    count = Data.data.Count;
+                    break;
+                }
+                else if (i.Term == Poisk.Term) count++;
+            }
+            label10.Text = Convert.ToString(count);
         }
 
 
         private void findButton_Click(object sender, EventArgs e)
         {
+
+            
 
             DataTable table = new DataTable();
             table.Columns.Add("ПІБ", typeof(string));
@@ -91,6 +104,7 @@ namespace Kursova
 
             Person p = Poisk.MembIn();
 
+            int count = 0;
             foreach (var i in Data.data)
             {
                 Poisk.Go(i);
@@ -116,6 +130,7 @@ namespace Kursova
 
                 Poisk.MembOut(p);
             }
+            labelSum.Text = Convert.ToString(count);
 
             dataGridView1.DataSource = table;
         }
@@ -144,11 +159,21 @@ namespace Kursova
             {
                 Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
             }
+            int count = 0;
+            foreach (var i in Data.data)
+            {
+                if (Poisk.Statya == -1)
+                {
+                    count = Data.data.Count;
+                    break;
+                }
+                else if (i.Statya == Poisk.Statya) count++;
+            }
+            label4.Text = Convert.ToString(count);
         }
 
         private void statField_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             switch (statField.SelectedIndex)
             {
                 case 0:
@@ -161,21 +186,66 @@ namespace Kursova
                     Poisk.Stat = "W";
                     break;
             }
+            int count = 0;
+            foreach (var i in Data.data)
+            {
+                if (Poisk.Stat == "Усі")
+                {
+                    count = Data.data.Count;
+                    break;
+                }
+                else if (i.Stat == Poisk.Stat) count++;
+            }
+            label11.Text = Convert.ToString(count);
         }
 
         private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Ierarh = ierarhField.Text.Trim();
+
+            int count = 0;
+            foreach (var i in Data.data)
+            {
+                if (Poisk.Ierarh == "-")
+                {
+                    count = Data.data.Count;
+                    break;
+                }
+                else if (i.Ierarh == Poisk.Ierarh) count++;
+            }
+            label12.Text = Convert.ToString(count);
         }
 
         private void haractField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Haract = haractField.Text.Trim();
+            int count = 0;
+            foreach (var i in Data.data)
+            {
+                if (Poisk.Haract == "-")
+                {
+                    count = Data.data.Count;
+                    break;
+                }
+                else if (i.Haract == Poisk.Haract) count++;
+            }
+            label13.Text = Convert.ToString(count);
         }
 
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
             Poisk.NumKam = Convert.ToInt32(KamNum.Value);
+            int count = 0;
+            foreach (var i in Data.data)
+            {
+                if (Poisk.NumKam == -1)
+                {
+                    count = Data.data.Count;
+                    break;
+                }
+                else if (i.NumKam == Poisk.NumKam) count++;
+            }
+            label3.Text = Convert.ToString(count);
         }
 
 
@@ -318,6 +388,11 @@ namespace Kursova
             {
                 rod.Replace(" Брат/Сестра", "");
             }
+        }
+
+        private void Stat(object label)
+        {
+            int[] ints = new int[12];
         }
     }
     class Data
