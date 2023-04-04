@@ -1,4 +1,4 @@
-using System.CodeDom.Compiler;
+п»їusing System.CodeDom.Compiler;
 using System.Data;
 using System.Data.Common;
 using System.Reflection;
@@ -30,27 +30,27 @@ namespace Kursova
             switch (termBar1.Value)
             {
                 case 1:
-                    label1.Text = "1 роки";
+                    label1.Text = "1 СЂРѕРєРё";
                     term = 1;
                     break;
                 case 2:
-                    label1.Text = "2 роки";
+                    label1.Text = "2 СЂРѕРєРё";
                     term = 2;
                     break;
                 case 3:
-                    label1.Text = "3 років";
+                    label1.Text = "3 СЂРѕРєС–РІ";
                     term = 3;
                     break;
                 case 4:
-                    label1.Text = "5 років";
+                    label1.Text = "5 СЂРѕРєС–РІ";
                     term = 5;
                     break;
                 case 5:
-                    label1.Text = "8 років";
+                    label1.Text = "8 СЂРѕРєС–РІ";
                     term = 8;
                     break;
                 case 6:
-                    label1.Text = "15 років";
+                    label1.Text = "15 СЂРѕРєС–РІ";
                     term = 15;
                     break;
             }
@@ -64,14 +64,14 @@ namespace Kursova
             Statistic();
 
             DataTable table = new DataTable();
-            table.Columns.Add("ПІБ", typeof(string));
-            table.Columns.Add("Дата нар.", typeof(DateTime));
-            table.Columns.Add("Стаття", typeof(string));
-            table.Columns.Add("Термін", typeof(int));
-            table.Columns.Add("Камера", typeof(string));
-            table.Columns.Add("Живі родичі", typeof(string));
-            table.Columns.Add("Місце в Ієрархії", typeof(string));
-            table.Columns.Add("Характер", typeof(string));
+            table.Columns.Add("РџР†Р‘", typeof(string));
+            table.Columns.Add("Р”Р°С‚Р° РЅР°СЂ.", typeof(DateTime));
+            table.Columns.Add("РЎС‚Р°С‚С‚СЏ", typeof(string));
+            table.Columns.Add("РўРµСЂРјС–РЅ", typeof(int));
+            table.Columns.Add("РљР°РјРµСЂР°", typeof(string));
+            table.Columns.Add("Р–РёРІС– СЂРѕРґРёС‡С–", typeof(string));
+            table.Columns.Add("РњС–СЃС†Рµ РІ Р†С”СЂР°СЂС…С–С—", typeof(string));
+            table.Columns.Add("РҐР°СЂР°РєС‚РµСЂ", typeof(string));
 
             Person p = Poisk.MembIn();
 
@@ -82,9 +82,9 @@ namespace Kursova
                 
                 Poisk.Go(i);
 
-                if(i.FirstName == Poisk.FirstName
-                    && i.SecondName == Poisk.SecondName
-                    && i.ThirdName == Poisk.ThirdName
+                if(i.FirstName.ToUpper() == Poisk.FirstName.ToUpper()
+                    && i.SecondName.ToUpper() == Poisk.SecondName.ToUpper()
+                    && i.ThirdName.ToUpper() == Poisk.ThirdName.ToUpper()
                     && i.DateNar == Poisk.DateNar
                     && i.DateUvyaz == Poisk.DateUvyaz
                     && i.Statya == Poisk.Statya
@@ -97,8 +97,8 @@ namespace Kursova
                 {
                     table.Rows.Add
                         ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
-                        i.DateNar, $"ст.{i.Statya} ККУ", i.Term,
-                        $"№ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
+                        i.DateNar, $"СЃС‚.{i.Statya} РљРљРЈ", i.Term,
+                        $"в„– {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
                     count++;
                 }
                 
@@ -145,7 +145,7 @@ namespace Kursova
             switch (statField.SelectedIndex)
             {
                 case 0:
-                    Poisk.Stat = "Усі";
+                    Poisk.Stat = "РЈСЃС–";
                     break;
                 case 1:
                     Poisk.Stat = "M";
@@ -159,14 +159,13 @@ namespace Kursova
 
         private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Poisk.Ierarh = ierarhField.Text.Trim();
+            Poisk.Ierarh = ierarhField.Text;
             Statistic();
-
         }
 
         private void haractField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Poisk.Haract = haractField.Text.Trim();
+            Poisk.Haract = haractField.Text;
             Statistic();
         }
 
@@ -273,11 +272,11 @@ namespace Kursova
         {
             if (checkMama.Checked)
             {
-                rod += " Мати";
+                rod += " РњР°С‚Рё";
             }
             else
             {
-                rod.Replace(" Мати", "");
+                rod.Replace(" РњР°С‚Рё", "");
             }
             Statistic();
         }
@@ -285,11 +284,11 @@ namespace Kursova
         {
             if (checkDad.Checked)
             {
-                rod += " Батько";
+                rod += " Р‘Р°С‚СЊРєРѕ";
             }
             else
             {
-                rod.Replace(" Батько", "");
+                rod.Replace(" Р‘Р°С‚СЊРєРѕ", "");
             }
             Statistic();
         }
@@ -297,11 +296,11 @@ namespace Kursova
         {
             if (checkKid.Checked)
             {
-                rod += " Діти";
+                rod += " Р”С–С‚Рё";
             }
             else
             {
-                rod.Replace(" Діти", "");
+                rod.Replace(" Р”С–С‚Рё", "");
             }
             Statistic();
         }
@@ -309,11 +308,11 @@ namespace Kursova
         {
             if (checkHusb.Checked)
             {
-                rod += " Шлюб";
+                rod += " Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР°";
             }
             else
             {
-                rod.Replace(" Шлюб", "");
+                rod.Replace(" Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР°", "");
             }
             Statistic();
         }
@@ -321,11 +320,11 @@ namespace Kursova
         {
             if (checkBro.Checked)
             {
-                rod += " Брат/Сестра";
+                rod += " Р‘СЂР°С‚/РЎРµСЃС‚СЂР°";
             }
             else
             {
-                rod.Replace(" Брат/Сестра", "");
+                rod.Replace(" Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", "");
             }
             Statistic();
         }
@@ -354,7 +353,7 @@ namespace Kursova
                 }
                 else if (i.Statya == Poisk.Statya) count[2]++;
 
-                if (Poisk.Stat == "Усі")
+                if (Poisk.Stat == "РЈСЃС–")
                 {
                     count[3] = Data.data.Count;
                 }
@@ -406,43 +405,43 @@ namespace Kursova
     {
         public static List<Person> data = new()
             {
-                new Person( "Білоус Єлизавета Олександрівна", new(1970, 1, 1), "W", 152, new(2001, 2, 14), 3, " Мати Брат/Сестра", 1, "Опущені", "Агресивний"),
-                new Person( "Гончаренко Андрій Віталійович", new(1975, 3, 15), "M", 156, new(2002, 6, 21), 5, " Брат/Сестра Чоловік/Дружина Діти", 3, "Опущені", "Шістка"),
-                new Person( "Кравченко Максим Володимирович", new(1970, 5, 27), "M", 185, new(2003, 11, 5), 8, " Мати Брат/Сестра", 4, "Мужики", "Спокійний"),
-                new Person( "Петренко Микита Олегович", new(1975, 8, 9), "M", 152, new(2004, 4, 8), 3, " Чоловік/Дружина Діти", 9, "Блатні", "Нестійкий"),
-                new Person( "Шевченко Андрій Сергійович", new(1970, 10, 21), "M", 121, new(2005, 9, 13), 8, " Чоловік/Дружина Діти", 2, "Мужики", "Агресивний"),
-                new Person( "Кравченко Дмитро Сергійович", new(1975, 12, 3), "M", 125, new(2006, 12, 22), 3, " Мати Брат/Сестра", 3, "Опущені", "Нестійкий"),
-                new Person( "Ковальчук Наталія Миколаївна", new(1980, 2, 14), "W", 115, new(2007, 8, 7), 15, " Чоловік/Дружина Діти", 8, "Блатні", "Нестійкий"),
-                new Person( "Мельник Віталій Ігорович", new(1985, 4, 26), "M", 156, new(2008, 1, 17), 5, " Мати", 7, "Козли", "Нестійкий"),
-                new Person( "Мельник Юлія Василівна", new(1990, 7, 8), "W", 151, new(2009, 6, 28), 1, " Мати", 4, "Мужики", "Агресивний"),
-                new Person( "Олійник Ірина Анатоліївна", new(1991, 9, 19), "W", 115, new(2010, 10, 9), 15, " Мати", 5, "Блатні", "Агресивний"),
-                new Person( "Петренко Олег Віталійович", new(1992, 11, 1), "M", 185, new(2011, 3, 12), 8, "", 10, "Опущені", "Нестійкий"),
-                new Person( "Петренко Ігор Володимирович", new(1971, 2, 12), "M", 125, new(2012, 7, 23), 3, " Брат/Сестра Чоловік/Дружина Діти", 6, "Козли", "Спокійний"),
-                new Person( "Сидоренко Дмитро Сергійович", new(1966, 4, 24), "M", 121, new(2013, 12, 3), 8, " Мати Брат/Сестра", 9, "Мужики", "Шістка"),
-                new Person( "Тарасенко Марія Олександрівна", new(1961, 7, 6), "M", 115, new(2014, 8, 18), 15, " Мати Батько Діти", 5, "Блатні", "Спокійний"),
-                new Person( "Ушаков Сергій Юрійович", new(1966, 9, 17), "M", 126, new(2015, 1, 27), 2, " Батько", 6, "Опущені", "Спокійний"),
-                new Person( "Ковальчук Дмитро Олександрович", new(1971, 11, 29), "M", 156, new(2016, 6, 8), 5, "", 8, "Козли", "Нестійкий"),
-                new Person( "Харченко Юлія Іванівна", new(1976, 1, 10), "W", 121, new(2017, 10, 19), 8, " Батько", 9, "Блатні", "Спокійний"),
-                new Person( "Царенко Анна Віталіївна", new(1981, 3, 23), "W", 122, new(2018, 5, 2), 3, " Мати Чоловік/Дружина", 10, "Заполоскані", "Нестійкий"),
-                new Person( "Лисенко Олександр Миколайович", new(1986, 6, 4), "M", 125, new(2019, 11, 14), 3, " Мати Батько Діти", 10, "Козли", "Шістка"),
-                new Person( "Шевченко Денис Васильович", new(1993, 8, 16), "M", 122, new(2020, 3, 26), 3, " Мати Брат/Сестра", 1, "Заполоскані", "Агресивний"),
-                new Person( "Шевченко Олександра Василівна", new(1992, 4, 26), "Ж", 122, new(2020, 3, 26), 3, " Мати Брат/Сестра", 1, "Заполоскані", "Агресивний")
+                new Person( "Р‘С–Р»РѕСѓСЃ Р„Р»РёР·Р°РІРµС‚Р° РћР»РµРєСЃР°РЅРґСЂС–РІРЅР°", new(1970, 1, 1), "W", 152, new(2001, 2, 14), 3, " РњР°С‚Рё Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", 1, "РћРїСѓС‰РµРЅС–", "РђРіСЂРµСЃРёРІРЅРёР№"),
+                new Person( "РњСѓС…Р°РјР°Рґ РњСѓСЂР°Рґ Р†РІР°РЅРѕРІРёС‡", new(1975, 3, 15), "M", 156, new(2002, 6, 21), 5, " Р‘СЂР°С‚/РЎРµСЃС‚СЂР° Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР° Р”С–С‚Рё", 3, "РћРїСѓС‰РµРЅС–", "РЁС–СЃС‚РєР°"),
+                new Person( "РљСЂР°РІС‡РµРЅРєРѕ РњР°РєСЃРёРј Р’РѕР»РѕРґРёРјРёСЂРѕРІРёС‡", new(1970, 5, 27), "M", 185, new(2003, 11, 5), 8, " РњР°С‚Рё Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", 4, "РњСѓР¶РёРєРё", "РЎРїРѕРєС–Р№РЅРёР№"),
+                new Person( "РџРµС‚СЂРµРЅРєРѕ РњРёРєРёС‚Р° РћР»РµРіРѕРІРёС‡", new(1975, 8, 9), "M", 152, new(2004, 4, 8), 3, " Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР° Р”С–С‚Рё", 9, "Р‘Р»Р°С‚РЅС–", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "РЁРµРІС‡РµРЅРєРѕ РђРЅРґСЂС–Р№ РЎРµСЂРіС–Р№РѕРІРёС‡", new(1970, 10, 21), "M", 121, new(2005, 9, 13), 8, " Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР° Р”С–С‚Рё", 2, "РњСѓР¶РёРєРё", "РђРіСЂРµСЃРёРІРЅРёР№"),
+                new Person( "Р“РѕРЅС‡Р°СЂРµРЅРєРѕ РђРЅРґСЂС–Р№ Р’С–С‚Р°Р»С–Р№РѕРІРёС‡", new(1975, 12, 3), "M", 125, new(2006, 12, 22), 3, " РњР°С‚Рё Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", 12, "РћРїСѓС‰РµРЅС–", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "РљРѕРІР°Р»СЊС‡СѓРє РќР°С‚Р°Р»С–СЏ РњРёРєРѕР»Р°С—РІРЅР°", new(1980, 2, 14), "W", 115, new(2007, 8, 7), 15, " Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР° Р”С–С‚Рё", 8, "Р‘Р»Р°С‚РЅС–", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "РњРµР»СЊРЅРёРє Р’С–С‚Р°Р»С–Р№ Р†РіРѕСЂРѕРІРёС‡", new(1985, 4, 26), "M", 156, new(2008, 1, 17), 5, " РњР°С‚Рё", 7, "РљРѕР·Р»Рё", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "РњРµР»СЊРЅРёРє Р®Р»С–СЏ Р’Р°СЃРёР»С–РІРЅР°", new(1990, 7, 8), "W", 151, new(2009, 6, 28), 1, " РњР°С‚Рё", 4, "Р—Р°РїРѕР»РѕСЃРєР°РЅС–", "РђРіСЂРµСЃРёРІРЅРёР№"),
+                new Person( "РћР»С–Р№РЅРёРє Р†СЂРёРЅР° РђРЅР°С‚РѕР»С–С—РІРЅР°", new(1991, 9, 19), "W", 115, new(2010, 10, 9), 15, " РњР°С‚Рё", 5, "Р‘Р»Р°С‚РЅС–", "РђРіСЂРµСЃРёРІРЅРёР№"),
+                new Person( "РџРµС‚СЂРµРЅРєРѕ РћР»РµРі Р’С–С‚Р°Р»С–Р№РѕРІРёС‡", new(1992, 11, 1), "M", 185, new(2011, 3, 12), 8, "", 10, "РћРїСѓС‰РµРЅС–", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "РџРµС‚СЂРµРЅРєРѕ Р†РіРѕСЂ Р’РѕР»РѕРґРёРјРёСЂРѕРІРёС‡", new(1971, 2, 12), "M", 125, new(2012, 7, 23), 3, " Р‘СЂР°С‚/РЎРµСЃС‚СЂР° Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР° Р”С–С‚Рё", 6, "РљРѕР·Р»Рё", "РЎРїРѕРєС–Р№РЅРёР№"),
+                new Person( "РЎРёРґРѕСЂРµРЅРєРѕ Р”РјРёС‚СЂРѕ РЎРµСЂРіС–Р№РѕРІРёС‡", new(1966, 4, 24), "M", 121, new(2013, 12, 3), 8, " РњР°С‚Рё Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", 9, "РњСѓР¶РёРєРё", "РЁС–СЃС‚РєР°"),
+                new Person( "РўР°СЂР°СЃРµРЅРєРѕ РњР°СЂС–СЏ РћР»РµРєСЃР°РЅРґСЂС–РІРЅР°", new(1961, 7, 6), "M", 115, new(2014, 8, 18), 15, " РњР°С‚Рё Р‘Р°С‚СЊРєРѕ Р”С–С‚Рё", 5, "Р‘Р»Р°С‚РЅС–", "РЎРїРѕРєС–Р№РЅРёР№"),
+                new Person( "РЈС€Р°РєРѕРІ РЎРµСЂРіС–Р№ Р®СЂС–Р№РѕРІРёС‡", new(1966, 9, 17), "M", 126, new(2015, 1, 27), 2, " Р‘Р°С‚СЊРєРѕ", 6, "РћРїСѓС‰РµРЅС–", "РЎРїРѕРєС–Р№РЅРёР№"),
+                new Person( "РљРѕРІР°Р»СЊС‡СѓРє Р”РјРёС‚СЂРѕ РћР»РµРєСЃР°РЅРґСЂРѕРІРёС‡", new(1971, 11, 29), "M", 156, new(2016, 6, 8), 5, "", 8, "РљРѕР·Р»Рё", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "РҐР°СЂС‡РµРЅРєРѕ Р®Р»С–СЏ Р†РІР°РЅС–РІРЅР°", new(1976, 1, 10), "W", 121, new(2017, 10, 19), 8, " Р‘Р°С‚СЊРєРѕ", 9, "Р‘Р»Р°С‚РЅС–", "РЎРїРѕРєС–Р№РЅРёР№"),
+                new Person( "РњР°Р»Р°С‰СѓРє РЇСЂРѕСЃР»Р°РІР° РЎРµСЂРіС–Р№РѕРІРёС‡", new(1985, 8, 17), "W", 122, new(2018, 5, 2), 3, " РњР°С‚Рё Р§РѕР»РѕРІС–Рє/Р”СЂСѓР¶РёРЅР°", 10, "Р‘Р»Р°С‚РЅС–", "РќРµСЃС‚С–Р№РєРёР№"),
+                new Person( "Р›РёСЃРµРЅРєРѕ РћР»РµРєСЃР°РЅРґСЂ РњРёРєРѕР»Р°Р№РѕРІРёС‡", new(1986, 6, 4), "M", 125, new(2019, 11, 14), 3, " РњР°С‚Рё Р‘Р°С‚СЊРєРѕ Р”С–С‚Рё", 10, "РљРѕР·Р»Рё", "РЁС–СЃС‚РєР°"),
+                new Person( "РЁРµРІС‡РµРЅРєРѕ Р”РµРЅРёСЃ Р’Р°СЃРёР»СЊРѕРІРёС‡", new(1993, 8, 16), "M", 122, new(2020, 3, 26), 3, " РњР°С‚Рё Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", 1, "Р—Р°РїРѕР»РѕСЃРєР°РЅС–", "РђРіСЂРµСЃРёРІРЅРёР№"),
+                new Person( "РЁРµРІС‡РµРЅРєРѕ РћР»РµРєСЃР°РЅРґСЂР° Р’Р°СЃРёР»С–РІРЅР°", new(1992, 4, 26), "Р–", 122, new(2020, 3, 26), 3, " РњР°С‚Рё Р‘СЂР°С‚/РЎРµСЃС‚СЂР°", 1, "Р—Р°РїРѕР»РѕСЃРєР°РЅС–", "РђРіСЂРµСЃРёРІРЅРёР№")
             };
     }
     class Person
     {
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string ThirdName { get; set; }
+        public string FirstName { get; }
+        public string SecondName { get; }
+        public string ThirdName { get; }
         public DateTime DateNar { get; set; }
-        public string Stat { get; set; }
-        public int Statya { get; set; }
-        public DateTime DateUvyaz { get; set; }
-        public int Term { get; set; }
-        public string Rod { get; set; }
-        public int NumKam { get; set; }
-        public string Ierarh { get; set; }
-        public string Haract { get; set; }
+        public string Stat { get; }
+        public int Statya { get; }
+        public DateTime DateUvyaz { get; }
+        public int Term { get; }
+        public string Rod { get; }
+        public int NumKam { get; }
+        public string Ierarh { get; }
+        public string Haract { get; }
 
         public Person(string name, DateTime dateNar, string stat,
             int statya, DateTime dateUvyaz, int term, string rod,
@@ -468,11 +467,12 @@ namespace Kursova
 
     static class Poisk
     {
+        
         public static string FirstName { get; set; } = "-";
         public static string SecondName { get; set; } = "-";
         public static string ThirdName { get; set; } = "-";
         public static DateTime DateNar { get; set; } = new(1900, 01, 01);
-        public static string Stat { get; set; } = "Усі";
+        public static string Stat { get; set; } = "РЈСЃС–";
         public static int Statya { get; set; } = -1;
         public static DateTime DateUvyaz { get; set; } = new(1900, 01, 01);
         public static int Term { get; set; } = -1;
@@ -480,22 +480,23 @@ namespace Kursova
         public static int NumKam { get; set; } = -1;
         public static string Ierarh { get; set; } = "-";
         public static string Haract { get; set; } = "-";
+
         public static void Go(Person p)
         {
 
-            FirstName = FirstName == "-" || FirstName == ""
+            FirstName = FirstName == "" || FirstName == "-"
                 ? p.FirstName : FirstName;
 
-            SecondName = SecondName == "-" || SecondName == ""
+            SecondName = SecondName == "" || SecondName == "-" 
                 ? p.SecondName : SecondName;
 
-            ThirdName = ThirdName == "-" || ThirdName == ""
+            ThirdName = ThirdName == "" || ThirdName == "-" 
                 ? p.ThirdName : ThirdName;
 
             DateNar = DateNar == new DateTime(1900, 01, 01)
                 ? p.DateNar : DateNar;
 
-            Stat = Stat == "Усі" ? p.Stat : Stat;
+            Stat = Stat == "РЈСЃС–" ? p.Stat : Stat;
 
             Statya = Statya == -1 ? p.Statya : Statya;
 
@@ -521,7 +522,6 @@ namespace Kursova
 
         public static void MembOut(Person memb)
         {
-
             SecondName = memb.SecondName;
             FirstName = memb.FirstName;
             ThirdName = memb.ThirdName;
