@@ -1,3 +1,4 @@
+using System.CodeDom.Compiler;
 using System.Data;
 using System.Data.Common;
 using System.Security.Cryptography.X509Certificates;
@@ -20,26 +21,6 @@ namespace Kursova
 
             checkKamNum.Checked = checkDataNar.Checked = checkRod.Checked
                 = checkTerm.Checked = checkDataUvyaz.Checked = true;
-
-            Poisk.FirstName = Poisk.SecondName = Poisk.ThirdName = "-";
-
-            Poisk.DateNar = new(1900, 01, 01);
-
-            Poisk.Stat = "Óñ³";
-
-            Poisk.Statya = -1;
-
-            Poisk.DateUvyaz = new(1900, 01, 01);
-
-            Poisk.Term = -1;
-
-            Poisk.Rod = "";
-
-            Poisk.NumKam = -1;
-
-            Poisk.Ierarh = "-";
-
-            Poisk.Haract = "-";
 
         }
         private int term = 1;
@@ -75,7 +56,6 @@ namespace Kursova
             Poisk.Term = term;
             Statistic();
         }
-
 
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -449,18 +429,18 @@ namespace Kursova
     }
     class Person
     {
-        public string FirstName { get; }
-        public string SecondName { get; }
-        public string ThirdName { get; }
-        public DateTime DateNar { get; }
-        public string Stat { get; }
-        public int Statya { get; }
-        public DateTime DateUvyaz { get; }
-        public int Term { get; }
-        public string Rod { get; }
-        public int NumKam { get; }
-        public string Ierarh { get; }
-        public string Haract { get; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string ThirdName { get; set; }
+        public DateTime DateNar { get; set; }
+        public string Stat { get; set; }
+        public int Statya { get; set; }
+        public DateTime DateUvyaz { get; set; }
+        public int Term { get; set; }
+        public string Rod { get; set; }
+        public int NumKam { get; set; }
+        public string Ierarh { get; set; }
+        public string Haract { get; set; }
 
         public Person(string name, DateTime dateNar, string stat,
             int statya, DateTime dateUvyaz, int term, string rod,
@@ -486,18 +466,18 @@ namespace Kursova
 
     static class Poisk
     {
-        public static string FirstName { get; set; }
-        public static string SecondName { get; set; }
-        public static string ThirdName { get; set; }
-        public static DateTime DateNar { get; set; }
-        public static string Stat { get; set; }
-        public static int Statya { get; set; }
-        public static DateTime DateUvyaz { get; set; }
-        public static int Term { get; set; }
-        public static string Rod { get; set; }
-        public static int NumKam { get; set; }
-        public static string Ierarh { get; set; }
-        public static string Haract { get; set; }
+        public static string FirstName { get; set; } = "-";
+        public static string SecondName { get; set; } = "-";
+        public static string ThirdName { get; set; } = "-";
+        public static DateTime DateNar { get; set; } = new(1900, 01, 01);
+        public static string Stat { get; set; } = "Óñ³";
+        public static int Statya { get; set; } = -1;
+        public static DateTime DateUvyaz { get; set; } = new(1900, 01, 01);
+        public static int Term { get; set; } = -1;
+        public static string Rod { get; set; } = "";
+        public static int NumKam { get; set; } = -1;
+        public static string Ierarh { get; set; } = "-";
+        public static string Haract { get; set; } = "-";
         public static void Go(Person p)
         {
 
@@ -552,5 +532,32 @@ namespace Kursova
             Ierarh = memb.Ierarh;
             Haract = memb.Haract;
         }
+    }
+
+    class O
+    {
+        public Person temp = new("- - -", new(1900, 01, 01), "Óñ³", -1, new(1900, 01, 01), -1, "", -1, "-", "-");
+
+        public Person MembIn() =>
+            new($"{temp.SecondName} {temp.FirstName} {temp.ThirdName}",
+                temp.DateNar, temp.Stat,temp.Statya, temp.DateUvyaz, temp.Term,
+                temp.Rod, temp.NumKam, temp.Ierarh, temp.Haract);
+
+        public void MembOut(Person memb)
+        {
+            temp.SecondName = memb.SecondName;
+            temp.FirstName = memb.FirstName;
+            temp.ThirdName = memb.ThirdName;
+            temp.Stat = memb.Stat;
+            temp.Statya = memb.Statya;
+            temp.Term = memb.Term;
+            temp.Rod = memb.Rod;
+            temp.NumKam = memb.NumKam;
+            temp.DateNar = memb.DateNar;
+            temp.DateUvyaz = memb.DateUvyaz;
+            temp.Ierarh = memb.Ierarh;
+            temp.Haract = memb.Haract;
+        }
+
     }
 }
