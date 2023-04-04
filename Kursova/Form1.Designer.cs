@@ -350,6 +350,7 @@
             checkMama.TabIndex = 8;
             checkMama.Text = "Мати";
             checkMama.UseVisualStyleBackColor = true;
+            checkMama.CheckedChanged += checkMama_CheckedChanged;
             // 
             // checkDad
             // 
@@ -360,6 +361,7 @@
             checkDad.TabIndex = 9;
             checkDad.Text = "Батько";
             checkDad.UseVisualStyleBackColor = true;
+            checkDad.CheckedChanged += checkDad_CheckedChanged;
             // 
             // checkKid
             // 
@@ -370,6 +372,7 @@
             checkKid.TabIndex = 7;
             checkKid.Text = "Діти";
             checkKid.UseVisualStyleBackColor = true;
+            checkKid.CheckedChanged += checkKid_CheckedChanged;
             // 
             // checkBro
             // 
@@ -381,6 +384,7 @@
             checkBro.TabIndex = 10;
             checkBro.Text = "Брат/Сестра";
             checkBro.UseVisualStyleBackColor = true;
+            checkBro.CheckedChanged += checkBro_CheckedChanged;
             // 
             // checkHusb
             // 
@@ -391,6 +395,7 @@
             checkHusb.TabIndex = 3;
             checkHusb.Text = "Чоловік/Жінка";
             checkHusb.UseVisualStyleBackColor = true;
+            checkHusb.CheckedChanged += checkHusb_CheckedChanged;
             // 
             // groupBox5
             // 

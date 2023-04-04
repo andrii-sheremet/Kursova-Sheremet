@@ -175,7 +175,7 @@ namespace Kursova
 
 
 
-                //TimePickers
+        //TimePickers
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Poisk.DateNar = DataNarTimePicker.Value;
@@ -189,7 +189,7 @@ namespace Kursova
 
 
 
-                //Чекбокси
+        //Чекбокси
         private void checkTerm_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -257,6 +257,61 @@ namespace Kursova
             else
             {
                 Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            }
+        }
+        private void checkMama_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkMama.Checked)
+            {
+                rod += " Мати";
+            }
+            else
+            {
+                rod.Replace(" Мати", "");
+            }
+        }
+        private void checkDad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDad.Checked)
+            {
+                rod += " Батько";
+            }
+            else
+            {
+                rod.Replace(" Батько", "");
+            }
+        }
+        private void checkKid_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkKid.Checked)
+            {
+                rod += " Діти";
+            }
+            else
+            {
+                rod.Replace(" Діти", "");
+            }
+        }
+        private void checkHusb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkHusb.Checked)
+            {
+                rod += " Чоловік/Дружина";
+            }
+            else
+            {
+                rod.Replace(" Чоловік/Дружина", "");
+            }
+        }
+        private void checkBro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBro.Checked)
+            {
+                rod += " Брат/Сестра";
+            }
+            else
+            {
+                rod.Replace(" Брат/Сестра", "");
             }
         }
     }
@@ -401,15 +456,15 @@ namespace Kursova
 
             NumKam = NumKam == -1 ? p.NumKam : NumKam;
 
-            Ierarh = Ierarh == "-" || Ierarh == "" 
+            Ierarh = Ierarh == "-" || Ierarh == ""
                 ? p.Ierarh : Ierarh;
 
-            Haract = Haract == "-" || Haract == "" 
+            Haract = Haract == "-" || Haract == ""
                 ? p.Haract : Haract;
         }
 
         public static Person MembIn() =>
-            new ($"{SecondName} {FirstName} {ThirdName}", DateNar, Stat, 
+            new($"{SecondName} {FirstName} {ThirdName}", DateNar, Stat,
                 Statya, DateUvyaz, Term, Rod, NumKam, Ierarh, Haract);
 
         public static void MembOut(Person memb)
