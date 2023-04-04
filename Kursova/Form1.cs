@@ -79,10 +79,10 @@ namespace Kursova
 
             foreach (var i in Data.data)
             {
-                
+
                 Poisk.Go(i);
 
-                if(i.FirstName.ToUpper() == Poisk.FirstName.ToUpper()
+                if (i.FirstName.ToUpper() == Poisk.FirstName.ToUpper()
                     && i.SecondName.ToUpper() == Poisk.SecondName.ToUpper()
                     && i.ThirdName.ToUpper() == Poisk.ThirdName.ToUpper()
                     && i.DateNar == Poisk.DateNar
@@ -101,11 +101,22 @@ namespace Kursova
                         $"№ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
                     count++;
                 }
-                
+
                 Poisk.MembOut(p);
             }
 
             labelSum.Text = Convert.ToString(count);
+
+            if (count > 0)
+            {
+                exceptionPanel.Visible = false;
+            }
+            else
+            {
+                exceptionPanel.Visible = true;
+                table.Rows.Clear();
+                table.Columns.Clear();
+            }
 
             dataGridView1.DataSource = table;
         }
@@ -467,7 +478,7 @@ namespace Kursova
 
     static class Poisk
     {
-        
+
         public static string FirstName { get; set; } = "-";
         public static string SecondName { get; set; } = "-";
         public static string ThirdName { get; set; } = "-";
@@ -487,10 +498,10 @@ namespace Kursova
             FirstName = FirstName == "" || FirstName == "-"
                 ? p.FirstName : FirstName;
 
-            SecondName = SecondName == "" || SecondName == "-" 
+            SecondName = SecondName == "" || SecondName == "-"
                 ? p.SecondName : SecondName;
 
-            ThirdName = ThirdName == "" || ThirdName == "-" 
+            ThirdName = ThirdName == "" || ThirdName == "-"
                 ? p.ThirdName : ThirdName;
 
             DateNar = DateNar == new DateTime(1900, 01, 01)
