@@ -93,6 +93,8 @@ namespace Kursova
 
             Person p = Poisk.MembIn();
 
+            int count = 0;
+
             foreach (var i in Data.data)
             {
                 Poisk.Go(i);
@@ -114,10 +116,13 @@ namespace Kursova
                         ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
                         i.DateNar, $"ст.{i.Statya} ККУ", i.Term,
                         $"№ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
+                    count++;
                 }
 
                 Poisk.MembOut(p);
             }
+
+            labelSum.Text = Convert.ToString(count);
 
             dataGridView1.DataSource = table;
         }
@@ -125,16 +130,19 @@ namespace Kursova
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
             Poisk.SecondName = PrizvTextBox.Text.Trim();
+            Statistic();
         }
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
             Poisk.FirstName = ImyaTextBox.Text.Trim();
+            Statistic();
         }
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
             Poisk.ThirdName = PBTextBox.Text.Trim();
+            Statistic();
         }
         private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -146,7 +154,7 @@ namespace Kursova
             {
                 Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
             }
-            
+            Statistic();
         }
 
         private void statField_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,25 +171,26 @@ namespace Kursova
                     Poisk.Stat = "W";
                     break;
             }
-            
+            Statistic();
         }
 
         private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Ierarh = ierarhField.Text.Trim();
+            Statistic();
 
         }
 
         private void haractField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Haract = haractField.Text.Trim();
-            
+            Statistic();
         }
 
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
             Poisk.NumKam = Convert.ToInt32(KamNum.Value);
-            
+            Statistic();
         }
 
 
@@ -190,11 +199,13 @@ namespace Kursova
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Poisk.DateNar = DataNarTimePicker.Value;
+            Statistic();
         }
 
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            Statistic();
         }
 
 
@@ -214,6 +225,7 @@ namespace Kursova
             {
                 Poisk.Term = term;
             }
+            Statistic();
         }
         public string rod;
         private void checkRod_CheckedChanged(object sender, EventArgs e)
@@ -230,6 +242,7 @@ namespace Kursova
             {
                 Poisk.Rod = rod;
             }
+            Statistic();
         }
         private void checkKamNum_CheckedChanged(object sender, EventArgs e)
         {
@@ -243,6 +256,7 @@ namespace Kursova
             {
                 Poisk.NumKam = (int)KamNum.Value;
             }
+            Statistic();
         }
         private void checkDataNar_CheckedChanged(object sender, EventArgs e)
         {
@@ -256,6 +270,7 @@ namespace Kursova
             {
                 Poisk.DateNar = DataNarTimePicker.Value;
             }
+            Statistic();
         }
         private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
         {
@@ -269,6 +284,7 @@ namespace Kursova
             {
                 Poisk.DateUvyaz = DataUvyazTimePicker.Value;
             }
+            Statistic();
         }
         private void checkMama_CheckedChanged(object sender, EventArgs e)
         {
@@ -280,6 +296,7 @@ namespace Kursova
             {
                 rod.Replace(" Мати", "");
             }
+            Statistic();
         }
         private void checkDad_CheckedChanged(object sender, EventArgs e)
         {
@@ -291,6 +308,7 @@ namespace Kursova
             {
                 rod.Replace(" Батько", "");
             }
+            Statistic();
         }
         private void checkKid_CheckedChanged(object sender, EventArgs e)
         {
@@ -302,6 +320,7 @@ namespace Kursova
             {
                 rod.Replace(" Діти", "");
             }
+            Statistic();
         }
         private void checkHusb_CheckedChanged(object sender, EventArgs e)
         {
@@ -313,6 +332,7 @@ namespace Kursova
             {
                 rod.Replace(" Шлюб", "");
             }
+            Statistic();
         }
         private void checkBro_CheckedChanged(object sender, EventArgs e)
         {
@@ -324,11 +344,12 @@ namespace Kursova
             {
                 rod.Replace(" Брат/Сестра", "");
             }
+            Statistic();
         }
 
         private void Statistic()
         {
-            int[] count = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            int[] count = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
             foreach(var i in Data.data)
             {
@@ -380,24 +401,11 @@ namespace Kursova
                 }
                 else if (i.DateUvyaz == Poisk.DateUvyaz) count[7]++;
 
-                if ( i.DateNar == Poisk.DateNar
-                    && i.DateUvyaz == Poisk.DateUvyaz
-                    && i.Statya == Poisk.Statya
-                    && i.Stat == Poisk.Stat
-                    //&& i.Rod == Poisk.Rod
-                    && i.Haract == Poisk.Haract
-                    && i.Ierarh == Poisk.Ierarh
-                    && i.NumKam == Poisk.NumKam
-                    && i.Term == Poisk.Term)
-                {
-                    count[8]++;
-                }
-
                 if (Poisk.Ierarh == "-")
                 {
-                    count[9] = Data.data.Count;
+                    count[8] = Data.data.Count;
                 }
-                else if (i.Ierarh == Poisk.Ierarh) count[9]++;
+                else if (i.Ierarh == Poisk.Ierarh) count[8]++;
             }
             label3.Text = Convert.ToString(count[0]);
 
@@ -415,9 +423,7 @@ namespace Kursova
 
             label5.Text = Convert.ToString(count[7]);
 
-            labelSum.Text = Convert.ToString(count[8]);
-
-            label12.Text = Convert.ToString(count[9]);
+            label12.Text = Convert.ToString(count[8]);
         }
     }
     class Data
