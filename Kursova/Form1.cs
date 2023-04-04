@@ -543,21 +543,7 @@ namespace Kursova
                 temp.DateNar, temp.Stat,temp.Statya, temp.DateUvyaz, temp.Term,
                 temp.Rod, temp.NumKam, temp.Ierarh, temp.Haract);
 
-        public void MembOut(Person memb)
-        {
-            temp.SecondName = memb.SecondName;
-            temp.FirstName = memb.FirstName;
-            temp.ThirdName = memb.ThirdName;
-            temp.Stat = memb.Stat;
-            temp.Statya = memb.Statya;
-            temp.Term = memb.Term;
-            temp.Rod = memb.Rod;
-            temp.NumKam = memb.NumKam;
-            temp.DateNar = memb.DateNar;
-            temp.DateUvyaz = memb.DateUvyaz;
-            temp.Ierarh = memb.Ierarh;
-            temp.Haract = memb.Haract;
-        }
+        
 
     }
 }
