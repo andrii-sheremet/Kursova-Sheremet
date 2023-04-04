@@ -1,6 +1,7 @@
 using System.CodeDom.Compiler;
 using System.Data;
 using System.Data.Common;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -78,9 +79,10 @@ namespace Kursova
 
             foreach (var i in Data.data)
             {
+                
                 Poisk.Go(i);
 
-                if (i.FirstName == Poisk.FirstName
+                if(i.FirstName == Poisk.FirstName
                     && i.SecondName == Poisk.SecondName
                     && i.ThirdName == Poisk.ThirdName
                     && i.DateNar == Poisk.DateNar
@@ -99,7 +101,7 @@ namespace Kursova
                         $"¹ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
                     count++;
                 }
-
+                
                 Poisk.MembOut(p);
             }
 
@@ -519,6 +521,7 @@ namespace Kursova
 
         public static void MembOut(Person memb)
         {
+
             SecondName = memb.SecondName;
             FirstName = memb.FirstName;
             ThirdName = memb.ThirdName;
@@ -532,18 +535,5 @@ namespace Kursova
             Ierarh = memb.Ierarh;
             Haract = memb.Haract;
         }
-    }
-
-    class O
-    {
-        public Person temp = new("- - -", new(1900, 01, 01), "Óñ³", -1, new(1900, 01, 01), -1, "", -1, "-", "-");
-
-        public Person MembIn() =>
-            new($"{temp.SecondName} {temp.FirstName} {temp.ThirdName}",
-                temp.DateNar, temp.Stat,temp.Statya, temp.DateUvyaz, temp.Term,
-                temp.Rod, temp.NumKam, temp.Ierarh, temp.Haract);
-
-        
-
     }
 }
