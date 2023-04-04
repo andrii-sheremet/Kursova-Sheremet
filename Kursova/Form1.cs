@@ -42,54 +42,39 @@ namespace Kursova
             Poisk.Haract = "";
 
         }
-
+        private int term = 1;
         private void termBar1_Scroll(object sender, EventArgs e)
         {
             switch (termBar1.Value)
             {
                 case 1:
                     label1.Text = "1 роки";
-                    Poisk.Term = 1;
+                    term = 1;
                     break;
                 case 2:
                     label1.Text = "2 роки";
-                    Poisk.Term = 2;
+                    term = 2;
                     break;
                 case 3:
                     label1.Text = "3 років";
-                    Poisk.Term = 3;
+                    term = 3;
                     break;
                 case 4:
                     label1.Text = "5 років";
-                    Poisk.Term = 5;
+                    term = 5;
                     break;
                 case 5:
                     label1.Text = "8 років";
-                    Poisk.Term = 8;
+                    term = 8;
                     break;
                 case 6:
                     label1.Text = "15 років";
-                    Poisk.Term = 15;
+                    term = 15;
                     break;
             }
+            Poisk.Term = term;
         }
 
-        private void checkTerm_CheckedChanged(object sender, EventArgs e)
-        {
-
-            termBar1.Enabled = label1.Visible = !checkTerm.Checked;
-
-            if (checkTerm.Checked) Poisk.Term = -1;
-        }
-
-        private void checkRod_CheckedChanged(object sender, EventArgs e)
-        {
-            checkMama.Enabled = checkKid.Enabled
-                = checkDad.Enabled = checkBro.Enabled
-                = checkHusb.Enabled = !checkRod.Checked;
-
-            if (checkRod.Checked) Poisk.Rod = "";
-        }
 
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -100,7 +85,7 @@ namespace Kursova
             table.Columns.Add("Стаття", typeof(string));
             table.Columns.Add("Камера", typeof(string));
 
-
+            Person p = Poisk.MembIn();
 
             foreach (var i in Data.data)
             {
@@ -123,45 +108,13 @@ namespace Kursova
                         ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
                         i.DateNar, $"ст.{i.Statya} ККУ", $"№ {i.NumKam}");
                 }
+
+                Poisk.MembOut(p);
             }
 
             dataGridView1.DataSource = table;
         }
 
-        private void checkKamNum_CheckedChanged(object sender, EventArgs e)
-        {
-            KamNum.Enabled = !checkKamNum.Checked;
-
-            if (checkKamNum.Checked) Poisk.NumKam = -1;
-        }
-
-        private void checkDataNar_CheckedChanged(object sender, EventArgs e)
-        {
-            DataNarTimePicker.Enabled = !checkDataNar.Checked;
-
-            if (checkDataNar.Checked)
-            {
-                Poisk.DateNar = new(1900, 01, 01);
-            }
-            else
-            {
-                Poisk.DateNar = DataNarTimePicker.Value;
-            }
-        }
-
-        private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
-        {
-            DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
-
-            if (checkDataUvyaz.Checked)
-            {
-                Poisk.DateUvyaz = new(1900, 01, 01);
-            }
-            else
-            {
-                Poisk.DateUvyaz = DataUvyazTimePicker.Value;
-            }
-        }
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
             Poisk.SecondName = PrizvTextBox.Text.Trim();
@@ -220,6 +173,9 @@ namespace Kursova
             Poisk.NumKam = Convert.ToInt32(KamNum.Value);
         }
 
+
+
+                //TimePickers
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Poisk.DateNar = DataNarTimePicker.Value;
@@ -228,6 +184,80 @@ namespace Kursova
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+        }
+
+
+
+
+                //Чекбокси
+        private void checkTerm_CheckedChanged(object sender, EventArgs e)
+        {
+
+            termBar1.Enabled = label1.Visible = !checkTerm.Checked;
+
+            if (checkTerm.Checked)
+            {
+                Poisk.Term = -1;
+            }
+            else
+            {
+                Poisk.Term = term;
+            }
+        }
+        public string rod;
+        private void checkRod_CheckedChanged(object sender, EventArgs e)
+        {
+            checkMama.Enabled = checkKid.Enabled
+                = checkDad.Enabled = checkBro.Enabled
+                = checkHusb.Enabled = !checkRod.Checked;
+
+            if (checkRod.Checked)
+            {
+                Poisk.Rod = "";
+            }
+            else
+            {
+                Poisk.Rod = rod;
+            }
+        }
+        private void checkKamNum_CheckedChanged(object sender, EventArgs e)
+        {
+            KamNum.Enabled = !checkKamNum.Checked;
+
+            if (checkKamNum.Checked)
+            {
+                Poisk.NumKam = -1;
+            }
+            else
+            {
+                Poisk.NumKam = (int)KamNum.Value;
+            }
+        }
+        private void checkDataNar_CheckedChanged(object sender, EventArgs e)
+        {
+            DataNarTimePicker.Enabled = !checkDataNar.Checked;
+
+            if (checkDataNar.Checked)
+            {
+                Poisk.DateNar = new(1900, 01, 01);
+            }
+            else
+            {
+                Poisk.DateNar = DataNarTimePicker.Value;
+            }
+        }
+        private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
+        {
+            DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
+
+            if (checkDataUvyaz.Checked)
+            {
+                Poisk.DateUvyaz = new(1900, 01, 01);
+            }
+            else
+            {
+                Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            }
         }
     }
     class Data
@@ -371,9 +401,31 @@ namespace Kursova
 
             NumKam = NumKam == -1 ? p.NumKam : NumKam;
 
-            Ierarh = Ierarh == "" ? p.Ierarh : Ierarh;
+            Ierarh = Ierarh == "-" || Ierarh == "" 
+                ? p.Ierarh : Ierarh;
 
-            Haract = Haract == "" ? p.Haract : Haract;
+            Haract = Haract == "-" || Haract == "" 
+                ? p.Haract : Haract;
+        }
+
+        public static Person MembIn() =>
+            new ($"{SecondName} {FirstName} {ThirdName}", DateNar, Stat, 
+                Statya, DateUvyaz, Term, Rod, NumKam, Ierarh, Haract);
+
+        public static void MembOut(Person memb)
+        {
+            SecondName = memb.SecondName;
+            FirstName = memb.FirstName;
+            ThirdName = memb.ThirdName;
+            Stat = memb.Stat;
+            Statya = memb.Statya;
+            Term = memb.Term;
+            Rod = memb.Rod;
+            NumKam = memb.NumKam;
+            DateNar = memb.DateNar;
+            DateUvyaz = memb.DateUvyaz;
+            Ierarh = memb.Ierarh;
+            Haract = memb.Haract;
         }
     }
 }
