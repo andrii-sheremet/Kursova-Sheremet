@@ -37,9 +37,9 @@ namespace Kursova
 
             Poisk.NumKam = -1;
 
-            Poisk.Ierarh = "";
+            Poisk.Ierarh = "-";
 
-            Poisk.Haract = "";
+            Poisk.Haract = "-";
 
         }
         private int term = 1;
@@ -73,24 +73,13 @@ namespace Kursova
                     break;
             }
             Poisk.Term = term;
-            int count = 0;
-            foreach (var i in Data.data)
-            {
-                if (Poisk.Term == -1)
-                {
-                    count = Data.data.Count;
-                    break;
-                }
-                else if (i.Term == Poisk.Term) count++;
-            }
-            label10.Text = Convert.ToString(count);
         }
 
 
         private void findButton_Click(object sender, EventArgs e)
         {
 
-            
+            Statistic();
 
             DataTable table = new DataTable();
             table.Columns.Add("Ï²Á", typeof(string));
@@ -104,7 +93,6 @@ namespace Kursova
 
             Person p = Poisk.MembIn();
 
-            int count = 0;
             foreach (var i in Data.data)
             {
                 Poisk.Go(i);
@@ -130,7 +118,6 @@ namespace Kursova
 
                 Poisk.MembOut(p);
             }
-            labelSum.Text = Convert.ToString(count);
 
             dataGridView1.DataSource = table;
         }
@@ -159,17 +146,7 @@ namespace Kursova
             {
                 Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
             }
-            int count = 0;
-            foreach (var i in Data.data)
-            {
-                if (Poisk.Statya == -1)
-                {
-                    count = Data.data.Count;
-                    break;
-                }
-                else if (i.Statya == Poisk.Statya) count++;
-            }
-            label4.Text = Convert.ToString(count);
+            
         }
 
         private void statField_SelectedIndexChanged(object sender, EventArgs e)
@@ -186,66 +163,25 @@ namespace Kursova
                     Poisk.Stat = "W";
                     break;
             }
-            int count = 0;
-            foreach (var i in Data.data)
-            {
-                if (Poisk.Stat == "Óñ³")
-                {
-                    count = Data.data.Count;
-                    break;
-                }
-                else if (i.Stat == Poisk.Stat) count++;
-            }
-            label11.Text = Convert.ToString(count);
+            
         }
 
         private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Ierarh = ierarhField.Text.Trim();
 
-            int count = 0;
-            foreach (var i in Data.data)
-            {
-                if (Poisk.Ierarh == "-")
-                {
-                    count = Data.data.Count;
-                    break;
-                }
-                else if (i.Ierarh == Poisk.Ierarh) count++;
-            }
-            label12.Text = Convert.ToString(count);
         }
 
         private void haractField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Haract = haractField.Text.Trim();
-            int count = 0;
-            foreach (var i in Data.data)
-            {
-                if (Poisk.Haract == "-")
-                {
-                    count = Data.data.Count;
-                    break;
-                }
-                else if (i.Haract == Poisk.Haract) count++;
-            }
-            label13.Text = Convert.ToString(count);
+            
         }
 
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
             Poisk.NumKam = Convert.ToInt32(KamNum.Value);
-            int count = 0;
-            foreach (var i in Data.data)
-            {
-                if (Poisk.NumKam == -1)
-                {
-                    count = Data.data.Count;
-                    break;
-                }
-                else if (i.NumKam == Poisk.NumKam) count++;
-            }
-            label3.Text = Convert.ToString(count);
+            
         }
 
 
@@ -390,9 +326,98 @@ namespace Kursova
             }
         }
 
-        private void Stat(object label)
+        private void Statistic()
         {
-            int[] ints = new int[12];
+            int[] count = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+            foreach(var i in Data.data)
+            {
+                if (Poisk.NumKam == -1)
+                {
+                    count[0] = Data.data.Count;
+                }
+                else if (i.NumKam == Poisk.NumKam) count[0]++;
+
+                if (Poisk.Term == -1)
+                {
+                    count[1] = Data.data.Count;
+                }
+                else if (i.Term == Poisk.Term) count[1]++;
+
+                if (Poisk.Statya == -1)
+                {
+                    count[2] = Data.data.Count;
+                }
+                else if (i.Statya == Poisk.Statya) count[2]++;
+
+                if (Poisk.Stat == "Óñ³")
+                {
+                    count[3] = Data.data.Count;
+                }
+                else if (i.Stat == Poisk.Stat) count[3]++;
+
+                if (Poisk.Haract == "-")
+                {
+                    count[4] = Data.data.Count;
+                }
+                else if (i.Haract == Poisk.Haract) count[4]++;
+
+                if (Poisk.NumKam == -1)
+                {
+                    count[5] = Data.data.Count;
+                }
+                else if (i.NumKam == Poisk.NumKam) count[5]++;
+
+                if (Poisk.DateNar == new DateTime(1900, 01, 01))
+                {
+                    count[6] = Data.data.Count;
+                }
+                else if (i.DateNar == Poisk.DateNar) count[6]++;
+
+                if (Poisk.DateUvyaz == new DateTime(1900, 01, 01))
+                {
+                    count[7] = Data.data.Count;
+                }
+                else if (i.DateUvyaz == Poisk.DateUvyaz) count[7]++;
+
+                if ( i.DateNar == Poisk.DateNar
+                    && i.DateUvyaz == Poisk.DateUvyaz
+                    && i.Statya == Poisk.Statya
+                    && i.Stat == Poisk.Stat
+                    //&& i.Rod == Poisk.Rod
+                    && i.Haract == Poisk.Haract
+                    && i.Ierarh == Poisk.Ierarh
+                    && i.NumKam == Poisk.NumKam
+                    && i.Term == Poisk.Term)
+                {
+                    count[8]++;
+                }
+
+                if (Poisk.Ierarh == "-")
+                {
+                    count[9] = Data.data.Count;
+                }
+                else if (i.Ierarh == Poisk.Ierarh) count[9]++;
+            }
+            label3.Text = Convert.ToString(count[0]);
+
+            label10.Text = Convert.ToString(count[1]);
+
+            label4.Text = Convert.ToString(count[2]);
+
+            label11.Text = Convert.ToString(count[3]);
+
+            label13.Text = Convert.ToString(count[4]);
+
+            label3.Text = Convert.ToString(count[5]);
+
+            label2.Text = Convert.ToString(count[6]);
+
+            label5.Text = Convert.ToString(count[7]);
+
+            labelSum.Text = Convert.ToString(count[8]);
+
+            label12.Text = Convert.ToString(count[9]);
         }
     }
     class Data
