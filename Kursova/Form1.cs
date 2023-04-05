@@ -15,6 +15,8 @@ namespace Kursova
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
 
             KamNum.Enabled = termBar1.Enabled = label1.Visible
                     = DataNarTimePicker.Enabled = DataUvyazTimePicker.Enabled
@@ -411,6 +413,17 @@ namespace Kursova
             label12.Text = Convert.ToString(count[8]);
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                findButton_Click(sender, e);
+            }
+        }
     }
     class Data
     {
