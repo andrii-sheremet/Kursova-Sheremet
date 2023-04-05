@@ -16,14 +16,12 @@ namespace Kursova
         {
             InitializeComponent();
 
-            KamNum.Enabled = checkMama.Checked = checkKid.Checked
-                    = checkDad.Checked = checkBro.Checked = checkHusb.Checked
-                    = termBar1.Enabled = label1.Visible
+            KamNum.Enabled = termBar1.Enabled = label1.Visible
                     = DataNarTimePicker.Enabled = DataUvyazTimePicker.Enabled
                     = false;
 
-            checkKamNum.Checked = checkDataNar.Checked = checkRod.Checked
-                = checkTerm.Checked = checkDataUvyaz.Checked = true;
+            checkKamNum.Checked = checkDataNar.Checked = checkTerm.Checked
+                = checkDataUvyaz.Checked = true;
 
         }
 
@@ -76,40 +74,36 @@ namespace Kursova
             table.Columns.Add("Місце в Ієрархії", typeof(string));
             table.Columns.Add("Характер", typeof(string));
 
-            Person p = Poisk.MembIn();
-
             int count = 0;
 
-            SortedList<int, string> rodData = new()
-            {
-                { 0, " Мати" },
-                { 1, " Батько" },
-                { 2, " Діти" },
-                { 3, " Чоловік/Жінка" },
-                { 4, " Брат/Сестра" }
-            };
+            string rodS = "";
+            
+            Poisk.Rod = rodS.Trim();
 
-            string rod = "";
 
-            foreach(var ind in rodInd)
-            {
-                rod += rodData.GetValueAtIndex(ind) + " ";
-            }
-
+            Person p = Poisk.MembIn();
 
             foreach (var i in Data.data)
             {
 
                 Poisk.Go(i);
 
+                bool rodBool = true;
+                foreach (KeyValuePair<int, string> memb in rod)
+                {
+                    rodBool = i.Rod.Contains(memb.Value);
+
+                    if (!rodBool) break;
+                }
+
                 if (i.FirstName.ToUpper() == Poisk.FirstName.ToUpper()
                     && i.SecondName.ToUpper() == Poisk.SecondName.ToUpper()
                     && i.ThirdName.ToUpper() == Poisk.ThirdName.ToUpper()
-                    && i.DateNar == Poisk.DateNar
+                    && i.DateNar == Poisk.DateNar 
                     && i.DateUvyaz == Poisk.DateUvyaz
                     && i.Statya == Poisk.Statya
                     && i.Stat == Poisk.Stat
-                    && i.Rod == rod
+                    && rodBool
                     && i.Haract == Poisk.Haract
                     && i.Ierarh == Poisk.Ierarh
                     && i.NumKam == Poisk.NumKam
@@ -146,18 +140,17 @@ namespace Kursova
             Poisk.SecondName = PrizvTextBox.Text.Trim();
             Statistic();
         }
-
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
             Poisk.FirstName = ImyaTextBox.Text.Trim();
             Statistic();
         }
-
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
             Poisk.ThirdName = PBTextBox.Text.Trim();
             Statistic();
         }
+
         private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (statyaField.Text == "-" || statyaField.Text == "")
@@ -170,7 +163,6 @@ namespace Kursova
             }
             Statistic();
         }
-
         private void statField_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (statField.SelectedIndex)
@@ -187,13 +179,11 @@ namespace Kursova
             }
             Statistic();
         }
-
         private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Ierarh = ierarhField.Text;
             Statistic();
         }
-
         private void haractField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Poisk.Haract = haractField.Text;
@@ -214,7 +204,6 @@ namespace Kursova
             Poisk.DateNar = DataNarTimePicker.Value;
             Statistic();
         }
-
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Poisk.DateUvyaz = DataUvyazTimePicker.Value;
@@ -240,23 +229,8 @@ namespace Kursova
             }
             Statistic();
         }
-        public List<int> rodInd;
-        private void checkRod_CheckedChanged(object sender, EventArgs e)
-        {
-            checkMama.Enabled = checkKid.Enabled
-                = checkDad.Enabled = checkBro.Enabled
-                = checkHusb.Enabled = !checkRod.Checked;
 
-            if (checkRod.Checked)
-            {
-                Poisk.Rod = "";
-            }
-            else
-            {
-                Poisk.Rod = rodInd.ToString();
-            }
-            Statistic();
-        }
+        public SortedList<int, string> rod = new() { { 0, "" } };
         private void checkKamNum_CheckedChanged(object sender, EventArgs e)
         {
             KamNum.Enabled = !checkKamNum.Checked;
@@ -303,11 +277,11 @@ namespace Kursova
         {
             if (checkMama.Checked)
             {
-                rodInd.Add(0);
+                rod.Add(1, "Мати");
             }
             else
             {
-                rodInd.Remove(0);
+                rod.Remove(1);
             }
             Statistic();
         }
@@ -315,11 +289,11 @@ namespace Kursova
         {
             if (checkDad.Checked)
             {
-                rodInd.Add(1);
+                rod.Add(2, "Батько");
             }
             else
             {
-                rodInd.Remove(1);
+                rod.Remove(2);
             }
             Statistic();
         }
@@ -327,11 +301,11 @@ namespace Kursova
         {
             if (checkKid.Checked)
             {
-                rodInd.Add(2);
+                rod.Add(3, "Діти");
             }
             else
             {
-                rodInd.Remove(2);
+                rod.Remove(3);
             }
             Statistic();
         }
@@ -339,11 +313,11 @@ namespace Kursova
         {
             if (checkHusb.Checked)
             {
-                rodInd.Add(3);
+                rod.Add(4, "Чоловік/Дружина");
             }
             else
             {
-                rodInd.Remove(3);
+                rod.Remove(4);
             }
             Statistic();
         }
@@ -351,11 +325,11 @@ namespace Kursova
         {
             if (checkBro.Checked)
             {
-                rodInd.Add(4);
+                rod.Add(5, "Брат/Сестра");
             }
             else
             {
-                rodInd.Remove(4);
+                rod.Remove(5);
             }
             Statistic();
         }
@@ -436,27 +410,27 @@ namespace Kursova
     {
         public static List<Person> data = new()
             {
-                new Person( "Білоус Єлизавета Олександрівна", new(1970, 1, 1), "W", 152, new(2001, 2, 14), 3, " Мати Брат/Сестра", 1, "Опущені", "Агресивний"),
-                new Person( "Мухамад Мурад Іванович", new(1975, 3, 15), "M", 156, new(2002, 6, 21), 5, " Брат/Сестра Чоловік/Дружина Діти", 3, "Опущені", "Шістка"),
-                new Person( "Кравченко Максим Володимирович", new(1970, 5, 27), "M", 185, new(2003, 11, 5), 8, " Мати Брат/Сестра", 4, "Мужики", "Спокійний"),
-                new Person( "Петренко Микита Олегович", new(1975, 8, 9), "M", 152, new(2004, 4, 8), 3, " Чоловік/Дружина Діти", 9, "Блатні", "Нестійкий"),
-                new Person( "Шевченко Андрій Сергійович", new(1970, 10, 21), "M", 121, new(2005, 9, 13), 8, " Чоловік/Дружина Діти", 2, "Мужики", "Агресивний"),
-                new Person( "Гончаренко Андрій Віталійович", new(1975, 12, 3), "M", 125, new(2006, 12, 22), 3, " Мати Брат/Сестра", 12, "Опущені", "Нестійкий"),
-                new Person( "Ковальчук Наталія Миколаївна", new(1980, 2, 14), "W", 115, new(2007, 8, 7), 15, " Чоловік/Дружина Діти", 8, "Блатні", "Нестійкий"),
-                new Person( "Мельник Віталій Ігорович", new(1985, 4, 26), "M", 156, new(2008, 1, 17), 5, " Мати", 7, "Козли", "Нестійкий"),
-                new Person( "Мельник Юлія Василівна", new(1990, 7, 8), "W", 151, new(2009, 6, 28), 1, " Мати", 4, "Заполоскані", "Агресивний"),
-                new Person( "Олійник Ірина Анатоліївна", new(1991, 9, 19), "W", 115, new(2010, 10, 9), 15, " Мати", 5, "Блатні", "Агресивний"),
+                new Person( "Білоус Єлизавета Олександрівна", new(1970, 1, 1), "W", 152, new(2001, 2, 14), 3, "Мати Брат/Сестра", 1, "Опущені", "Агресивний"),
+                new Person( "Мухамад Мурад Іванович", new(1975, 3, 15), "M", 156, new(2002, 6, 21), 5, "Діти Чоловік/Дружина Брат/Сестра", 3, "Опущені", "Шістка"),
+                new Person( "Кравченко Максим Володимирович", new(1970, 5, 27), "M", 185, new(2003, 11, 5), 8, "Мати Брат/Сестра", 4, "Мужики", "Спокійний"),
+                new Person( "Петренко Микита Олегович", new(1975, 8, 9), "M", 152, new(2004, 4, 8), 3, "Діти Чоловік/Дружина", 9, "Блатні", "Нестійкий"),
+                new Person( "Шевченко Андрій Сергійович", new(1970, 10, 21), "M", 121, new(2005, 9, 13), 8, "Діти Чоловік/Дружина", 2, "Мужики", "Агресивний"),
+                new Person( "Гончаренко Андрій Віталійович", new(1975, 12, 3), "M", 125, new(2006, 12, 22), 3, "Мати Брат/Сестра", 12, "Опущені", "Нестійкий"),
+                new Person( "Ковальчук Наталія Миколаївна", new(1980, 2, 14), "W", 115, new(2007, 8, 7), 15, "Діти Чоловік/Дружина", 8, "Блатні", "Нестійкий"),
+                new Person( "Мельник Віталій Ігорович", new(1985, 4, 26), "M", 156, new(2008, 1, 17), 5, "Мати", 7, "Козли", "Нестійкий"),
+                new Person( "Мельник Юлія Василівна", new(1990, 7, 8), "W", 151, new(2009, 6, 28), 1, "Мати", 4, "Заполоскані", "Агресивний"),
+                new Person( "Олійник Ірина Анатоліївна", new(1991, 9, 19), "W", 115, new(2010, 10, 9), 15, "Мати", 5, "Блатні", "Агресивний"),
                 new Person( "Петренко Олег Віталійович", new(1992, 11, 1), "M", 185, new(2011, 3, 12), 8, "", 10, "Опущені", "Нестійкий"),
-                new Person( "Петренко Ігор Володимирович", new(1971, 2, 12), "M", 125, new(2012, 7, 23), 3, " Брат/Сестра Чоловік/Дружина Діти", 6, "Козли", "Спокійний"),
-                new Person( "Сидоренко Дмитро Сергійович", new(1966, 4, 24), "M", 121, new(2013, 12, 3), 8, " Мати Брат/Сестра", 9, "Мужики", "Шістка"),
-                new Person( "Тарасенко Марія Олександрівна", new(1961, 7, 6), "M", 115, new(2014, 8, 18), 15, " Мати Батько Діти", 5, "Блатні", "Спокійний"),
-                new Person( "Ушаков Сергій Юрійович", new(1966, 9, 17), "M", 126, new(2015, 1, 27), 2, " Батько", 6, "Опущені", "Спокійний"),
+                new Person( "Петренко Ігор Володимирович", new(1971, 2, 12), "M", 125, new(2012, 7, 23), 3, "Діти Чоловік/Дружина Брат/Сестра", 6, "Козли", "Спокійний"),
+                new Person( "Сидоренко Дмитро Сергійович", new(1966, 4, 24), "M", 121, new(2013, 12, 3), 8, "Мати Брат/Сестра", 9, "Мужики", "Шістка"),
+                new Person( "Тарасенко Марія Олександрівна", new(1961, 7, 6), "M", 115, new(2014, 8, 18), 15, "Мати Батько Діти", 5, "Блатні", "Спокійний"),
+                new Person( "Ушаков Сергій Юрійович", new(1966, 9, 17), "M", 126, new(2015, 1, 27), 2, "Батько", 6, "Опущені", "Спокійний"),
                 new Person( "Ковальчук Дмитро Олександрович", new(1971, 11, 29), "M", 156, new(2016, 6, 8), 5, "", 8, "Козли", "Нестійкий"),
-                new Person( "Харченко Юлія Іванівна", new(1976, 1, 10), "W", 121, new(2017, 10, 19), 8, " Батько", 9, "Блатні", "Спокійний"),
-                new Person( "Малащук Ярослава Сергійович", new(1985, 8, 17), "W", 122, new(2018, 5, 2), 3, " Мати Чоловік/Дружина", 10, "Блатні", "Нестійкий"),
-                new Person( "Лисенко Олександр Миколайович", new(1986, 6, 4), "M", 125, new(2019, 11, 14), 3, " Мати Батько Діти", 10, "Козли", "Шістка"),
-                new Person( "Шевченко Денис Васильович", new(1993, 8, 16), "M", 122, new(2020, 3, 26), 3, " Мати Брат/Сестра", 1, "Заполоскані", "Агресивний"),
-                new Person( "Шевченко Олександра Василівна", new(1992, 4, 26), "Ж", 122, new(2020, 3, 26), 3, " Мати Брат/Сестра", 1, "Заполоскані", "Агресивний")
+                new Person( "Харченко Юлія Іванівна", new(1976, 1, 10), "W", 121, new(2017, 10, 19), 8, "Батько", 9, "Блатні", "Спокійний"),
+                new Person( "Малащук Ярослава Сергійович", new(1985, 8, 17), "W", 122, new(2018, 5, 2), 3, "Мати Чоловік/Дружина", 10, "Блатні", "Нестійкий"),
+                new Person( "Лисенко Олександр Миколайович", new(1986, 6, 4), "M", 125, new(2019, 11, 14), 3, "Мати Батько Діти", 10, "Козли", "Шістка"),
+                new Person( "Шевченко Денис Васильович", new(1993, 8, 16), "M", 122, new(2020, 3, 26), 3, "Мати Брат/Сестра", 1, "Заполоскані", "Агресивний"),
+                new Person( "Шевченко Олександра Василівна", new(1992, 4, 26), "Ж", 122, new(2020, 3, 26), 3, "Мати Брат/Сестра", 1, "Заполоскані", "Агресивний")
             };
     }
     class Person
@@ -495,7 +469,6 @@ namespace Kursova
             Haract = haract;
         }
     }
-
     static class Poisk
     {
 

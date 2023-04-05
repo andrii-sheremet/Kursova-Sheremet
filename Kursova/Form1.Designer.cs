@@ -49,7 +49,6 @@
             groupBox7 = new GroupBox();
             labelSum = new Label();
             groupBox4 = new GroupBox();
-            checkRod = new CheckBox();
             label9 = new Label();
             checkMama = new CheckBox();
             checkDad = new CheckBox();
@@ -339,7 +338,6 @@
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(checkRod);
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(checkMama);
             groupBox4.Controls.Add(checkDad);
@@ -353,24 +351,13 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Живі родичі";
             // 
-            // checkRod
-            // 
-            checkRod.AutoSize = true;
-            checkRod.Location = new Point(6, 16);
-            checkRod.Name = "checkRod";
-            checkRod.Size = new Size(89, 19);
-            checkRod.TabIndex = 6;
-            checkRod.Text = "Неважливо";
-            checkRod.UseVisualStyleBackColor = true;
-            checkRod.CheckedChanged += checkRod_CheckedChanged;
-            // 
             // label9
             // 
             label9.AutoSize = true;
             label9.BackColor = SystemColors.ControlDark;
             label9.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label9.ForeColor = Color.DarkGreen;
-            label9.Location = new Point(159, 17);
+            label9.Location = new Point(159, 36);
             label9.Name = "label9";
             label9.Size = new Size(14, 15);
             label9.TabIndex = 4;
@@ -379,7 +366,7 @@
             // checkMama
             // 
             checkMama.AutoSize = true;
-            checkMama.Location = new Point(6, 34);
+            checkMama.Location = new Point(6, 17);
             checkMama.Name = "checkMama";
             checkMama.Size = new Size(55, 19);
             checkMama.TabIndex = 8;
@@ -390,7 +377,7 @@
             // checkDad
             // 
             checkDad.AutoSize = true;
-            checkDad.Location = new Point(61, 34);
+            checkDad.Location = new Point(61, 17);
             checkDad.Name = "checkDad";
             checkDad.Size = new Size(63, 19);
             checkDad.TabIndex = 9;
@@ -401,7 +388,7 @@
             // checkKid
             // 
             checkKid.AutoSize = true;
-            checkKid.Location = new Point(124, 34);
+            checkKid.Location = new Point(6, 35);
             checkKid.Name = "checkKid";
             checkKid.Size = new Size(49, 19);
             checkKid.TabIndex = 7;
@@ -413,7 +400,7 @@
             // 
             checkBro.AutoSize = true;
             checkBro.FlatStyle = FlatStyle.System;
-            checkBro.Location = new Point(108, 53);
+            checkBro.Location = new Point(61, 34);
             checkBro.Name = "checkBro";
             checkBro.Size = new Size(100, 20);
             checkBro.TabIndex = 10;
@@ -812,7 +799,6 @@
         private CheckBox checkKamNum;
         private GroupBox groupBox7;
         private Label labelSum;
-        private CheckBox checkRod;
         private GroupBox groupBox8;
         private Label label11;
         private CheckBox checkBro;
