@@ -78,11 +78,6 @@ namespace Kursova
 
             int count = 0;
 
-            string rodS = "";
-
-            Poisk.Rod = rodS.Trim();
-
-
             Person p = Poisk.MembIn();
 
             foreach (var i in Data.data)
@@ -200,7 +195,8 @@ namespace Kursova
         private void label9_Click(object sender, EventArgs e)
         {
             checkMama.Checked = checkDad.Checked = checkKid.Checked
-                = checkHusb.Checked = checkBro.Checked = false;
+                = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
+                = false;
         }
 
 
@@ -250,7 +246,6 @@ namespace Kursova
             {
                 Poisk.NumKam = (int)KamNum.Value;
             }
-            Statistic();
         }
         private void checkDataNar_CheckedChanged(object sender, EventArgs e)
         {
@@ -264,7 +259,6 @@ namespace Kursova
             {
                 Poisk.DateNar = DataNarTimePicker.Value;
             }
-            Statistic();
         }
         private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
         {
@@ -278,67 +272,79 @@ namespace Kursova
             {
                 Poisk.DateUvyaz = DataUvyazTimePicker.Value;
             }
-            Statistic();
         }
         private void checkMama_CheckedChanged(object sender, EventArgs e)
         {
             if (checkMama.Checked)
             {
                 rod.Add(1, "Мати");
+                checkNemaRod.Checked = false;
             }
             else
             {
                 rod.Remove(1);
             }
-            Statistic();
         }
         private void checkDad_CheckedChanged(object sender, EventArgs e)
         {
             if (checkDad.Checked)
             {
                 rod.Add(2, "Батько");
+                checkNemaRod.Checked = false;
             }
             else
             {
                 rod.Remove(2);
             }
-            Statistic();
         }
         private void checkKid_CheckedChanged(object sender, EventArgs e)
         {
             if (checkKid.Checked)
             {
                 rod.Add(3, "Діти");
+                checkNemaRod.Checked = false;
             }
             else
             {
                 rod.Remove(3);
             }
-            Statistic();
         }
         private void checkHusb_CheckedChanged(object sender, EventArgs e)
         {
             if (checkHusb.Checked)
             {
                 rod.Add(4, "Чоловік/Дружина");
+                checkNemaRod.Checked = false;
             }
             else
             {
                 rod.Remove(4);
             }
-            Statistic();
         }
         private void checkBro_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBro.Checked)
             {
                 rod.Add(5, "Брат/Сестра");
+                checkNemaRod.Checked = false;
             }
             else
             {
                 rod.Remove(5);
             }
-            Statistic();
+        }
+        private void checkNemaRod_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkNemaRod.Checked)
+            {
+                rod.Add(6, "Нема родичів");
+                checkMama.Checked = checkDad.Checked = checkKid.Checked
+                    = checkHusb.Checked = checkBro.Checked = false;
+            }
+            else
+            {
+                rod.Remove(6);
+            }
         }
 
         private void Statistic()
@@ -424,6 +430,7 @@ namespace Kursova
                 findButton_Click(sender, e);
             }
         }
+
     }
     class Data
     {
@@ -439,12 +446,12 @@ namespace Kursova
                 new Person( "Мельник Віталій Ігорович", new(1985, 4, 26), "M", 156, new(2008, 1, 17), 5, "Мати", 7, "Козли", "Нестійкий"),
                 new Person( "Мельник Юлія Василівна", new(1990, 7, 8), "W", 151, new(2009, 6, 28), 1, "Мати", 4, "Заполоскані", "Агресивний"),
                 new Person( "Олійник Ірина Анатоліївна", new(1991, 9, 19), "W", 115, new(2010, 10, 9), 15, "Мати", 5, "Блатні", "Агресивний"),
-                new Person( "Петренко Олег Віталійович", new(1992, 11, 1), "M", 185, new(2011, 3, 12), 8, "", 10, "Опущені", "Нестійкий"),
+                new Person( "Петренко Олег Віталійович", new(1992, 11, 1), "M", 185, new(2011, 3, 12), 8, "Нема родичів", 10, "Опущені", "Нестійкий"),
                 new Person( "Петренко Ігор Володимирович", new(1971, 2, 12), "M", 125, new(2012, 7, 23), 3, "Діти Чоловік/Дружина Брат/Сестра", 6, "Козли", "Спокійний"),
                 new Person( "Сидоренко Дмитро Сергійович", new(1966, 4, 24), "M", 121, new(2013, 12, 3), 8, "Мати Брат/Сестра", 9, "Мужики", "Шістка"),
                 new Person( "Тарасенко Марія Олександрівна", new(1961, 7, 6), "M", 115, new(2014, 8, 18), 15, "Мати Батько Діти", 5, "Блатні", "Спокійний"),
                 new Person( "Ушаков Сергій Юрійович", new(1966, 9, 17), "M", 126, new(2015, 1, 27), 2, "Батько", 6, "Опущені", "Спокійний"),
-                new Person( "Ковальчук Дмитро Олександрович", new(1971, 11, 29), "M", 156, new(2016, 6, 8), 5, "", 8, "Козли", "Нестійкий"),
+                new Person( "Ковальчук Дмитро Олександрович", new(1971, 11, 29), "M", 156, new(2016, 6, 8), 5, "Нема родичів", 8, "Козли", "Нестійкий"),
                 new Person( "Харченко Юлія Іванівна", new(1976, 1, 10), "W", 121, new(2017, 10, 19), 8, "Батько", 9, "Блатні", "Спокійний"),
                 new Person( "Малащук Ярослава Сергійович", new(1985, 8, 17), "W", 122, new(2018, 5, 2), 3, "Мати Чоловік/Дружина", 10, "Блатні", "Нестійкий"),
                 new Person( "Лисенко Олександр Миколайович", new(1986, 6, 4), "M", 125, new(2019, 11, 14), 3, "Мати Батько Діти", 10, "Козли", "Шістка"),

@@ -49,6 +49,7 @@
             groupBox7 = new GroupBox();
             labelSum = new Label();
             groupBox4 = new GroupBox();
+            checkNemaRod = new CheckBox();
             label9 = new Label();
             checkMama = new CheckBox();
             checkDad = new CheckBox();
@@ -124,8 +125,8 @@
             splitContainer1.Panel2.Controls.Add(groupBox10);
             splitContainer1.Panel2.Controls.Add(groupBox9);
             splitContainer1.Panel2.Controls.Add(groupBox8);
-            splitContainer1.Panel2.Controls.Add(groupBox7);
             splitContainer1.Panel2.Controls.Add(groupBox4);
+            splitContainer1.Panel2.Controls.Add(groupBox7);
             splitContainer1.Panel2.Controls.Add(groupBox5);
             splitContainer1.Panel2.Controls.Add(groupBox3);
             splitContainer1.Panel2.Controls.Add(groupBox2);
@@ -216,9 +217,9 @@
             // 
             groupBox10.Controls.Add(haractField);
             groupBox10.Controls.Add(label13);
-            groupBox10.Location = new Point(221, 274);
+            groupBox10.Location = new Point(222, 277);
             groupBox10.Name = "groupBox10";
-            groupBox10.Size = new Size(201, 57);
+            groupBox10.Size = new Size(201, 54);
             groupBox10.TabIndex = 12;
             groupBox10.TabStop = false;
             groupBox10.Text = "Особливості характеру";
@@ -228,7 +229,7 @@
             haractField.DropDownStyle = ComboBoxStyle.DropDownList;
             haractField.FormattingEnabled = true;
             haractField.Items.AddRange(new object[] { "-", "Агресивний", "Спокійний", "Нестійкий", "Шістка" });
-            haractField.Location = new Point(6, 22);
+            haractField.Location = new Point(7, 22);
             haractField.Name = "haractField";
             haractField.Size = new Size(143, 23);
             haractField.TabIndex = 9;
@@ -240,7 +241,7 @@
             label13.BackColor = SystemColors.ControlDark;
             label13.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label13.ForeColor = Color.DarkGreen;
-            label13.Location = new Point(159, 21);
+            label13.Location = new Point(159, 25);
             label13.Name = "label13";
             label13.Size = new Size(14, 15);
             label13.TabIndex = 4;
@@ -250,9 +251,9 @@
             // 
             groupBox9.Controls.Add(ierarhField);
             groupBox9.Controls.Add(label12);
-            groupBox9.Location = new Point(222, 214);
+            groupBox9.Location = new Point(222, 230);
             groupBox9.Name = "groupBox9";
-            groupBox9.Size = new Size(200, 54);
+            groupBox9.Size = new Size(200, 48);
             groupBox9.TabIndex = 11;
             groupBox9.TabStop = false;
             groupBox9.Text = "Місце у ієрархії";
@@ -262,7 +263,7 @@
             ierarhField.DropDownStyle = ComboBoxStyle.DropDownList;
             ierarhField.FormattingEnabled = true;
             ierarhField.Items.AddRange(new object[] { "-", "Блатні", "Мужики", "Козли", "Заполоскані", "Опущені" });
-            ierarhField.Location = new Point(6, 22);
+            ierarhField.Location = new Point(6, 18);
             ierarhField.Name = "ierarhField";
             ierarhField.Size = new Size(143, 23);
             ierarhField.TabIndex = 8;
@@ -274,7 +275,7 @@
             label12.BackColor = SystemColors.ControlDark;
             label12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = Color.DarkGreen;
-            label12.Location = new Point(159, 21);
+            label12.Location = new Point(159, 23);
             label12.Name = "label12";
             label12.Size = new Size(14, 15);
             label12.TabIndex = 4;
@@ -338,18 +339,31 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(checkNemaRod);
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(checkMama);
             groupBox4.Controls.Add(checkDad);
             groupBox4.Controls.Add(checkKid);
             groupBox4.Controls.Add(checkBro);
             groupBox4.Controls.Add(checkHusb);
-            groupBox4.Location = new Point(221, 152);
+            groupBox4.Location = new Point(222, 155);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(200, 56);
+            groupBox4.Size = new Size(200, 72);
             groupBox4.TabIndex = 5;
             groupBox4.TabStop = false;
             groupBox4.Text = "Живі родичі";
+            // 
+            // checkNemaRod
+            // 
+            checkNemaRod.AutoSize = true;
+            checkNemaRod.FlatStyle = FlatStyle.System;
+            checkNemaRod.Location = new Point(50, 49);
+            checkNemaRod.Name = "checkNemaRod";
+            checkNemaRod.Size = new Size(108, 20);
+            checkNemaRod.TabIndex = 12;
+            checkNemaRod.Text = "Нема родичів";
+            checkNemaRod.UseVisualStyleBackColor = true;
+            checkNemaRod.CheckedChanged += checkNemaRod_CheckedChanged;
             // 
             // label9
             // 
@@ -390,7 +404,7 @@
             // checkKid
             // 
             checkKid.AutoSize = true;
-            checkKid.Location = new Point(124, 19);
+            checkKid.Location = new Point(124, 17);
             checkKid.Name = "checkKid";
             checkKid.Size = new Size(49, 19);
             checkKid.TabIndex = 7;
@@ -828,5 +842,6 @@
         private Label label15;
         private Label label14;
         private Label label9;
+        private CheckBox checkNemaRod;
     }
 }
