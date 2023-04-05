@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System;
+using System.Collections;
 
 namespace Kursova
 {
@@ -24,6 +26,7 @@ namespace Kursova
                 = checkTerm.Checked = checkDataUvyaz.Checked = true;
 
         }
+
         private int term = 1;
         private void termBar1_Scroll(object sender, EventArgs e)
         {
@@ -77,6 +80,23 @@ namespace Kursova
 
             int count = 0;
 
+            SortedList<int, string> rodData = new()
+            {
+                { 0, " Мати" },
+                { 1, " Батько" },
+                { 2, " Діти" },
+                { 3, " Чоловік/Жінка" },
+                { 4, " Брат/Сестра" }
+            };
+
+            string rod = "";
+
+            foreach(var ind in rodInd)
+            {
+                rod += rodData.GetValueAtIndex(ind) + " ";
+            }
+
+
             foreach (var i in Data.data)
             {
 
@@ -89,7 +109,7 @@ namespace Kursova
                     && i.DateUvyaz == Poisk.DateUvyaz
                     && i.Statya == Poisk.Statya
                     && i.Stat == Poisk.Stat
-                    && i.Rod == Poisk.Rod
+                    && i.Rod == rod
                     && i.Haract == Poisk.Haract
                     && i.Ierarh == Poisk.Ierarh
                     && i.NumKam == Poisk.NumKam
@@ -220,7 +240,7 @@ namespace Kursova
             }
             Statistic();
         }
-        public string rod;
+        public List<int> rodInd;
         private void checkRod_CheckedChanged(object sender, EventArgs e)
         {
             checkMama.Enabled = checkKid.Enabled
@@ -233,7 +253,7 @@ namespace Kursova
             }
             else
             {
-                Poisk.Rod = rod;
+                Poisk.Rod = rodInd.ToString();
             }
             Statistic();
         }
@@ -283,11 +303,11 @@ namespace Kursova
         {
             if (checkMama.Checked)
             {
-                rod += " Мати";
+                rodInd.Add(0);
             }
             else
             {
-                rod.Replace(" Мати", "");
+                rodInd.Remove(0);
             }
             Statistic();
         }
@@ -295,11 +315,11 @@ namespace Kursova
         {
             if (checkDad.Checked)
             {
-                rod += " Батько";
+                rodInd.Add(1);
             }
             else
             {
-                rod.Replace(" Батько", "");
+                rodInd.Remove(1);
             }
             Statistic();
         }
@@ -307,11 +327,11 @@ namespace Kursova
         {
             if (checkKid.Checked)
             {
-                rod += " Діти";
+                rodInd.Add(2);
             }
             else
             {
-                rod.Replace(" Діти", "");
+                rodInd.Remove(2);
             }
             Statistic();
         }
@@ -319,11 +339,11 @@ namespace Kursova
         {
             if (checkHusb.Checked)
             {
-                rod += " Чоловік/Дружина";
+                rodInd.Add(3);
             }
             else
             {
-                rod.Replace(" Чоловік/Дружина", "");
+                rodInd.Remove(3);
             }
             Statistic();
         }
@@ -331,11 +351,11 @@ namespace Kursova
         {
             if (checkBro.Checked)
             {
-                rod += " Брат/Сестра";
+                rodInd.Add(4);
             }
             else
             {
-                rod.Replace(" Брат/Сестра", "");
+                rodInd.Remove(4);
             }
             Statistic();
         }
@@ -455,7 +475,7 @@ namespace Kursova
         public string Haract { get; }
 
         public Person(string name, DateTime dateNar, string stat,
-            int statya, DateTime dateUvyaz, int term, string rod,
+            int statya, DateTime dateUvyaz, int term, string rodInd,
             int numKam, string ierarh, string haract)
         {
 
@@ -469,7 +489,7 @@ namespace Kursova
             Statya = statya;
             DateUvyaz = dateUvyaz;
             Term = term;
-            Rod = rod;
+            Rod = rodInd;
             NumKam = numKam;
             Ierarh = ierarh;
             Haract = haract;
