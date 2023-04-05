@@ -216,9 +216,9 @@
             // 
             groupBox10.Controls.Add(haractField);
             groupBox10.Controls.Add(label13);
-            groupBox10.Location = new Point(221, 284);
+            groupBox10.Location = new Point(221, 274);
             groupBox10.Name = "groupBox10";
-            groupBox10.Size = new Size(201, 47);
+            groupBox10.Size = new Size(201, 57);
             groupBox10.TabIndex = 12;
             groupBox10.TabStop = false;
             groupBox10.Text = "Особливості характеру";
@@ -228,7 +228,7 @@
             haractField.DropDownStyle = ComboBoxStyle.DropDownList;
             haractField.FormattingEnabled = true;
             haractField.Items.AddRange(new object[] { "-", "Агресивний", "Спокійний", "Нестійкий", "Шістка" });
-            haractField.Location = new Point(6, 18);
+            haractField.Location = new Point(6, 22);
             haractField.Name = "haractField";
             haractField.Size = new Size(143, 23);
             haractField.TabIndex = 9;
@@ -250,9 +250,9 @@
             // 
             groupBox9.Controls.Add(ierarhField);
             groupBox9.Controls.Add(label12);
-            groupBox9.Location = new Point(221, 231);
+            groupBox9.Location = new Point(222, 214);
             groupBox9.Name = "groupBox9";
-            groupBox9.Size = new Size(200, 47);
+            groupBox9.Size = new Size(200, 54);
             groupBox9.TabIndex = 11;
             groupBox9.TabStop = false;
             groupBox9.Text = "Місце у ієрархії";
@@ -262,7 +262,7 @@
             ierarhField.DropDownStyle = ComboBoxStyle.DropDownList;
             ierarhField.FormattingEnabled = true;
             ierarhField.Items.AddRange(new object[] { "-", "Блатні", "Мужики", "Козли", "Заполоскані", "Опущені" });
-            ierarhField.Location = new Point(6, 18);
+            ierarhField.Location = new Point(6, 22);
             ierarhField.Name = "ierarhField";
             ierarhField.Size = new Size(143, 23);
             ierarhField.TabIndex = 8;
@@ -346,22 +346,24 @@
             groupBox4.Controls.Add(checkHusb);
             groupBox4.Location = new Point(221, 152);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(200, 78);
+            groupBox4.Size = new Size(200, 56);
             groupBox4.TabIndex = 5;
             groupBox4.TabStop = false;
             groupBox4.Text = "Живі родичі";
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.BackColor = SystemColors.ControlDark;
-            label9.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.DarkGreen;
-            label9.Location = new Point(159, 36);
+            label9.FlatStyle = FlatStyle.System;
+            label9.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.Black;
+            label9.ImageAlign = ContentAlignment.TopLeft;
+            label9.Location = new Point(174, -6);
             label9.Name = "label9";
-            label9.Size = new Size(14, 15);
-            label9.TabIndex = 4;
-            label9.Text = "0";
+            label9.Size = new Size(19, 21);
+            label9.TabIndex = 11;
+            label9.Text = "x";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            label9.Click += label9_Click;
             // 
             // checkMama
             // 
@@ -388,7 +390,7 @@
             // checkKid
             // 
             checkKid.AutoSize = true;
-            checkKid.Location = new Point(6, 35);
+            checkKid.Location = new Point(124, 19);
             checkKid.Name = "checkKid";
             checkKid.Size = new Size(49, 19);
             checkKid.TabIndex = 7;
@@ -400,7 +402,7 @@
             // 
             checkBro.AutoSize = true;
             checkBro.FlatStyle = FlatStyle.System;
-            checkBro.Location = new Point(61, 34);
+            checkBro.Location = new Point(110, 33);
             checkBro.Name = "checkBro";
             checkBro.Size = new Size(100, 20);
             checkBro.TabIndex = 10;
@@ -411,7 +413,7 @@
             // checkHusb
             // 
             checkHusb.AutoSize = true;
-            checkHusb.Location = new Point(5, 53);
+            checkHusb.Location = new Point(6, 34);
             checkHusb.Name = "checkHusb";
             checkHusb.Size = new Size(108, 19);
             checkHusb.TabIndex = 3;
@@ -792,7 +794,6 @@
         private Label label7;
         private Label label6;
         private GroupBox groupBox4;
-        private Label label9;
         private CheckBox checkDataNar;
         private CheckBox checkTerm;
         private CheckBox checkDataUvyaz;
@@ -826,5 +827,6 @@
         private Panel exceptionPanel;
         private Label label15;
         private Label label14;
+        private Label label9;
     }
 }

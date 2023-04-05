@@ -77,7 +77,7 @@ namespace Kursova
             int count = 0;
 
             string rodS = "";
-            
+
             Poisk.Rod = rodS.Trim();
 
 
@@ -99,7 +99,7 @@ namespace Kursova
                 if (i.FirstName.ToUpper() == Poisk.FirstName.ToUpper()
                     && i.SecondName.ToUpper() == Poisk.SecondName.ToUpper()
                     && i.ThirdName.ToUpper() == Poisk.ThirdName.ToUpper()
-                    && i.DateNar == Poisk.DateNar 
+                    && i.DateNar == Poisk.DateNar
                     && i.DateUvyaz == Poisk.DateUvyaz
                     && i.Statya == Poisk.Statya
                     && i.Stat == Poisk.Stat
@@ -194,6 +194,11 @@ namespace Kursova
         {
             Poisk.NumKam = Convert.ToInt32(KamNum.Value);
             Statistic();
+        }
+        private void label9_Click(object sender, EventArgs e)
+        {
+            checkMama.Checked = checkDad.Checked = checkKid.Checked
+                = checkHusb.Checked = checkBro.Checked = false;
         }
 
 
@@ -336,7 +341,7 @@ namespace Kursova
 
         private void Statistic()
         {
-            int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             foreach (var i in Data.data)
             {
@@ -405,6 +410,7 @@ namespace Kursova
             label5.Text = Convert.ToString(count[7]);
             label12.Text = Convert.ToString(count[8]);
         }
+
     }
     class Data
     {
