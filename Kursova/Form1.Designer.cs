@@ -37,6 +37,7 @@
             label14 = new Label();
             dataGridView1 = new DataGridView();
             splitter1 = new Splitter();
+            zbrosButton = new Button();
             groupBox10 = new GroupBox();
             haractField = new ComboBox();
             label13 = new Label();
@@ -46,8 +47,6 @@
             groupBox8 = new GroupBox();
             statField = new ComboBox();
             label11 = new Label();
-            groupBox7 = new GroupBox();
-            labelSum = new Label();
             groupBox4 = new GroupBox();
             checkNemaRod = new CheckBox();
             label9 = new Label();
@@ -56,6 +55,8 @@
             checkKid = new CheckBox();
             checkBro = new CheckBox();
             checkHusb = new CheckBox();
+            groupBox7 = new GroupBox();
+            labelSum = new Label();
             groupBox5 = new GroupBox();
             statyaField = new ComboBox();
             label4 = new Label();
@@ -93,8 +94,8 @@
             groupBox10.SuspendLayout();
             groupBox9.SuspendLayout();
             groupBox8.SuspendLayout();
-            groupBox7.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox7.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -122,6 +123,7 @@
             // 
             splitContainer1.Panel2.AllowDrop = true;
             splitContainer1.Panel2.BackColor = SystemColors.ControlDark;
+            splitContainer1.Panel2.Controls.Add(zbrosButton);
             splitContainer1.Panel2.Controls.Add(groupBox10);
             splitContainer1.Panel2.Controls.Add(groupBox9);
             splitContainer1.Panel2.Controls.Add(groupBox8);
@@ -213,6 +215,19 @@
             splitter1.TabIndex = 0;
             splitter1.TabStop = false;
             // 
+            // zbrosButton
+            // 
+            zbrosButton.BackColor = SystemColors.ControlDark;
+            zbrosButton.FlatStyle = FlatStyle.Flat;
+            zbrosButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            zbrosButton.Location = new Point(320, 341);
+            zbrosButton.Name = "zbrosButton";
+            zbrosButton.Size = new Size(103, 49);
+            zbrosButton.TabIndex = 13;
+            zbrosButton.Text = "Зброс";
+            zbrosButton.UseVisualStyleBackColor = false;
+            zbrosButton.Click += zbrosButton_Click;
+            // 
             // groupBox10
             // 
             groupBox10.Controls.Add(haractField);
@@ -253,7 +268,7 @@
             groupBox9.Controls.Add(label12);
             groupBox9.Location = new Point(222, 230);
             groupBox9.Name = "groupBox9";
-            groupBox9.Size = new Size(200, 48);
+            groupBox9.Size = new Size(201, 48);
             groupBox9.TabIndex = 11;
             groupBox9.TabStop = false;
             groupBox9.Text = "Місце у ієрархії";
@@ -285,9 +300,9 @@
             // 
             groupBox8.Controls.Add(statField);
             groupBox8.Controls.Add(label11);
-            groupBox8.Location = new Point(16, 75);
+            groupBox8.Location = new Point(14, 75);
             groupBox8.Name = "groupBox8";
-            groupBox8.Size = new Size(86, 57);
+            groupBox8.Size = new Size(88, 57);
             groupBox8.TabIndex = 6;
             groupBox8.TabStop = false;
             groupBox8.Text = "Стать";
@@ -315,28 +330,6 @@
             label11.TabIndex = 3;
             label11.Text = "0";
             // 
-            // groupBox7
-            // 
-            groupBox7.Controls.Add(labelSum);
-            groupBox7.Location = new Point(301, 337);
-            groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(92, 54);
-            groupBox7.TabIndex = 6;
-            groupBox7.TabStop = false;
-            groupBox7.Text = "Усього";
-            // 
-            // labelSum
-            // 
-            labelSum.AutoSize = true;
-            labelSum.BackColor = SystemColors.ControlDark;
-            labelSum.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelSum.ForeColor = Color.DarkGreen;
-            labelSum.Location = new Point(38, 21);
-            labelSum.Name = "labelSum";
-            labelSum.Size = new Size(19, 21);
-            labelSum.TabIndex = 6;
-            labelSum.Text = "0";
-            // 
             // groupBox4
             // 
             groupBox4.Controls.Add(checkNemaRod);
@@ -348,7 +341,7 @@
             groupBox4.Controls.Add(checkHusb);
             groupBox4.Location = new Point(222, 155);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(200, 72);
+            groupBox4.Size = new Size(201, 72);
             groupBox4.TabIndex = 5;
             groupBox4.TabStop = false;
             groupBox4.Text = "Живі родичі";
@@ -435,6 +428,28 @@
             checkHusb.UseVisualStyleBackColor = true;
             checkHusb.CheckedChanged += checkHusb_CheckedChanged;
             // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(labelSum);
+            groupBox7.Location = new Point(222, 334);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(92, 56);
+            groupBox7.TabIndex = 6;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Усього";
+            // 
+            // labelSum
+            // 
+            labelSum.AutoSize = true;
+            labelSum.BackColor = SystemColors.ControlDark;
+            labelSum.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelSum.ForeColor = Color.DarkGreen;
+            labelSum.Location = new Point(38, 21);
+            labelSum.Name = "labelSum";
+            labelSum.Size = new Size(19, 21);
+            labelSum.TabIndex = 6;
+            labelSum.Text = "0";
+            // 
             // groupBox5
             // 
             groupBox5.Controls.Add(statyaField);
@@ -476,7 +491,7 @@
             groupBox3.Controls.Add(DataUvyazTimePicker);
             groupBox3.Location = new Point(221, 74);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(199, 75);
+            groupBox3.Size = new Size(202, 75);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "Дата ув'язнення";
@@ -673,7 +688,7 @@
             groupBox6.Controls.Add(ImyaTextBox);
             groupBox6.Location = new Point(14, 1);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(405, 68);
+            groupBox6.Size = new Size(409, 68);
             groupBox6.TabIndex = 2;
             groupBox6.TabStop = false;
             groupBox6.Text = "ПІБ";
@@ -681,7 +696,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(268, 19);
+            label8.Location = new Point(272, 19);
             label8.Name = "label8";
             label8.Size = new Size(69, 15);
             label8.TabIndex = 6;
@@ -698,7 +713,7 @@
             // 
             // PBTextBox
             // 
-            PBTextBox.Location = new Point(268, 37);
+            PBTextBox.Location = new Point(272, 37);
             PBTextBox.Name = "PBTextBox";
             PBTextBox.Size = new Size(131, 23);
             PBTextBox.TabIndex = 3;
@@ -708,7 +723,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(132, 19);
+            label7.Location = new Point(134, 19);
             label7.Name = "label7";
             label7.Size = new Size(28, 15);
             label7.TabIndex = 5;
@@ -725,7 +740,7 @@
             // 
             // ImyaTextBox
             // 
-            ImyaTextBox.Location = new Point(132, 37);
+            ImyaTextBox.Location = new Point(134, 37);
             ImyaTextBox.Name = "ImyaTextBox";
             ImyaTextBox.Size = new Size(130, 23);
             ImyaTextBox.TabIndex = 2;
@@ -737,9 +752,9 @@
             findButton.BackColor = SystemColors.ButtonFace;
             findButton.FlatStyle = FlatStyle.Flat;
             findButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            findButton.Location = new Point(42, 345);
+            findButton.Location = new Point(14, 342);
             findButton.Name = "findButton";
-            findButton.Size = new Size(200, 46);
+            findButton.Size = new Size(200, 48);
             findButton.TabIndex = 0;
             findButton.Text = "Пошук";
             findButton.UseVisualStyleBackColor = false;
@@ -767,10 +782,10 @@
             groupBox9.PerformLayout();
             groupBox8.ResumeLayout(false);
             groupBox8.PerformLayout();
-            groupBox7.ResumeLayout(false);
-            groupBox7.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -843,5 +858,6 @@
         private Label label14;
         private Label label9;
         private CheckBox checkNemaRod;
+        private Button zbrosButton;
     }
 }

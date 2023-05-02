@@ -7,59 +7,36 @@ using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace Kursova
 {
     public partial class Form1 : Form
     {
+
+        private int term = 1;
+        public SortedList<int, string> rod = new() { { 0, "" } };
+
         public Form1()
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
 
-            KamNum.Enabled = termBar1.Enabled = label1.Visible
-                    = DataNarTimePicker.Enabled = DataUvyazTimePicker.Enabled
-                    = false;
-
-            checkKamNum.Checked = checkDataNar.Checked = checkTerm.Checked
-                = checkDataUvyaz.Checked = true;
-
+            zbros();
         }
-
-        private int term = 1;
-        private void termBar1_Scroll(object sender, EventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (termBar1.Value)
+            if (e.KeyCode == Keys.Escape)
             {
-                case 1:
-                    label1.Text = "1 роки";
-                    term = 1;
-                    break;
-                case 2:
-                    label1.Text = "2 роки";
-                    term = 2;
-                    break;
-                case 3:
-                    label1.Text = "3 років";
-                    term = 3;
-                    break;
-                case 4:
-                    label1.Text = "5 років";
-                    term = 5;
-                    break;
-                case 5:
-                    label1.Text = "8 років";
-                    term = 8;
-                    break;
-                case 6:
-                    label1.Text = "15 років";
-                    term = 15;
-                    break;
+                this.Close();
             }
-            Poisk.Term = term;
-            Statistic();
+            if (e.KeyCode == Keys.Enter)
+            {
+                findButton_Click(sender, e);
+            }
         }
+
 
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -85,7 +62,7 @@ namespace Kursova
 
                 Poisk.Go(i);
 
-                bool rodBool = true;
+                bool rodBool = false;
                 foreach (KeyValuePair<int, string> memb in rod)
                 {
                     rodBool = i.Rod.Contains(memb.Value);
@@ -93,14 +70,20 @@ namespace Kursova
                     if (!rodBool) break;
                 }
 
-                if (i.FirstName.ToUpper() == Poisk.FirstName.ToUpper()
-                    && i.SecondName.ToUpper() == Poisk.SecondName.ToUpper()
-                    && i.ThirdName.ToUpper() == Poisk.ThirdName.ToUpper()
+                bool prBool = i.SecondName.ToUpper().Contains
+                    (Poisk.SecondName.ToUpper());
+
+                bool imBool = i.FirstName.ToUpper().Contains
+                    (Poisk.FirstName.ToUpper());
+
+                bool pbBool = i.ThirdName.ToUpper().Contains
+                    (Poisk.ThirdName.ToUpper());
+
+                if (prBool && imBool && pbBool && rodBool
                     && i.DateNar == Poisk.DateNar
                     && i.DateUvyaz == Poisk.DateUvyaz
                     && i.Statya == Poisk.Statya
                     && i.Stat == Poisk.Stat
-                    && rodBool
                     && i.Haract == Poisk.Haract
                     && i.Ierarh == Poisk.Ierarh
                     && i.NumKam == Poisk.NumKam
@@ -131,222 +114,36 @@ namespace Kursova
 
             dataGridView1.DataSource = table;
         }
-
-        private void PrizvTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Poisk.SecondName = PrizvTextBox.Text.Trim();
-            Statistic();
-        }
-        private void ImyaTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Poisk.FirstName = ImyaTextBox.Text.Trim();
-            Statistic();
-        }
-        private void PBTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Poisk.ThirdName = PBTextBox.Text.Trim();
-            Statistic();
-        }
-
-        private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (statyaField.Text == "-" || statyaField.Text == "")
-            {
-                Poisk.Statya = -1;
-            }
-            else
-            {
-                Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
-            }
-            Statistic();
-        }
-        private void statField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (statField.SelectedIndex)
-            {
-                case 0:
-                    Poisk.Stat = "Усі";
-                    break;
-                case 1:
-                    Poisk.Stat = "M";
-                    break;
-                case 2:
-                    Poisk.Stat = "W";
-                    break;
-            }
-            Statistic();
-        }
-        private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Poisk.Ierarh = ierarhField.Text;
-            Statistic();
-        }
-        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Poisk.Haract = haractField.Text;
-            Statistic();
-        }
-
-        private void KamNum_ValueChanged(object sender, EventArgs e)
-        {
-            Poisk.NumKam = Convert.ToInt32(KamNum.Value);
-            Statistic();
-        }
         private void label9_Click(object sender, EventArgs e)
         {
+            rodDef();
+        }
+        private void zbrosButton_Click(object sender, EventArgs e)
+        {
+            zbros();
+        }
+
+
+        public void zbros()
+        {
+            KamNum.Enabled = termBar1.Enabled = label1.Visible
+                    = DataNarTimePicker.Enabled = DataUvyazTimePicker.Enabled
+                    = false;
+
+            checkKamNum.Checked = checkDataNar.Checked = checkTerm.Checked
+                = checkDataUvyaz.Checked = true;
+
+            statField.Text = "Усі";
+
+            rodDef();
+
+            PrizvTextBox.Text = ImyaTextBox.Text = PBTextBox.Text
+                = statyaField.Text = ierarhField.Text = haractField.Text = "-";
+        }
+        public void rodDef() =>
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
-        }
-
-
-
-        //TimePickers
-        private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            Poisk.DateNar = DataNarTimePicker.Value;
-            Statistic();
-        }
-        private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            Poisk.DateUvyaz = DataUvyazTimePicker.Value;
-            Statistic();
-        }
-
-
-
-
-        //CheckBoxes
-        private void checkTerm_CheckedChanged(object sender, EventArgs e)
-        {
-
-            termBar1.Enabled = label1.Visible = !checkTerm.Checked;
-
-            if (checkTerm.Checked)
-            {
-                Poisk.Term = -1;
-            }
-            else
-            {
-                Poisk.Term = term;
-            }
-            Statistic();
-        }
-
-        public SortedList<int, string> rod = new() { { 0, "" } };
-        private void checkKamNum_CheckedChanged(object sender, EventArgs e)
-        {
-            KamNum.Enabled = !checkKamNum.Checked;
-
-            if (checkKamNum.Checked)
-            {
-                Poisk.NumKam = -1;
-            }
-            else
-            {
-                Poisk.NumKam = (int)KamNum.Value;
-            }
-        }
-        private void checkDataNar_CheckedChanged(object sender, EventArgs e)
-        {
-            DataNarTimePicker.Enabled = !checkDataNar.Checked;
-
-            if (checkDataNar.Checked)
-            {
-                Poisk.DateNar = new(1900, 01, 01);
-            }
-            else
-            {
-                Poisk.DateNar = DataNarTimePicker.Value;
-            }
-        }
-        private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
-        {
-            DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
-
-            if (checkDataUvyaz.Checked)
-            {
-                Poisk.DateUvyaz = new(1900, 01, 01);
-            }
-            else
-            {
-                Poisk.DateUvyaz = DataUvyazTimePicker.Value;
-            }
-        }
-        private void checkMama_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkMama.Checked)
-            {
-                rod.Add(1, "Мати");
-                checkNemaRod.Checked = false;
-            }
-            else
-            {
-                rod.Remove(1);
-            }
-        }
-        private void checkDad_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkDad.Checked)
-            {
-                rod.Add(2, "Батько");
-                checkNemaRod.Checked = false;
-            }
-            else
-            {
-                rod.Remove(2);
-            }
-        }
-        private void checkKid_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkKid.Checked)
-            {
-                rod.Add(3, "Діти");
-                checkNemaRod.Checked = false;
-            }
-            else
-            {
-                rod.Remove(3);
-            }
-        }
-        private void checkHusb_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkHusb.Checked)
-            {
-                rod.Add(4, "Чоловік/Дружина");
-                checkNemaRod.Checked = false;
-            }
-            else
-            {
-                rod.Remove(4);
-            }
-        }
-        private void checkBro_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBro.Checked)
-            {
-                rod.Add(5, "Брат/Сестра");
-                checkNemaRod.Checked = false;
-            }
-            else
-            {
-                rod.Remove(5);
-            }
-        }
-        private void checkNemaRod_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkNemaRod.Checked)
-            {
-                rod.Add(6, "Нема родичів");
-                checkMama.Checked = checkDad.Checked = checkKid.Checked
-                    = checkHusb.Checked = checkBro.Checked = false;
-            }
-            else
-            {
-                rod.Remove(6);
-            }
-        }
-
         private void Statistic()
         {
             int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -419,21 +216,288 @@ namespace Kursova
             label12.Text = Convert.ToString(count[8]);
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+
+        //Поля вводу ПІБ
+        private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            Poisk.SecondName = PrizvTextBox.Text.Trim();
+            Statistic();
+            findButton_Click(sender, e);
+        }//Прізвище
+        private void ImyaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Poisk.FirstName = ImyaTextBox.Text.Trim();
+            Statistic();
+            findButton_Click(sender, e);
+        }//Ім'я
+        private void PBTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Poisk.ThirdName = PBTextBox.Text.Trim();
+            Statistic();
+            findButton_Click(sender, e);
+        }//Побатькові
+
+
+        //СкроллБар
+        private void termBar1_Scroll(object sender, EventArgs e)
+        {
+            switch (termBar1.Value)
             {
-                this.Close();
+                case 1:
+                    label1.Text = "1 роки";
+                    term = 1;
+                    break;
+                case 2:
+                    label1.Text = "2 роки";
+                    term = 2;
+                    break;
+                case 3:
+                    label1.Text = "3 років";
+                    term = 3;
+                    break;
+                case 4:
+                    label1.Text = "5 років";
+                    term = 5;
+                    break;
+                case 5:
+                    label1.Text = "8 років";
+                    term = 8;
+                    break;
+                case 6:
+                    label1.Text = "15 років";
+                    term = 15;
+                    break;
             }
-            if (e.KeyCode == Keys.Enter)
+            Poisk.Term = term;
+            Statistic();
+        }//Термін ув'язнення
+
+
+        //Полі вводу
+        private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (statyaField.Text == "-" || statyaField.Text == "")
             {
-                findButton_Click(sender, e);
+                Poisk.Statya = -1;
             }
-        }
+            else
+            {
+                Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
+            }
+            Statistic();
+        }//Стат'я
+        private void statField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (statField.SelectedIndex)
+            {
+                case 0:
+                    Poisk.Stat = "Усі";
+                    break;
+                case 1:
+                    Poisk.Stat = "M";
+                    break;
+                case 2:
+                    Poisk.Stat = "W";
+                    break;
+            }
+            Statistic();
+        }//Стать
+        private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Poisk.Ierarh = ierarhField.Text;
+            Statistic();
+        }//Місце в іерархії
+        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Poisk.Haract = haractField.Text;
+            Statistic();
+        }//Особливість характеру
+
+
+        
+        private void KamNum_ValueChanged(object sender, EventArgs e)
+        {
+            Poisk.NumKam = Convert.ToInt32(KamNum.Value);
+            Statistic();
+        }//Поле для вводу номера камери
+
+
+        //TimePickers
+        private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            Poisk.DateNar = DataNarTimePicker.Value;
+            Statistic();
+        }//Дата Народження
+        private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            Statistic();
+        }//Дата Ув'язнення
+
+
+        //CheckBoxes
+        private void checkTerm_CheckedChanged(object sender, EventArgs e)
+        {
+
+            termBar1.Enabled = label1.Visible = !checkTerm.Checked;
+
+            if (checkTerm.Checked)
+            {
+                Poisk.Term = -1;
+            }
+            else
+            {
+                Poisk.Term = term;
+            }
+            Statistic();
+        } //Чекбокс терміну ув'язнення
+        private void checkKamNum_CheckedChanged(object sender, EventArgs e)
+        {
+            KamNum.Enabled = !checkKamNum.Checked;
+
+            if (checkKamNum.Checked)
+            {
+                Poisk.NumKam = -1;
+            }
+            else
+            {
+                Poisk.NumKam = (int)KamNum.Value;
+            }
+        }//Чекбокс номеру камери
+        private void checkDataNar_CheckedChanged(object sender, EventArgs e)
+        {
+            DataNarTimePicker.Enabled = !checkDataNar.Checked;
+
+            if (checkDataNar.Checked)
+            {
+                Poisk.DateNar = new(1900, 01, 01);
+            }
+            else
+            {
+                Poisk.DateNar = DataNarTimePicker.Value;
+            }
+        }//Чекбокс дати народження
+        private void checkDataUvyaz_CheckedChanged(object sender, EventArgs e)
+        {
+            DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
+
+            if (checkDataUvyaz.Checked)
+            {
+                Poisk.DateUvyaz = new(1900, 01, 01);
+            }
+            else
+            {
+                Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            }
+        }//Чекбокс дати ув'язнення
+        private void checkMama_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkMama.Checked)
+            {
+                rod.Add(1, "Мати");
+                checkNemaRod.Checked = false;
+            }
+            else
+            {
+                rod.Remove(1);
+            }
+        }//Чекбокс Мати
+        private void checkDad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDad.Checked)
+            {
+                rod.Add(2, "Батько");
+                checkNemaRod.Checked = false;
+            }
+            else
+            {
+                rod.Remove(2);
+            }
+        }//Чекбокс Батько
+        private void checkKid_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkKid.Checked)
+            {
+                rod.Add(3, "Діти");
+                checkNemaRod.Checked = false;
+            }
+            else
+            {
+                rod.Remove(3);
+            }
+        }//Чекбокс Діти
+        private void checkHusb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkHusb.Checked)
+            {
+                rod.Add(4, "Чоловік/Дружина");
+                checkNemaRod.Checked = false;
+            }
+            else
+            {
+                rod.Remove(4);
+            }
+        }//Чекбокс Чоловік/Дружина
+        private void checkBro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBro.Checked)
+            {
+                rod.Add(5, "Брат/Сестра");
+                checkNemaRod.Checked = false;
+            }
+            else
+            {
+                rod.Remove(5);
+            }
+        } //Чекбокс Брат/Сетсра
+        private void checkNemaRod_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkNemaRod.Checked)
+            {
+                rod.Add(6, "Нема родичів");
+                checkMama.Checked = checkDad.Checked = checkKid.Checked
+                    = checkHusb.Checked = checkBro.Checked = false;
+            }
+            else
+            {
+                rod.Remove(6);
+            }
+        }//Чекбокс Нема родичів
+
+
 
     }
     class Data
     {
+        public Data()
+        {
+            string path1 = $@"C:\Users\User\Desktop\data.txt";
+
+            string[] pers = File.ReadAllText(path1).Split(';');
+
+            foreach (string s in pers)
+            {
+                string[] i = s.Split(",");
+                DateTime date1 = new(
+                    Convert.ToInt16(i[1].Split(' ')[0]),
+                    Convert.ToInt16(i[1].Split(' ')[1]),
+                    Convert.ToInt16(i[1].Split(' ')[2])
+                    );
+
+                DateTime date2 = new(
+                    Convert.ToInt16(i[4].Split(' ')[0]),
+                    Convert.ToInt16(i[4].Split(' ')[1]),
+                    Convert.ToInt16(i[4].Split(' ')[2])
+                    );
+
+                data.Add(new(i[0], date1, i[2], Convert.ToInt16(i[3]),
+                    date2, Convert.ToInt16(i[5]), i[6], Convert.ToInt16(i[7]),
+                    i[8], i[9]));
+            }
+        }
+
+        
+
         public static List<Person> data = new()
             {
                 new Person( "Білоус Єлизавета Олександрівна", new(1970, 1, 1), "W", 152, new(2001, 2, 14), 3, "Мати Брат/Сестра", 1, "Опущені", "Агресивний"),
@@ -453,12 +517,12 @@ namespace Kursova
                 new Person( "Ушаков Сергій Юрійович", new(1966, 9, 17), "M", 126, new(2015, 1, 27), 2, "Батько", 6, "Опущені", "Спокійний"),
                 new Person( "Ковальчук Дмитро Олександрович", new(1971, 11, 29), "M", 156, new(2016, 6, 8), 5, "Нема родичів", 8, "Козли", "Нестійкий"),
                 new Person( "Харченко Юлія Іванівна", new(1976, 1, 10), "W", 121, new(2017, 10, 19), 8, "Батько", 9, "Блатні", "Спокійний"),
-                new Person( "Малащук Ярослава Сергійович", new(1985, 8, 17), "W", 122, new(2018, 5, 2), 3, "Мати Чоловік/Дружина", 10, "Блатні", "Нестійкий"),
+                new Person( "Малащук Ярослава Сергіївна", new(1985, 8, 17), "W", 122, new(2018, 5, 2), 3, "Мати Чоловік/Дружина", 10, "Блатні", "Нестійкий"),
                 new Person( "Лисенко Олександр Миколайович", new(1986, 6, 4), "M", 125, new(2019, 11, 14), 3, "Мати Батько Діти", 10, "Козли", "Шістка"),
                 new Person( "Шевченко Денис Васильович", new(1993, 8, 16), "M", 122, new(2020, 3, 26), 3, "Мати Брат/Сестра", 1, "Заполоскані", "Агресивний"),
                 new Person( "Шевченко Олександра Василівна", new(1992, 4, 26), "Ж", 122, new(2020, 3, 26), 3, "Мати Брат/Сестра", 1, "Заполоскані", "Агресивний")
             };
-    }
+    }//Класс із базою даних 
     class Person
     {
         public string FirstName { get; }
@@ -494,7 +558,7 @@ namespace Kursova
             Ierarh = ierarh;
             Haract = haract;
         }
-    }
+    }//Класс для створення персонажів для в'язниці
     static class Poisk
     {
 
@@ -565,5 +629,5 @@ namespace Kursova
             Ierarh = memb.Ierarh;
             Haract = memb.Haract;
         }
-    }
+    }//Класс для перевірки по базі даних за вписаними ознаками  
 }
