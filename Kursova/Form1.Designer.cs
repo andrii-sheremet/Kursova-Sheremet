@@ -206,6 +206,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(545, 399);
             dataGridView1.TabIndex = 1;
+            dataGridView1.TabStop = false;
             // 
             // splitter1
             // 
@@ -223,7 +224,7 @@
             zbrosButton.Location = new Point(320, 341);
             zbrosButton.Name = "zbrosButton";
             zbrosButton.Size = new Size(103, 49);
-            zbrosButton.TabIndex = 13;
+            zbrosButton.TabIndex = 19;
             zbrosButton.Text = "Зброс";
             zbrosButton.UseVisualStyleBackColor = false;
             zbrosButton.Click += zbrosButton_Click;
@@ -235,7 +236,7 @@
             groupBox10.Location = new Point(222, 277);
             groupBox10.Name = "groupBox10";
             groupBox10.Size = new Size(201, 54);
-            groupBox10.TabIndex = 12;
+            groupBox10.TabIndex = 10;
             groupBox10.TabStop = false;
             groupBox10.Text = "Особливості характеру";
             // 
@@ -247,8 +248,8 @@
             haractField.Location = new Point(7, 22);
             haractField.Name = "haractField";
             haractField.Size = new Size(143, 23);
-            haractField.TabIndex = 9;
-            haractField.SelectedIndexChanged += haractField_SelectedIndexChanged;
+            haractField.TabIndex = 17;
+            haractField.SelectedIndexChanged += HaractField_SelectedIndexChanged;
             // 
             // label13
             // 
@@ -256,7 +257,7 @@
             label13.BackColor = SystemColors.ControlDark;
             label13.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label13.ForeColor = Color.DarkGreen;
-            label13.Location = new Point(159, 25);
+            label13.Location = new Point(156, 25);
             label13.Name = "label13";
             label13.Size = new Size(14, 15);
             label13.TabIndex = 4;
@@ -269,7 +270,7 @@
             groupBox9.Location = new Point(222, 230);
             groupBox9.Name = "groupBox9";
             groupBox9.Size = new Size(201, 48);
-            groupBox9.TabIndex = 11;
+            groupBox9.TabIndex = 8;
             groupBox9.TabStop = false;
             groupBox9.Text = "Місце у ієрархії";
             // 
@@ -281,8 +282,8 @@
             ierarhField.Location = new Point(6, 18);
             ierarhField.Name = "ierarhField";
             ierarhField.Size = new Size(143, 23);
-            ierarhField.TabIndex = 8;
-            ierarhField.SelectedIndexChanged += ierarhField_SelectedIndexChanged;
+            ierarhField.TabIndex = 15;
+            ierarhField.SelectedIndexChanged += IerarhField_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -290,7 +291,7 @@
             label12.BackColor = SystemColors.ControlDark;
             label12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = Color.DarkGreen;
-            label12.Location = new Point(159, 23);
+            label12.Location = new Point(156, 23);
             label12.Name = "label12";
             label12.Size = new Size(14, 15);
             label12.TabIndex = 4;
@@ -303,7 +304,7 @@
             groupBox8.Location = new Point(14, 75);
             groupBox8.Name = "groupBox8";
             groupBox8.Size = new Size(88, 57);
-            groupBox8.TabIndex = 6;
+            groupBox8.TabIndex = 2;
             groupBox8.TabStop = false;
             groupBox8.Text = "Стать";
             // 
@@ -315,8 +316,8 @@
             statField.Location = new Point(5, 22);
             statField.Name = "statField";
             statField.Size = new Size(51, 23);
-            statField.TabIndex = 8;
-            statField.SelectedIndexChanged += statField_SelectedIndexChanged;
+            statField.TabIndex = 4;
+            statField.SelectedIndexChanged += StatField_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -324,7 +325,7 @@
             label11.BackColor = SystemColors.ControlDark;
             label11.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label11.ForeColor = Color.DarkGreen;
-            label11.Location = new Point(62, 27);
+            label11.Location = new Point(59, 27);
             label11.Name = "label11";
             label11.Size = new Size(14, 15);
             label11.TabIndex = 3;
@@ -342,7 +343,7 @@
             groupBox4.Location = new Point(222, 155);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(201, 72);
-            groupBox4.TabIndex = 5;
+            groupBox4.TabIndex = 6;
             groupBox4.TabStop = false;
             groupBox4.Text = "Живі родичі";
             // 
@@ -353,10 +354,10 @@
             checkNemaRod.Location = new Point(50, 49);
             checkNemaRod.Name = "checkNemaRod";
             checkNemaRod.Size = new Size(108, 20);
-            checkNemaRod.TabIndex = 12;
+            checkNemaRod.TabIndex = 13;
             checkNemaRod.Text = "Нема родичів";
             checkNemaRod.UseVisualStyleBackColor = true;
-            checkNemaRod.CheckedChanged += checkNemaRod_CheckedChanged;
+            checkNemaRod.CheckedChanged += CheckNemaRod_CheckedChanged;
             // 
             // label9
             // 
@@ -381,7 +382,7 @@
             checkMama.TabIndex = 8;
             checkMama.Text = "Мати";
             checkMama.UseVisualStyleBackColor = true;
-            checkMama.CheckedChanged += checkMama_CheckedChanged;
+            checkMama.CheckedChanged += CheckMama_CheckedChanged;
             // 
             // checkDad
             // 
@@ -392,7 +393,7 @@
             checkDad.TabIndex = 9;
             checkDad.Text = "Батько";
             checkDad.UseVisualStyleBackColor = true;
-            checkDad.CheckedChanged += checkDad_CheckedChanged;
+            checkDad.CheckedChanged += CheckDad_CheckedChanged;
             // 
             // checkKid
             // 
@@ -400,10 +401,10 @@
             checkKid.Location = new Point(124, 17);
             checkKid.Name = "checkKid";
             checkKid.Size = new Size(49, 19);
-            checkKid.TabIndex = 7;
+            checkKid.TabIndex = 10;
             checkKid.Text = "Діти";
             checkKid.UseVisualStyleBackColor = true;
-            checkKid.CheckedChanged += checkKid_CheckedChanged;
+            checkKid.CheckedChanged += CheckKid_CheckedChanged;
             // 
             // checkBro
             // 
@@ -412,10 +413,10 @@
             checkBro.Location = new Point(110, 33);
             checkBro.Name = "checkBro";
             checkBro.Size = new Size(100, 20);
-            checkBro.TabIndex = 10;
+            checkBro.TabIndex = 12;
             checkBro.Text = "Брат/Сестра";
             checkBro.UseVisualStyleBackColor = true;
-            checkBro.CheckedChanged += checkBro_CheckedChanged;
+            checkBro.CheckedChanged += CheckBro_CheckedChanged;
             // 
             // checkHusb
             // 
@@ -423,10 +424,10 @@
             checkHusb.Location = new Point(6, 34);
             checkHusb.Name = "checkHusb";
             checkHusb.Size = new Size(108, 19);
-            checkHusb.TabIndex = 3;
+            checkHusb.TabIndex = 11;
             checkHusb.Text = "Чоловік/Жінка";
             checkHusb.UseVisualStyleBackColor = true;
-            checkHusb.CheckedChanged += checkHusb_CheckedChanged;
+            checkHusb.CheckedChanged += CheckHusb_CheckedChanged;
             // 
             // groupBox7
             // 
@@ -457,7 +458,7 @@
             groupBox5.Location = new Point(105, 75);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(108, 58);
-            groupBox5.TabIndex = 2;
+            groupBox5.TabIndex = 3;
             groupBox5.TabStop = false;
             groupBox5.Text = "Стаття";
             // 
@@ -469,8 +470,8 @@
             statyaField.Location = new Point(6, 23);
             statyaField.Name = "statyaField";
             statyaField.Size = new Size(71, 23);
-            statyaField.TabIndex = 7;
-            statyaField.SelectedIndexChanged += statyaField_SelectedIndexChanged;
+            statyaField.TabIndex = 5;
+            statyaField.SelectedIndexChanged += StatyaField_SelectedIndexChanged;
             // 
             // label4
             // 
@@ -478,7 +479,7 @@
             label4.BackColor = SystemColors.ControlDark;
             label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.DarkGreen;
-            label4.Location = new Point(83, 27);
+            label4.Location = new Point(80, 27);
             label4.Name = "label4";
             label4.Size = new Size(14, 15);
             label4.TabIndex = 1;
@@ -492,7 +493,7 @@
             groupBox3.Location = new Point(221, 74);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(202, 75);
-            groupBox3.TabIndex = 5;
+            groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "Дата ув'язнення";
             // 
@@ -502,10 +503,10 @@
             checkDataUvyaz.Location = new Point(6, 53);
             checkDataUvyaz.Name = "checkDataUvyaz";
             checkDataUvyaz.Size = new Size(72, 19);
-            checkDataUvyaz.TabIndex = 5;
+            checkDataUvyaz.TabIndex = 1;
             checkDataUvyaz.Text = "Будь яке";
             checkDataUvyaz.UseVisualStyleBackColor = true;
-            checkDataUvyaz.CheckedChanged += checkDataUvyaz_CheckedChanged;
+            checkDataUvyaz.CheckedChanged += CheckDataUvyaz_CheckedChanged;
             // 
             // label5
             // 
@@ -513,7 +514,7 @@
             label5.BackColor = SystemColors.ControlDark;
             label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.DarkGreen;
-            label5.Location = new Point(159, 28);
+            label5.Location = new Point(155, 28);
             label5.Name = "label5";
             label5.Size = new Size(14, 15);
             label5.TabIndex = 3;
@@ -537,7 +538,7 @@
             groupBox2.Location = new Point(14, 277);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(200, 54);
-            groupBox2.TabIndex = 4;
+            groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "№ Камери";
             // 
@@ -547,10 +548,10 @@
             checkKamNum.Location = new Point(123, 21);
             checkKamNum.Name = "checkKamNum";
             checkKamNum.Size = new Size(42, 19);
-            checkKamNum.TabIndex = 6;
+            checkKamNum.TabIndex = 1;
             checkKamNum.Text = "Усі";
             checkKamNum.UseVisualStyleBackColor = true;
-            checkKamNum.CheckedChanged += checkKamNum_CheckedChanged;
+            checkKamNum.CheckedChanged += CheckKamNum_CheckedChanged;
             // 
             // label3
             // 
@@ -558,7 +559,7 @@
             label3.BackColor = SystemColors.ControlDark;
             label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.DarkGreen;
-            label3.Location = new Point(174, 22);
+            label3.Location = new Point(171, 22);
             label3.Name = "label3";
             label3.Size = new Size(14, 15);
             label3.TabIndex = 4;
@@ -572,7 +573,7 @@
             KamNum.Name = "KamNum";
             KamNum.ReadOnly = true;
             KamNum.Size = new Size(104, 23);
-            KamNum.TabIndex = 0;
+            KamNum.TabIndex = 2;
             KamNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
             KamNum.ValueChanged += KamNum_ValueChanged;
             // 
@@ -584,7 +585,7 @@
             groupBox1.Location = new Point(14, 131);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(199, 75);
-            groupBox1.TabIndex = 3;
+            groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Дата народження";
             // 
@@ -594,10 +595,10 @@
             checkDataNar.Location = new Point(6, 50);
             checkDataNar.Name = "checkDataNar";
             checkDataNar.Size = new Size(72, 19);
-            checkDataNar.TabIndex = 4;
+            checkDataNar.TabIndex = 2;
             checkDataNar.Text = "Будь яке";
             checkDataNar.UseVisualStyleBackColor = true;
-            checkDataNar.CheckedChanged += checkDataNar_CheckedChanged;
+            checkDataNar.CheckedChanged += CheckDataNar_CheckedChanged;
             // 
             // label2
             // 
@@ -605,7 +606,7 @@
             label2.BackColor = SystemColors.ControlDark;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.DarkGreen;
-            label2.Location = new Point(174, 30);
+            label2.Location = new Point(171, 30);
             label2.Name = "label2";
             label2.Size = new Size(14, 15);
             label2.TabIndex = 3;
@@ -617,7 +618,7 @@
             DataNarTimePicker.MinDate = new DateTime(1901, 1, 1, 0, 0, 0, 0);
             DataNarTimePicker.Name = "DataNarTimePicker";
             DataNarTimePicker.Size = new Size(154, 23);
-            DataNarTimePicker.TabIndex = 2;
+            DataNarTimePicker.TabIndex = 3;
             DataNarTimePicker.Value = new DateTime(2023, 4, 4, 0, 0, 0, 0);
             DataNarTimePicker.ValueChanged += DataNarTimePicker_ValueChanged;
             // 
@@ -630,7 +631,7 @@
             groupBox11.Location = new Point(14, 205);
             groupBox11.Name = "groupBox11";
             groupBox11.Size = new Size(200, 73);
-            groupBox11.TabIndex = 2;
+            groupBox11.TabIndex = 7;
             groupBox11.TabStop = false;
             groupBox11.Text = "Термін";
             // 
@@ -640,10 +641,10 @@
             checkTerm.Location = new Point(123, 25);
             checkTerm.Name = "checkTerm";
             checkTerm.Size = new Size(45, 19);
-            checkTerm.TabIndex = 5;
+            checkTerm.TabIndex = 1;
             checkTerm.Text = "Усе";
             checkTerm.UseVisualStyleBackColor = true;
-            checkTerm.CheckedChanged += checkTerm_CheckedChanged;
+            checkTerm.CheckedChanged += CheckTerm_CheckedChanged;
             // 
             // label1
             // 
@@ -664,7 +665,7 @@
             termBar1.SmallChange = 2;
             termBar1.TabIndex = 2;
             termBar1.Value = 1;
-            termBar1.Scroll += termBar1_Scroll;
+            termBar1.Scroll += TermBar1_Scroll;
             // 
             // label10
             // 
@@ -672,7 +673,7 @@
             label10.BackColor = SystemColors.ControlDark;
             label10.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label10.ForeColor = Color.DarkGreen;
-            label10.Location = new Point(174, 29);
+            label10.Location = new Point(171, 29);
             label10.Name = "label10";
             label10.Size = new Size(14, 15);
             label10.TabIndex = 1;
@@ -689,7 +690,7 @@
             groupBox6.Location = new Point(14, 1);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new Size(409, 68);
-            groupBox6.TabIndex = 2;
+            groupBox6.TabIndex = 1;
             groupBox6.TabStop = false;
             groupBox6.Text = "ПІБ";
             // 
@@ -717,7 +718,6 @@
             PBTextBox.Name = "PBTextBox";
             PBTextBox.Size = new Size(131, 23);
             PBTextBox.TabIndex = 3;
-            PBTextBox.Text = "-";
             PBTextBox.TextChanged += PBTextBox_TextChanged;
             // 
             // label7
@@ -731,11 +731,11 @@
             // 
             // PrizvTextBox
             // 
+            PrizvTextBox.AcceptsTab = true;
             PrizvTextBox.Location = new Point(6, 37);
             PrizvTextBox.Name = "PrizvTextBox";
             PrizvTextBox.Size = new Size(120, 23);
-            PrizvTextBox.TabIndex = 0;
-            PrizvTextBox.Text = "-";
+            PrizvTextBox.TabIndex = 1;
             PrizvTextBox.TextChanged += PrizvTextBox_TextChanged;
             // 
             // ImyaTextBox
@@ -744,7 +744,6 @@
             ImyaTextBox.Name = "ImyaTextBox";
             ImyaTextBox.Size = new Size(130, 23);
             ImyaTextBox.TabIndex = 2;
-            ImyaTextBox.Text = "-";
             ImyaTextBox.TextChanged += ImyaTextBox_TextChanged;
             // 
             // findButton
@@ -755,7 +754,7 @@
             findButton.Location = new Point(14, 342);
             findButton.Name = "findButton";
             findButton.Size = new Size(200, 48);
-            findButton.TabIndex = 0;
+            findButton.TabIndex = 18;
             findButton.Text = "Пошук";
             findButton.UseVisualStyleBackColor = false;
             findButton.Click += findButton_Click;
