@@ -491,7 +491,7 @@ namespace Kursova
         }//Чекбокс Нема родичів
         private void DataSinhron()
         {
-            string path1 = @"C:\Users\User\Desktop\Курсова\VS\Kursova\Kursova\data.doc";
+            string path1 = @"C:\Users\User\Desktop\Курсова\VS\Kursova\Kursova\Documents\data.doc";
 
             string[] pers = File.ReadAllText(path1).Split(';');
 
