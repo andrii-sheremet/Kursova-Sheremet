@@ -26,7 +26,8 @@ namespace Kursova
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
 
-            Statistic(); Zbros(); Data.ReadData();
+            Data.ReadData();
+            Statistic();
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -145,34 +146,13 @@ namespace Kursova
         {
             RodDef();
         }
-        private void zbrosButton_Click(object sender, EventArgs e)
-        {
-            Zbros();
-        }
-
-
-        public void Zbros()
-        {
-            KamNum.Enabled = termBar1.Enabled = label1.Visible
-                    = DataNarTimePicker.Enabled = DataUvyazTimePicker.Enabled
-                    = false;
-
-            checkKamNum.Checked = checkDataNar.Checked = checkTerm.Checked
-                = checkDataUvyaz.Checked = true;
-
-            statField.Text = "Усі";
-
-            RodDef();
-
-            PrizvTextBox.Text = ImyaTextBox.Text = PBTextBox.Text
-                = statyaField.Text = ierarhField.Text = haractField.Text = "-";
-        }
+        private void zbrosButton_Click(object sender, EventArgs e) 
+            => Application.Restart();
 
         public void RodDef() =>
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
-
         private void Statistic()
         {
             int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -490,6 +470,15 @@ namespace Kursova
                 rod.Remove(6);
             }
         }//Чекбокс Нема родичів
-        
+
+        private void DobPerson_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new();
+            form2.Show();
+        }
+        private void DobPerson_MouseEnter(object sender, EventArgs e) =>
+            DobPerson.ForeColor = Color.Gray;
+        private void DobPerson_MouseLeave(object sender, EventArgs e) =>
+            DobPerson.ForeColor = Color.Black;
     }
 }

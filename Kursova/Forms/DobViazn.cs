@@ -1,0 +1,221 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
+
+namespace Kursova
+{
+    public partial class DobViazn : Form
+    {
+        private Person p = new("1 1 1", new(1,1,1), "", -1, new(1,1,1), -1, "",-1, "", "");
+
+
+        public DobViazn()
+        {
+            InitializeComponent();
+        }
+
+        private void DobButton_Click(object sender, EventArgs e)
+        {
+            p.Rod = "";
+            if (checkMama.Checked) p.Rod += "Мати ";
+            if (checkDad.Checked) p.Rod += "Батько ";
+            if (checkKid.Checked) p.Rod += "Діти ";
+            if (checkHusb.Checked) p.Rod += "Чоловік/Дружина ";
+            if (checkBro.Checked) p.Rod += "Брат/Сестра ";
+            if (checkNemaRod.Checked) p.Rod = "Нема родичів ";
+
+            string Wrong = "";
+            Wrong += p.SecondName == "" ? "Прізвище, " : "";
+            Wrong += p.FirstName == "" ? "Ім'я, " : "";
+            Wrong += p.ThirdName == "" ? "Побатькові, " : "";
+            Wrong += p.DateUvyaz == new DateTime(1,1,1) ? "Дата ув'язнення, " : "";
+            Wrong += p.DateNar == new DateTime(1, 1, 1) ? "Дата народження, " : "";
+            Wrong += p.Term == -1 ? "Термін ув'язнення, " : "";
+            Wrong += p.NumKam == -1 ? "Номер камеери, " : "";
+            Wrong += p.Statya == -1 ? "Стаття, " : "";
+            Wrong += p.Stat == "" ? "Стать, " : "";
+            Wrong += p.Rod == "" ? "Родина, " : "";
+            Wrong += p.Ierarh == "" ? "Місце в ієрархії, " : "";
+            Wrong += p.Haract == "" ? "Особливість характеру " : "";
+
+            if (Wrong == "")
+            {
+                Data.AddToData(p);
+                this.Close();
+            }
+            else
+            {
+                Form4 f4 = new(p.Rod);
+                f4.Show();
+            }
+        }
+
+        private void termBar1_Scroll(object sender, EventArgs e)
+        {
+            switch (termBar1.Value)
+            {
+                case 1:
+                    label1.Text = "1 роки";
+                    p.Term = 1;
+                    break;
+                case 2:
+                    label1.Text = "2 роки";
+                    p.Term = 2;
+                    break;
+                case 3:
+                    label1.Text = "3 років";
+                    p.Term = 3;
+                    break;
+                case 4:
+                    label1.Text = "5 років";
+                    p.Term = 5;
+                    break;
+                case 5:
+                    label1.Text = "8 років";
+                    p.Term = 8;
+                    break;
+                case 6:
+                    label1.Text = "15 років";
+                    p.Term = 15;
+                    break;
+            }
+        }
+
+        private void statField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (statField.SelectedIndex)
+            {
+                case 0:
+                    p.Stat = "W";
+                    break;
+                case 1:
+                    p.Stat = "M";
+                    break;
+            }
+        }
+
+        private void checkMama_CheckedChanged(object sender, EventArgs e)
+        {
+             if(checkMama.Checked) checkNemaRod.Checked = false;
+        }//Чекбокс Мати
+        private void checkDad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkDad.Checked) checkNemaRod.Checked = false;
+        }//Чекбокс Батько
+        private void checkKid_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkKid.Checked) checkNemaRod.Checked = false;
+        }//Чекбокс Діти
+        private void checkHusb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkHusb.Checked) checkNemaRod.Checked = false;
+        }//Чекбокс Чоловік/Дружина
+        private void checkBro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBro.Checked) checkNemaRod.Checked = false;
+        } //Чекбокс Брат/Сетсра
+        private void checkNemaRod_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkNemaRod.Checked) checkMama.Checked = checkDad.Checked = checkKid.Checked
+                    = checkHusb.Checked = checkBro.Checked = false;
+        }//Чекбокс Нема родичів
+
+
+        private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            p.DateNar = DataNarTimePicker.Value;
+        }
+        private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            p.DateUvyaz = DataUvyazTimePicker.Value;
+        }
+
+        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (haractField.SelectedIndex)
+            {
+                case 0:
+                    p.Haract = "Агресивний";
+                    break;
+                case 1:
+                    p.Haract = "Спокійний";
+                    break;
+                case 2:
+                    p.Haract = "Нестійкий";
+                    break;
+                case 3:
+                    p.Haract = "Шістка";
+                    break;
+            }
+        }
+
+        private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ierarhField.SelectedIndex)
+            {
+                case 0:
+                    p.Ierarh = "Блатні";
+                    break;
+                case 1:
+                    p.Ierarh = "Мужики";
+                    break;
+                case 2:
+                    p.Ierarh = "Козли";
+                    break;
+                case 3:
+                    p.Ierarh = "Заполоскані";
+                    break;
+                case 4:
+                    p.Ierarh = "Опущені";
+                    break;
+            }
+        }
+        
+        private void KamNum_ValueChanged(object sender, EventArgs e)
+        {
+            p.NumKam = Convert.ToInt32(KamNum.Value);
+        }
+
+        private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            p.Statya = Convert.ToInt32(statyaField.Text[3..]);
+        }
+
+        private void PrizvTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (PrizvTextBox.Text == "") PrizvTextBox.BackColor = Color.Pink;
+            else
+            {
+                PrizvTextBox.BackColor = Color.White;
+                p.SecondName = PrizvTextBox.Text;
+            }
+        }
+
+        private void ImyaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ImyaTextBox.Text == "") ImyaTextBox.BackColor = Color.Pink;
+            else
+            {
+                ImyaTextBox.BackColor = Color.White;
+                p.FirstName = ImyaTextBox.Text;
+            }
+        }
+
+        private void PBTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (PBTextBox.Text == "") PBTextBox.BackColor = Color.Pink;
+            else
+            {
+                PBTextBox.BackColor = Color.White;
+                p.ThirdName = PBTextBox.Text;
+            }
+        }
+    }
+}

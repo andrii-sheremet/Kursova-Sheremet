@@ -32,6 +32,10 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             splitContainer1 = new SplitContainer();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            DobPerson = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
             exceptionPanel = new Panel();
             label15 = new Label();
             label14 = new Label();
@@ -89,6 +93,7 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             exceptionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox10.SuspendLayout();
@@ -115,6 +120,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(statusStrip1);
             splitContainer1.Panel1.Controls.Add(exceptionPanel);
             splitContainer1.Panel1.Controls.Add(dataGridView1);
             splitContainer1.Panel1.Controls.Add(splitter1);
@@ -139,6 +145,41 @@
             splitContainer1.Size = new Size(983, 399);
             splitContainer1.SplitterDistance = 548;
             splitContainer1.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.BackColor = SystemColors.Control;
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, DobPerson, toolStripStatusLabel2 });
+            statusStrip1.Location = new Point(3, 369);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(545, 30);
+            statusStrip1.TabIndex = 14;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(17, 25);
+            toolStripStatusLabel1.Text = "|";
+            // 
+            // DobPerson
+            // 
+            DobPerson.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            DobPerson.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DobPerson.Name = "DobPerson";
+            DobPerson.Size = new Size(138, 25);
+            DobPerson.Text = "Додати в'язня";
+            DobPerson.Click += DobPerson_Click;
+            DobPerson.MouseEnter += DobPerson_MouseEnter;
+            DobPerson.MouseLeave += DobPerson_MouseLeave;
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(17, 25);
+            toolStripStatusLabel2.Text = "|";
             // 
             // exceptionPanel
             // 
@@ -769,9 +810,12 @@
             Name = "Form1";
             Text = "Довідник начальника в'язниці";
             splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             exceptionPanel.ResumeLayout(false);
             exceptionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -858,5 +902,9 @@
         private Label label9;
         private CheckBox checkNemaRod;
         private Button zbrosButton;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel DobPerson;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
