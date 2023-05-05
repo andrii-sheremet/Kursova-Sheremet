@@ -23,8 +23,8 @@ namespace Kursova
                 {
                     s.Replace("\r\n", "").Trim();
                     string[] i = s.Split(',');
-                    string[] a = i[1].Split(' ');
-                    string[] b = i[4].Split(' ');
+                    string[] a = i[1].Replace(" 0:00:00", "").Split(' ');
+                    string[] b = i[4].Replace(" 0:00:00", "").Split(' ');
                     DateTime date1 = new(
                         Convert.ToInt32(a[0]),
                         Convert.ToInt32(a[1]),
@@ -37,7 +37,7 @@ namespace Kursova
                         Convert.ToInt32(b[2])
                         );
                     Person p = new(i[0], date1, i[2], Convert.ToInt32(i[3]),
-                        date2, Convert.ToInt32(i[5]), i[6], Convert.ToInt32(i[7]),
+                        date2, Convert.ToInt32(i[5]), i[6].Trim(), Convert.ToInt32(i[7]),
                         i[8], i[9]);
                     data.Add(p);
                 }
@@ -45,11 +45,16 @@ namespace Kursova
         }
         public static void AddToData(Person p)
         {
-            
+            string res = $"\r\n{p.SecondName} {p.FirstName} {p.ThirdName}" +
+                $",{p.DateNar.Year} {p.DateNar.Month} {p.DateNar.Day},{p.Stat}" +
+                $",{p.Statya},{p.DateUvyaz.Year} {p.DateUvyaz.Month} {p.DateUvyaz.Day},{p.Term}" +
+                $",{p.Rod},{p.NumKam},{p.Ierarh},{p.Haract};";
 
-            string name, DateTime dateNar, string stat,
-            int statya, DateTime dateUvyaz, int term, string rodInd,
-            int numKam, string ierarh, string haract
+            using (FileStream fs = File.Create(file))
+            {
+                byte[] info = new UTF8Encoding(true).GetBytes(text + res);
+                fs.Write(info, 0, info.Length);
+            }
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Kursova
             {
                 Data.AddToData(p);
                 this.Close();
+                Application.Restart();
             }
             else
             {

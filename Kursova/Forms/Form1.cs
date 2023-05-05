@@ -146,7 +146,7 @@ namespace Kursova
         {
             RodDef();
         }
-        private void zbrosButton_Click(object sender, EventArgs e) 
+        private void zbrosButton_Click(object sender, EventArgs e)
             => Application.Restart();
 
         public void RodDef() =>
