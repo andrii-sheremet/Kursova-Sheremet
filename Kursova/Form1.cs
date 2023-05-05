@@ -19,7 +19,6 @@ namespace Kursova
 
         private int term = 1;
         public SortedList<int, string> rod = new() { { 0, "" } };
-        private List<Person> data = new();
 
         public Form1()
         {
@@ -27,7 +26,7 @@ namespace Kursova
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
 
-            Statistic(); zbros(); DataSinhron();
+            Statistic(); Zbros(); Data.ReadData();
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -85,7 +84,7 @@ namespace Kursova
 
             Person p = Poisk.MembIn();
 
-            foreach (var i in data)
+            foreach (var i in Data.data)
             {
 
                 Poisk.Go(i);
@@ -144,15 +143,15 @@ namespace Kursova
         }
         private void label9_Click(object sender, EventArgs e)
         {
-            rodDef();
+            RodDef();
         }
         private void zbrosButton_Click(object sender, EventArgs e)
         {
-            zbros();
+            Zbros();
         }
 
 
-        public void zbros()
+        public void Zbros()
         {
             KamNum.Enabled = termBar1.Enabled = label1.Visible
                     = DataNarTimePicker.Enabled = DataUvyazTimePicker.Enabled
@@ -163,72 +162,74 @@ namespace Kursova
 
             statField.Text = "Усі";
 
-            rodDef();
+            RodDef();
 
             PrizvTextBox.Text = ImyaTextBox.Text = PBTextBox.Text
                 = statyaField.Text = ierarhField.Text = haractField.Text = "-";
         }
-        public void rodDef() =>
+
+        public void RodDef() =>
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
+
         private void Statistic()
         {
             int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            foreach (var i in data)
+            foreach (var i in Data.data)
             {
                 if (Poisk.NumKam == -1)
                 {
-                    count[0] = data.Count;
+                    count[0] = Data.data.Count;
                 }
                 else if (i.NumKam == Poisk.NumKam) count[0]++;
 
                 if (Poisk.Term == -1)
                 {
-                    count[1] = data.Count;
+                    count[1] = Data.data.Count;
                 }
                 else if (i.Term == Poisk.Term) count[1]++;
 
                 if (Poisk.Statya == -1)
                 {
-                    count[2] = data.Count;
+                    count[2] = Data.data.Count;
                 }
                 else if (i.Statya == Poisk.Statya) count[2]++;
 
                 if (Poisk.Stat == "Усі")
                 {
-                    count[3] = data.Count;
+                    count[3] = Data.data.Count;
                 }
                 else if (i.Stat == Poisk.Stat) count[3]++;
 
                 if (Poisk.Haract == "-")
                 {
-                    count[4] = data.Count;
+                    count[4] = Data.data.Count;
                 }
                 else if (i.Haract == Poisk.Haract) count[4]++;
 
                 if (Poisk.NumKam == -1)
                 {
-                    count[5] = data.Count;
+                    count[5] = Data.data.Count;
                 }
                 else if (i.NumKam == Poisk.NumKam) count[5]++;
 
                 if (Poisk.DateNar == new DateTime(1900, 01, 01))
                 {
-                    count[6] = data.Count;
+                    count[6] = Data.data.Count;
                 }
                 else if (i.DateNar == Poisk.DateNar) count[6]++;
 
                 if (Poisk.DateUvyaz == new DateTime(1900, 01, 01))
                 {
-                    count[7] = data.Count;
+                    count[7] = Data.data.Count;
                 }
                 else if (i.DateUvyaz == Poisk.DateUvyaz) count[7]++;
 
                 if (Poisk.Ierarh == "-")
                 {
-                    count[8] = data.Count;
+                    count[8] = Data.data.Count;
                 }
                 else if (i.Ierarh == Poisk.Ierarh) count[8]++;
             }
@@ -489,145 +490,6 @@ namespace Kursova
                 rod.Remove(6);
             }
         }//Чекбокс Нема родичів
-        private void DataSinhron()
-        {
-            string path1 = @"C:\Users\User\Desktop\Курсова\VS\Kursova\Kursova\Documents\data.doc";
-
-            string[] pers = File.ReadAllText(path1).Split(';');
-
-            foreach (string s in pers)
-            {
-                if (s.Length > 0)
-                {
-                    s.Replace("\r\n", "").Trim();
-                    string[] i = s.Split(',');
-                    string[] a = i[1].Split(' ');
-                    string[] b = i[4].Split(' ');
-                    DateTime date1 = new(
-                        Convert.ToInt32(a[0]),
-                        Convert.ToInt32(a[1]),
-                        Convert.ToInt32(a[2])
-                        );
-
-                    DateTime date2 = new(
-                        Convert.ToInt32(b[0]),
-                        Convert.ToInt32(b[1]),
-                        Convert.ToInt32(b[2])
-                        );
-                    Person p = new Person(i[0], date1, i[2], Convert.ToInt32(i[3]),
-                        date2, Convert.ToInt32(i[5]), i[6], Convert.ToInt32(i[7]),
-                        i[8], i[9]);
-                    data.Add(p);
-                }
-            }
-        }
-
+        
     }
-    class Person
-    {
-        public string FirstName { get; }
-        public string SecondName { get; }
-        public string ThirdName { get; }
-        public DateTime DateNar { get; set; }
-        public string Stat { get; }
-        public int Statya { get; }
-        public DateTime DateUvyaz { get; }
-        public int Term { get; }
-        public string Rod { get; }
-        public int NumKam { get; }
-        public string Ierarh { get; }
-        public string Haract { get; }
-
-        public Person(string name, DateTime dateNar, string stat,
-            int statya, DateTime dateUvyaz, int term, string rodInd,
-            int numKam, string ierarh, string haract)
-        {
-
-            string[] n = name.Split(' ');
-            SecondName = n[0];
-            FirstName = n[1];
-            ThirdName = n[2];
-
-            DateNar = dateNar;
-            Stat = stat;
-            Statya = statya;
-            DateUvyaz = dateUvyaz;
-            Term = term;
-            Rod = rodInd;
-            NumKam = numKam;
-            Ierarh = ierarh;
-            Haract = haract;
-        }
-    }//Класс для створення персонажів для в'язниці
-    static class Poisk
-    {
-
-        public static string FirstName { get; set; } = "-";
-        public static string SecondName { get; set; } = "-";
-        public static string ThirdName { get; set; } = "-";
-        public static DateTime DateNar { get; set; } = new(1900, 01, 01);
-        public static string Stat { get; set; } = "Усі";
-        public static int Statya { get; set; } = -1;
-        public static DateTime DateUvyaz { get; set; } = new(1900, 01, 01);
-        public static int Term { get; set; } = -1;
-        public static string Rod { get; set; } = "";
-        public static int NumKam { get; set; } = -1;
-        public static string Ierarh { get; set; } = "-";
-        public static string Haract { get; set; } = "-";
-
-        public static void Go(Person p)
-        {
-
-            FirstName = FirstName == "" || FirstName == "-"
-                ? p.FirstName : FirstName;
-
-            SecondName = SecondName == "" || SecondName == "-"
-                ? p.SecondName : SecondName;
-
-            ThirdName = ThirdName == "" || ThirdName == "-"
-                ? p.ThirdName : ThirdName;
-
-            DateNar = DateNar == new DateTime(1900, 01, 01)
-                ? p.DateNar : DateNar;
-
-            Stat = Stat == "Усі" ? p.Stat : Stat;
-
-            Statya = Statya == -1 ? p.Statya : Statya;
-
-            DateUvyaz = DateUvyaz == new DateTime(1900, 01, 01)
-                ? p.DateUvyaz : DateUvyaz;
-
-            Term = Term == -1 ? p.Term : Term;
-
-            Rod = Rod == "" ? p.Rod : Rod;
-
-            NumKam = NumKam == -1 ? p.NumKam : NumKam;
-
-            Ierarh = Ierarh == "-" || Ierarh == ""
-                ? p.Ierarh : Ierarh;
-
-            Haract = Haract == "-" || Haract == ""
-                ? p.Haract : Haract;
-        }
-
-        public static Person MembIn() =>
-            new($"{SecondName} {FirstName} {ThirdName}", DateNar, Stat,
-                Statya, DateUvyaz, Term, Rod, NumKam, Ierarh, Haract);
-
-        public static void MembOut(Person memb)
-        {
-            SecondName = memb.SecondName;
-            FirstName = memb.FirstName;
-            ThirdName = memb.ThirdName;
-            Stat = memb.Stat;
-            Statya = memb.Statya;
-            Term = memb.Term;
-            Rod = memb.Rod;
-            NumKam = memb.NumKam;
-            DateNar = memb.DateNar;
-            DateUvyaz = memb.DateUvyaz;
-            Ierarh = memb.Ierarh;
-            Haract = memb.Haract;
-        }
-    }//Класс для перевірки по базі даних за вписаними ознаками  
 }
