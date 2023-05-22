@@ -13,16 +13,28 @@ namespace Kursova
 {
     public partial class DobViazn : Form
     {
-        private Person p = new("1 1 1", new(1,1,1), "", -1, new(1,1,1), -1, "",-1, "", "");
+        private Person p =
+            new("1 1 1", new(1, 1, 1), "", -1,
+                new(1, 1, 1), -1, "", -1, "", "");
 
 
         public DobViazn()
         {
             InitializeComponent();
+
+            groupBox1.Visible = groupBox2.Visible = groupBox3.Visible =
+                groupBox4.Visible = groupBox5.Visible = groupBox6.Visible =
+                groupBox8.Visible = groupBox9.Visible =
+                groupBox10.Visible = groupBox11.Visible = true;
         }
 
         private void DobButton_Click(object sender, EventArgs e)
         {
+            if (PrizvTextBox.Text == "") PrizvTextBox.BackColor = Color.Pink;
+            if (ImyaTextBox.Text == "") ImyaTextBox.BackColor = Color.Pink;
+            if (PBTextBox.Text == "") PBTextBox.BackColor = Color.Pink;
+
+
             p.Rod = "";
             if (checkMama.Checked) p.Rod += "Мати ";
             if (checkDad.Checked) p.Rod += "Батько ";
@@ -35,8 +47,10 @@ namespace Kursova
             Wrong += p.SecondName == "" ? "Прізвище, " : "";
             Wrong += p.FirstName == "" ? "Ім'я, " : "";
             Wrong += p.ThirdName == "" ? "Побатькові, " : "";
-            Wrong += p.DateUvyaz == new DateTime(1,1,1) ? "Дата ув'язнення, " : "";
-            Wrong += p.DateNar == new DateTime(1, 1, 1) ? "Дата народження, " : "";
+            Wrong += p.DateUvyaz == new DateTime(1, 1, 1)
+                ? "Дата ув'язнення, " : "";
+            Wrong += p.DateNar == new DateTime(1, 1, 1)
+                ? "Дата народження, " : "";
             Wrong += p.Term == -1 ? "Термін ув'язнення, " : "";
             Wrong += p.NumKam == -1 ? "Номер камеери, " : "";
             Wrong += p.Statya == -1 ? "Стаття, " : "";
@@ -48,12 +62,13 @@ namespace Kursova
             if (Wrong == "")
             {
                 Data.AddToData(p);
+                Form5 f = new();
+                f.Show();
                 this.Close();
-                Application.Restart();
             }
             else
             {
-                Form4 f4 = new(p.Rod);
+                Form4 f4 = new(Wrong);
                 f4.Show();
             }
         }
@@ -104,7 +119,7 @@ namespace Kursova
 
         private void checkMama_CheckedChanged(object sender, EventArgs e)
         {
-             if(checkMama.Checked) checkNemaRod.Checked = false;
+            if (checkMama.Checked) checkNemaRod.Checked = false;
         }//Чекбокс Мати
         private void checkDad_CheckedChanged(object sender, EventArgs e)
         {
@@ -178,7 +193,7 @@ namespace Kursova
                     break;
             }
         }
-        
+
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
             p.NumKam = Convert.ToInt32(KamNum.Value);
@@ -191,8 +206,7 @@ namespace Kursova
 
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (PrizvTextBox.Text == "") PrizvTextBox.BackColor = Color.Pink;
-            else
+            if (PrizvTextBox.Text != "")
             {
                 PrizvTextBox.BackColor = Color.White;
                 p.SecondName = PrizvTextBox.Text;
@@ -201,8 +215,7 @@ namespace Kursova
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ImyaTextBox.Text == "") ImyaTextBox.BackColor = Color.Pink;
-            else
+            if (ImyaTextBox.Text != "")
             {
                 ImyaTextBox.BackColor = Color.White;
                 p.FirstName = ImyaTextBox.Text;
@@ -211,8 +224,7 @@ namespace Kursova
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (PBTextBox.Text == "") PBTextBox.BackColor = Color.Pink;
-            else
+            if (PBTextBox.Text != "")
             {
                 PBTextBox.BackColor = Color.White;
                 p.ThirdName = PBTextBox.Text;

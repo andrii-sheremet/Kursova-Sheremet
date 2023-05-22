@@ -373,6 +373,7 @@
             // 
             PBTextBox.Location = new Point(272, 37);
             PBTextBox.Name = "PBTextBox";
+            PBTextBox.PlaceholderText = "Побатькові";
             PBTextBox.Size = new Size(131, 23);
             PBTextBox.TabIndex = 3;
             PBTextBox.TextChanged += PBTextBox_TextChanged;
@@ -391,6 +392,7 @@
             PrizvTextBox.AcceptsTab = true;
             PrizvTextBox.Location = new Point(6, 37);
             PrizvTextBox.Name = "PrizvTextBox";
+            PrizvTextBox.PlaceholderText = "Прізвище";
             PrizvTextBox.Size = new Size(120, 23);
             PrizvTextBox.TabIndex = 1;
             PrizvTextBox.TextChanged += PrizvTextBox_TextChanged;
@@ -399,6 +401,7 @@
             // 
             ImyaTextBox.Location = new Point(134, 37);
             ImyaTextBox.Name = "ImyaTextBox";
+            ImyaTextBox.PlaceholderText = "Ім'я";
             ImyaTextBox.Size = new Size(130, 23);
             ImyaTextBox.TabIndex = 2;
             ImyaTextBox.TextChanged += ImyaTextBox_TextChanged;

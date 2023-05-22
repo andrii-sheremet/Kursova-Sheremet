@@ -480,5 +480,10 @@ namespace Kursova
             DobPerson.ForeColor = Color.Gray;
         private void DobPerson_MouseLeave(object sender, EventArgs e) =>
             DobPerson.ForeColor = Color.Black;
+
+        private void greenLabel_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

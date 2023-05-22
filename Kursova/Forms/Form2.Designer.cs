@@ -46,11 +46,15 @@
             // PasswordField
             // 
             PasswordField.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            PasswordField.Location = new Point(100, 40);
+            PasswordField.Location = new Point(110, 43);
             PasswordField.MaxLength = 4;
             PasswordField.Name = "PasswordField";
-            PasswordField.Size = new Size(100, 33);
+            PasswordField.PasswordChar = '*';
+            PasswordField.PlaceholderText = "Пароль";
+            PasswordField.Size = new Size(80, 33);
             PasswordField.TabIndex = 1;
+            PasswordField.TextAlign = HorizontalAlignment.Center;
+            PasswordField.TextChanged += PasswordField_TextChanged;
             // 
             // label1
             // 

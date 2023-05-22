@@ -55,6 +55,7 @@ namespace Kursova
                 byte[] info = new UTF8Encoding(true).GetBytes(text + res);
                 fs.Write(info, 0, info.Length);
             }
+            Data.ReadData();
         }
     }
 }

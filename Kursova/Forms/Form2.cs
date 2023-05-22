@@ -25,6 +25,16 @@ namespace Kursova
                 form3.Show();
                 this.Close();
             }
+            else
+            {
+                PasswordField.Text = "";
+                PasswordField.BackColor = Color.LightPink;
+            }
+        }
+
+        private void PasswordField_TextChanged(object sender, EventArgs e)
+        {
+            PasswordField.BackColor = Color.White;
         }
     }
 }
