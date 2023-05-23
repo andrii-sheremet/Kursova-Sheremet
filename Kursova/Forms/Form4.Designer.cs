@@ -81,7 +81,6 @@
 
         private Button button1;
         private Label label1;
-        private Label label2;
         private Panel panel1;
         private TextBox textBox1;
     }

@@ -89,6 +89,7 @@
             PrizvTextBox = new TextBox();
             ImyaTextBox = new TextBox();
             findButton = new Button();
+            toolStripStatusLabel3 = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -149,7 +150,7 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = SystemColors.Control;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, DobPerson, toolStripStatusLabel2 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, DobPerson, toolStripStatusLabel2, toolStripStatusLabel3 });
             statusStrip1.Location = new Point(3, 369);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(545, 30);
@@ -803,6 +804,15 @@
             findButton.UseVisualStyleBackColor = false;
             findButton.Click += findButton_Click;
             // 
+            // toolStripStatusLabel3
+            // 
+            toolStripStatusLabel3.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripStatusLabel3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Size = new Size(157, 25);
+            toolStripStatusLabel3.Text = "Видалити в'язня";
+            toolStripStatusLabel3.Click += toolStripStatusLabel3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -909,5 +919,6 @@
         private ToolStripStatusLabel DobPerson;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolStripStatusLabel toolStripStatusLabel3;
     }
 }

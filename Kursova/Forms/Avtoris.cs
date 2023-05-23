@@ -10,20 +10,20 @@ using System.Windows.Forms;
 
 namespace Kursova
 {
-    public partial class Form2 : Form
+    public partial class Avtoris : Form
     {
-        public Form2()
+        public Avtoris()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonOk_Click(object sender, EventArgs e)
         {
             if (PasswordField.Text == "1111")
             {
-                DobViazn form3 = new();
-                form3.Show();
-                this.Close();
+                Lobby f = new();
+                f.Show();
+                this.Visible = false;
             }
             else
             {
@@ -32,9 +32,7 @@ namespace Kursova
             }
         }
 
-        private void PasswordField_TextChanged(object sender, EventArgs e)
-        {
+        private void PasswordField_TextChanged(object sender, EventArgs e) =>
             PasswordField.BackColor = Color.White;
-        }
     }
 }

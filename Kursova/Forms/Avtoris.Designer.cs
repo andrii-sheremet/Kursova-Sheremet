@@ -1,6 +1,6 @@
 ﻿namespace Kursova
 {
-    partial class Form2
+    partial class Avtoris
     {
         /// <summary>
         /// Required designer variable.
@@ -28,60 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            PasswordField = new TextBox();
             label1 = new Label();
+            PasswordField = new TextBox();
+            buttonOk = new Button();
             SuspendLayout();
             // 
-            // button1
+            // label1
             // 
-            button1.Location = new Point(110, 100);
-            button1.Name = "button1";
-            button1.Size = new Size(80, 30);
-            button1.TabIndex = 0;
-            button1.Text = "OK";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(43, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(114, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Введіть код доступу";
             // 
             // PasswordField
             // 
             PasswordField.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            PasswordField.Location = new Point(110, 43);
+            PasswordField.Location = new Point(61, 47);
             PasswordField.MaxLength = 4;
             PasswordField.Name = "PasswordField";
             PasswordField.PasswordChar = '*';
             PasswordField.PlaceholderText = "Пароль";
             PasswordField.Size = new Size(80, 33);
-            PasswordField.TabIndex = 1;
+            PasswordField.TabIndex = 4;
             PasswordField.TextAlign = HorizontalAlignment.Center;
             PasswordField.TextChanged += PasswordField_TextChanged;
             // 
-            // label1
+            // buttonOk
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(92, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(114, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Введіть код доступу";
+            buttonOk.Location = new Point(61, 97);
+            buttonOk.Name = "buttonOk";
+            buttonOk.Size = new Size(80, 30);
+            buttonOk.TabIndex = 3;
+            buttonOk.Text = "OK";
+            buttonOk.UseVisualStyleBackColor = true;
+            buttonOk.Click += buttonOk_Click;
             // 
-            // Form2
+            // Avtoris
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 161);
+            ClientSize = new Size(201, 142);
             Controls.Add(label1);
             Controls.Add(PasswordField);
-            Controls.Add(button1);
-            Name = "Form2";
+            Controls.Add(buttonOk);
+            Name = "Avtoris";
+            Text = "Avtoris";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private TextBox PasswordField;
         private Label label1;
+        private TextBox PasswordField;
+        private Button buttonOk;
     }
 }

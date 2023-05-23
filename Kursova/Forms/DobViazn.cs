@@ -62,8 +62,6 @@ namespace Kursova
             if (Wrong == "")
             {
                 Data.AddToData(p);
-                Form5 f = new();
-                f.Show();
                 this.Close();
             }
             else

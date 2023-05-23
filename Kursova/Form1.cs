@@ -66,7 +66,7 @@ namespace Kursova
         }
 
 
-        private void findButton_Click(object sender, EventArgs e)
+        private void findButton_Click (object sender, EventArgs e)
         {
 
             Statistic();
@@ -473,17 +473,18 @@ namespace Kursova
 
         private void DobPerson_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new();
-            form2.Show();
+            DobViazn form = new();
+            form.Show();
         }
         private void DobPerson_MouseEnter(object sender, EventArgs e) =>
             DobPerson.ForeColor = Color.Gray;
         private void DobPerson_MouseLeave(object sender, EventArgs e) =>
             DobPerson.ForeColor = Color.Black;
 
-        private void greenLabel_VisibleChanged(object sender, EventArgs e)
+        private void toolStripStatusLabel3_Click(object sender, EventArgs e)
         {
-
+            DelViazn form = new();
+            form.Show();
         }
     }
 }

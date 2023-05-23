@@ -10,17 +10,19 @@ using System.Windows.Forms;
 
 namespace Kursova
 {
-    public partial class Form5 : Form
+    public partial class DelViazn : Form
     {
-        public Form5()
+        public DelViazn()
         {
             InitializeComponent();
         }
 
-        private void Form5_Load(object sender, EventArgs e)
+        private void delButton_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(1500);
-            this.Close();
+            foreach (var item in Data.Find(comboBox1.Text))
+            {
+                comboBox1.Items.Add($"{item.SecondName} {item.FirstName} {item.ThirdName}");
+            }
         }
     }
 }
