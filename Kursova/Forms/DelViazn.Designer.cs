@@ -69,8 +69,12 @@
             Controls.Add(comboBox1);
             Controls.Add(delButton);
             Controls.Add(PIBField);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "DelViazn";
-            Text = "DelViazn";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Видалити в'язня";
             ((System.ComponentModel.ISupportInitialize)form5BindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();

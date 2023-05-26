@@ -1,35 +1,32 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using static System.Windows.Forms.AxHost;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System;
-using System.Collections;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Runtime.CompilerServices;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace Kursova
 {
-    public partial class Form1 : Form
+    public partial class Lobby : Form
     {
 
         private int term = 1;
         public SortedList<int, string> rod = new() { { 0, "" } };
 
-        public Form1()
+        public Lobby()
         {
             InitializeComponent();
             this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+            this.KeyDown += new KeyEventHandler(Lobby_KeyDown);
 
             Data.ReadData();
             Statistic();
         }
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Lobby_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -66,7 +63,7 @@ namespace Kursova
         }
 
 
-        private void findButton_Click (object sender, EventArgs e)
+        private void findButton_Click(object sender, EventArgs e)
         {
 
             Statistic();
@@ -147,7 +144,9 @@ namespace Kursova
             RodDef();
         }
         private void zbrosButton_Click(object sender, EventArgs e)
-            => Application.Restart();
+        {
+            Application.Restart();
+        }
 
         public void RodDef() =>
             checkMama.Checked = checkDad.Checked = checkKid.Checked
@@ -473,18 +472,27 @@ namespace Kursova
 
         private void DobPerson_Click(object sender, EventArgs e)
         {
-            DobViazn form = new();
-            form.Show();
+            DobViazn f = new();
+            f.Show();
         }
         private void DobPerson_MouseEnter(object sender, EventArgs e) =>
             DobPerson.ForeColor = Color.Gray;
         private void DobPerson_MouseLeave(object sender, EventArgs e) =>
             DobPerson.ForeColor = Color.Black;
 
-        private void toolStripStatusLabel3_Click(object sender, EventArgs e)
+        private void toolStripStatusLabel3_Click_1(object sender, EventArgs e)
         {
-            DelViazn form = new();
-            form.Show();
+            DelViazn f = new();
+            f.Show();
         }
+
+        private void toolStripStatusLabel3_MouseEnter(object sender, EventArgs e)
+            => toolStripStatusLabel3.ForeColor = Color.Gray;
+
+        private void toolStripStatusLabel3_MouseLeave(object sender, EventArgs e)
+            => toolStripStatusLabel3.ForeColor = Color.Black;
+
+        private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
+            Application.Exit();
     }
 }

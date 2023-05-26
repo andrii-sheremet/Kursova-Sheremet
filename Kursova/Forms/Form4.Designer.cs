@@ -71,7 +71,11 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(button1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form4";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Помилка";
             ResumeLayout(false);
             PerformLayout();

@@ -820,9 +820,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1001, 401);
             Controls.Add(splitContainer1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Lobby";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Довідник начальника в'язниці";
+            FormClosed += Lobby_FormClosed;
             groupBox9.ResumeLayout(false);
             groupBox9.PerformLayout();
             groupBox4.ResumeLayout(false);

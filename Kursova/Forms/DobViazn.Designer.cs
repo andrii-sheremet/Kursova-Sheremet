@@ -436,7 +436,12 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox11);
             Controls.Add(groupBox6);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "DobViazn";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Додати в'язня";
             groupBox10.ResumeLayout(false);
             groupBox9.ResumeLayout(false);
             groupBox8.ResumeLayout(false);

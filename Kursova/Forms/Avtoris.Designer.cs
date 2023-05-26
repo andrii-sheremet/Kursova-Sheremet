@@ -67,14 +67,18 @@
             // 
             // Avtoris
             // 
+            AcceptButton = buttonOk;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(201, 142);
             Controls.Add(label1);
             Controls.Add(PasswordField);
             Controls.Add(buttonOk);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Avtoris";
-            Text = "Avtoris";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
             PerformLayout();
         }
