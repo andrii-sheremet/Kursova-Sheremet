@@ -27,6 +27,7 @@ namespace Kursova
                 groupBox10.Visible = groupBox11.Visible = true;
         }
 
+        //Кнопки
         private void DobButton_Click(object sender, EventArgs e)
         {
             if (PrizvTextBox.Text == "") PrizvTextBox.BackColor = Color.Pink;
@@ -70,8 +71,9 @@ namespace Kursova
                 Wrong f4 = new(Wrong);
                 f4.ShowDialog();
             }
-        }
+        }//Кнопка додавання
 
+        //СкроллБар
         private void termBar1_Scroll(object sender, EventArgs e)
         {
             switch (termBar1.Value)
@@ -101,21 +103,9 @@ namespace Kursova
                     p.Term = 15;
                     break;
             }
-        }
+        }//Термін ув'язнення
 
-        private void statField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (statField.SelectedIndex)
-            {
-                case 0:
-                    p.Gender = "W";
-                    break;
-                case 1:
-                    p.Gender = "M";
-                    break;
-            }
-        }
-
+        //Чекбокси
         private void checkMama_CheckedChanged(object sender, EventArgs e)
         {
             if (checkMama.Checked) checkNemaRod.Checked = false;
@@ -148,34 +138,35 @@ namespace Kursova
                     = checkHusb.Checked = checkBro.Checked = false;
         }//Чекбокс Нема родичів
 
+        //Календарі
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             p.BirthDay = DataNarTimePicker.Value;
-        }
+        }//Дата Народження
 
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             p.ImprisDate = DataUvyazTimePicker.Value;
-        }
+        }//Дата Ув'язнення
 
-        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
+        //Полі вводу
+        private void KamNum_ValueChanged(object sender, EventArgs e)
         {
-            switch (haractField.SelectedIndex)
+            p.NumKam = Convert.ToInt32(KamNum.Value);
+        }//Поле для вводу номера камери
+
+        private void statField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (statField.SelectedIndex)
             {
                 case 0:
-                    p.Haract = "Агресивний";
+                    p.Gender = "W";
                     break;
                 case 1:
-                    p.Haract = "Спокійний";
-                    break;
-                case 2:
-                    p.Haract = "Нестійкий";
-                    break;
-                case 3:
-                    p.Haract = "Шістка";
+                    p.Gender = "M";
                     break;
             }
-        }
+        }//Стать
 
         private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -197,18 +188,33 @@ namespace Kursova
                     p.Ierarh = "Опущені";
                     break;
             }
-        }
+        }//Місце в іерархії
 
-        private void KamNum_ValueChanged(object sender, EventArgs e)
+        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            p.NumKam = Convert.ToInt32(KamNum.Value);
-        }
+            switch (haractField.SelectedIndex)
+            {
+                case 0:
+                    p.Haract = "Агресивний";
+                    break;
+                case 1:
+                    p.Haract = "Спокійний";
+                    break;
+                case 2:
+                    p.Haract = "Нестійкий";
+                    break;
+                case 3:
+                    p.Haract = "Шістка";
+                    break;
+            }
+        }//Особливість характеру
 
         private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
             p.Article = Convert.ToInt32(statyaField.Text[3..]);
-        }
+        }//Стат'я
 
+        //Поля вводу ПІБ
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
             if (PrizvTextBox.Text != "")
@@ -220,7 +226,7 @@ namespace Kursova
             {
                 p.SecondName = "";
             }
-        }
+        }//Прізвище
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -233,7 +239,7 @@ namespace Kursova
             {
                 p.FirstName = "";
             }
-        }
+        }//Ім'я
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -246,6 +252,6 @@ namespace Kursova
             {
                 p.ThirdName = "";
             }
-        }
+        }//Побатькові
     }
 }

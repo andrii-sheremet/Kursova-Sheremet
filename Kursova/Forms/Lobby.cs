@@ -106,6 +106,7 @@ namespace Kursova
             label12.Text = Convert.ToString(count[8]);
         }
 
+        //Кнопки
         private void Lobby_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -142,7 +143,7 @@ namespace Kursova
                     }
                 }
             }
-        }
+        }//Кнопки з клавіатури
 
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -183,19 +184,19 @@ namespace Kursova
             }
 
             dataGridView1.DataSource = table;
-        }
+        }//Кнопка пошуку
 
         private void Label9_Click(object sender, EventArgs e)
         {
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
-        }
+        }//Кнопка збросу відомостей про родину
 
         private void ZbrosButton_Click(object sender, EventArgs e)
         {
             Application.Restart();
-        }
+        }//Кнопка перезапуску
 
         //Поля вводу ПІБ
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
@@ -218,7 +219,6 @@ namespace Kursova
             Statistic();
             findButton_Click(sender, e);
         }//Побатькові
-
 
         //СкроллБар
         private void TermBar1_Scroll(object sender, EventArgs e)
@@ -253,7 +253,6 @@ namespace Kursova
             Person.exampl.Term = term;
             Statistic();
         }//Термін ув'язнення
-
 
         //Полі вводу
         private void StatyaField_SelectedIndexChanged(object sender, EventArgs e)
@@ -304,7 +303,7 @@ namespace Kursova
             Statistic();
         }//Поле для вводу номера камери
 
-        //TimePickers
+        //Календарі
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Person.exampl.BirthDay = DataNarTimePicker.Value;
@@ -317,8 +316,7 @@ namespace Kursova
             Statistic();
         }//Дата Ув'язнення
 
-
-        //CheckBoxes
+        //Чекбокси
         private void CheckTerm_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -457,13 +455,14 @@ namespace Kursova
             }
         }//Чекбокс Нема родичів
 
-        private void ToolStripButton1_Click(object sender, EventArgs e)
+        //Панель інструментів
+        private void AddPrisoner_Click(object sender, EventArgs e)
         {
             AddPrisoner f = new();
             f.ShowDialog();
-        }
+        }//Кнопка додавання в'язнів
 
-        private void ToolStripButton2_Click(object sender, EventArgs e)
+        private void RemovePrisoner_Click(object sender, EventArgs e)
         {
             int lastIndex = dataGridView1.SelectedRows.Count - 1;
             if (dataGridView1.SelectedRows.Count != 0)
@@ -480,7 +479,8 @@ namespace Kursova
                 f.ShowDialog();
             }
 
-        }
+        }//Кнопка видалення в'язнів
+
 
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
             Application.Exit();

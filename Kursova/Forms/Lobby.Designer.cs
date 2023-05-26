@@ -844,7 +844,7 @@
             toolStripButton1.Name = "toolStripButton1";
             toolStripButton1.Size = new Size(86, 22);
             toolStripButton1.Text = "Додати в'язня";
-            toolStripButton1.Click += ToolStripButton1_Click;
+            toolStripButton1.Click += AddPrisoner_Click;
             // 
             // toolStripButton2
             // 
@@ -854,7 +854,7 @@
             toolStripButton2.Name = "toolStripButton2";
             toolStripButton2.Size = new Size(99, 22);
             toolStripButton2.Text = "Видалити в'язня";
-            toolStripButton2.Click += ToolStripButton2_Click;
+            toolStripButton2.Click += RemovePrisoner_Click;
             // 
             // Lobby
             // 
