@@ -1,6 +1,6 @@
 ﻿namespace Kursova
 {
-    partial class DobViazn
+    partial class AddPrisoner
     {
         /// <summary>
         /// Required designer variable.

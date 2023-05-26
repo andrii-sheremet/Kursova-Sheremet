@@ -1,6 +1,6 @@
 ﻿namespace Kursova
 {
-    partial class Form4
+    partial class Wrong
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(116, 125);
+            button1.Location = new Point(114, 125);
             button1.Name = "button1";
             button1.Size = new Size(70, 30);
             button1.TabIndex = 0;
@@ -63,17 +63,18 @@
             textBox1.Size = new Size(268, 86);
             textBox1.TabIndex = 2;
             // 
-            // Form4
+            // Wrong
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(296, 159);
+            ControlBox = false;
             Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(button1);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form4";
+            Name = "Wrong";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Помилка";
@@ -85,7 +86,6 @@
 
         private Button button1;
         private Label label1;
-        private Panel panel1;
         private TextBox textBox1;
     }
 }

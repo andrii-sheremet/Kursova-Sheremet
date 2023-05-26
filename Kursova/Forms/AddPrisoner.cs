@@ -11,14 +11,14 @@ using static System.Windows.Forms.AxHost;
 
 namespace Kursova
 {
-    public partial class DobViazn : Form
+    public partial class AddPrisoner : Form
     {
         private Person p =
             new("1 1 1", new(1, 1, 1), "", -1,
                 new(1, 1, 1), -1, "", -1, "", "");
 
 
-        public DobViazn()
+        public AddPrisoner()
         {
             InitializeComponent();
 
@@ -66,8 +66,8 @@ namespace Kursova
             }
             else
             {
-                Form4 f4 = new(Wrong);
-                f4.Show();
+                Wrong f4 = new(Wrong);
+                f4.ShowDialog();
             }
         }
 

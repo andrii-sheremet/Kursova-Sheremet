@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Kursova
 {
-    public partial class Form4 : Form
+    public partial class Wrong : Form
     {
-        public Form4(string text)
+        public Wrong(string text)
         {
             InitializeComponent();
             textBox1.Text = text;

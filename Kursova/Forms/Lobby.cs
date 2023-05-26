@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.DataFormats;
 
 namespace Kursova
@@ -26,7 +27,7 @@ namespace Kursova
             Data.ReadData();
             Statistic();
         }
-        private void Lobby_KeyDown(object sender, KeyEventArgs e)
+        private void Lobby_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -35,11 +36,13 @@ namespace Kursova
 
             if (e.KeyCode == Keys.Enter)
             {
+#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
                 findButton_Click(sender, e);
+#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             }
             if (e.KeyCode == Keys.Space)
             {
-                Control activeControl = this.ActiveControl;
+                Control? activeControl = ActiveControl;
                 if (activeControl is CheckBox)
                 {
                     CheckBox checkBox = (CheckBox)activeControl;
@@ -65,7 +68,6 @@ namespace Kursova
 
         private void findButton_Click(object sender, EventArgs e)
         {
-
             Statistic();
 
             DataTable table = new DataTable();
@@ -80,48 +82,13 @@ namespace Kursova
 
             int count = 0;
 
-            Person p = Poisk.MembIn();
-
-            foreach (var i in Data.data)
+            foreach (var i in Person.exempl.Search())
             {
-
-                Poisk.Go(i);
-
-                bool rodBool = false;
-                foreach (KeyValuePair<int, string> memb in rod)
-                {
-                    rodBool = i.Rod.Contains(memb.Value);
-
-                    if (!rodBool) break;
-                }
-
-                bool prBool = i.SecondName.ToUpper().Contains
-                    (Poisk.SecondName.ToUpper());
-
-                bool imBool = i.FirstName.ToUpper().Contains
-                    (Poisk.FirstName.ToUpper());
-
-                bool pbBool = i.ThirdName.ToUpper().Contains
-                    (Poisk.ThirdName.ToUpper());
-
-                if (prBool && imBool && pbBool && rodBool
-                    && i.DateNar == Poisk.DateNar
-                    && i.DateUvyaz == Poisk.DateUvyaz
-                    && i.Statya == Poisk.Statya
-                    && i.Stat == Poisk.Stat
-                    && i.Haract == Poisk.Haract
-                    && i.Ierarh == Poisk.Ierarh
-                    && i.NumKam == Poisk.NumKam
-                    && i.Term == Poisk.Term)
-                {
-                    table.Rows.Add
-                        ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
-                        i.DateNar, $"ст.{i.Statya} ККУ", i.Term,
-                        $"№ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
-                    count++;
-                }
-
-                Poisk.MembOut(p);
+                table.Rows.Add
+                    ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
+                    i.DateNar, $"ст.{i.Statya} ККУ", i.Term,
+                    $"№ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
+                count++;
             }
 
             labelSum.Text = Convert.ToString(count);
@@ -152,95 +119,23 @@ namespace Kursova
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
-        private void Statistic()
-        {
-            int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-            foreach (var i in Data.data)
-            {
-                if (Poisk.NumKam == -1)
-                {
-                    count[0] = Data.data.Count;
-                }
-                else if (i.NumKam == Poisk.NumKam) count[0]++;
-
-                if (Poisk.Term == -1)
-                {
-                    count[1] = Data.data.Count;
-                }
-                else if (i.Term == Poisk.Term) count[1]++;
-
-                if (Poisk.Statya == -1)
-                {
-                    count[2] = Data.data.Count;
-                }
-                else if (i.Statya == Poisk.Statya) count[2]++;
-
-                if (Poisk.Stat == "Усі")
-                {
-                    count[3] = Data.data.Count;
-                }
-                else if (i.Stat == Poisk.Stat) count[3]++;
-
-                if (Poisk.Haract == "-")
-                {
-                    count[4] = Data.data.Count;
-                }
-                else if (i.Haract == Poisk.Haract) count[4]++;
-
-                if (Poisk.NumKam == -1)
-                {
-                    count[5] = Data.data.Count;
-                }
-                else if (i.NumKam == Poisk.NumKam) count[5]++;
-
-                if (Poisk.DateNar == new DateTime(1900, 01, 01))
-                {
-                    count[6] = Data.data.Count;
-                }
-                else if (i.DateNar == Poisk.DateNar) count[6]++;
-
-                if (Poisk.DateUvyaz == new DateTime(1900, 01, 01))
-                {
-                    count[7] = Data.data.Count;
-                }
-                else if (i.DateUvyaz == Poisk.DateUvyaz) count[7]++;
-
-                if (Poisk.Ierarh == "-")
-                {
-                    count[8] = Data.data.Count;
-                }
-                else if (i.Ierarh == Poisk.Ierarh) count[8]++;
-            }
-
-            label3.Text = Convert.ToString(count[0]);
-            label10.Text = Convert.ToString(count[1]);
-            label4.Text = Convert.ToString(count[2]);
-            label11.Text = Convert.ToString(count[3]);
-            label13.Text = Convert.ToString(count[4]);
-            label3.Text = Convert.ToString(count[5]);
-            label2.Text = Convert.ToString(count[6]);
-            label5.Text = Convert.ToString(count[7]);
-            label12.Text = Convert.ToString(count[8]);
-        }
-
 
         //Поля вводу ПІБ
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
-            Poisk.SecondName = PrizvTextBox.Text.Trim();
+            Person.exempl.SecondName = PrizvTextBox.Text.Trim();
             Statistic();
             findButton_Click(sender, e);
         }//Прізвище
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
-            Poisk.FirstName = ImyaTextBox.Text.Trim();
+            Person.exempl.FirstName = ImyaTextBox.Text.Trim();
             Statistic();
             findButton_Click(sender, e);
         }//Ім'я
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
-            Poisk.ThirdName = PBTextBox.Text.Trim();
+            Person.exempl.ThirdName = PBTextBox.Text.Trim();
             Statistic();
             findButton_Click(sender, e);
         }//Побатькові
@@ -251,7 +146,7 @@ namespace Kursova
             switch (termBar1.Value)
             {
                 case 1:
-                    label1.Text = "1 роки";
+                    label1.Text = "1 рік";
                     term = 1;
                     break;
                 case 2:
@@ -259,7 +154,7 @@ namespace Kursova
                     term = 2;
                     break;
                 case 3:
-                    label1.Text = "3 років";
+                    label1.Text = "3 роки";
                     term = 3;
                     break;
                 case 4:
@@ -275,7 +170,7 @@ namespace Kursova
                     term = 15;
                     break;
             }
-            Poisk.Term = term;
+            Person.exempl.Term = term;
             Statistic();
         }//Термін ув'язнення
 
@@ -285,58 +180,60 @@ namespace Kursova
         {
             if (statyaField.Text == "-" || statyaField.Text == "")
             {
-                Poisk.Statya = -1;
+                Person.exempl.Statya = -1;
             }
             else
             {
-                Poisk.Statya = Convert.ToInt32(statyaField.Text[3..]);
+                Person.exempl.Statya = Convert.ToInt32(statyaField.Text[3..]);
             }
             Statistic();
         }//Стат'я
-        private void StatField_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void statField_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (statField.SelectedIndex)
             {
                 case 0:
-                    Poisk.Stat = "Усі";
+                    Person.exempl.Stat = "Усі";
                     break;
                 case 1:
-                    Poisk.Stat = "M";
+                    Person.exempl.Stat = "W";
                     break;
                 case 2:
-                    Poisk.Stat = "W";
+                    Person.exempl.Stat = "M";
                     break;
             }
             Statistic();
         }//Стать
+
         private void IerarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Poisk.Ierarh = ierarhField.Text;
+            Person.exempl.Ierarh = ierarhField.Text;
             Statistic();
         }//Місце в іерархії
+
         private void HaractField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Poisk.Haract = haractField.Text;
+            Person.exempl.Haract = haractField.Text;
             Statistic();
         }//Особливість характеру
 
-
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
-            Poisk.NumKam = Convert.ToInt32(KamNum.Value);
+            Person.exempl.NumKam = Convert.ToInt32(KamNum.Value);
             Statistic();
         }//Поле для вводу номера камери
-
 
         //TimePickers
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            Poisk.DateNar = DataNarTimePicker.Value;
+            Person.exempl.DateNar = DataNarTimePicker.Value;
             Statistic();
         }//Дата Народження
+
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+            Person.exempl.DateUvyaz = DataUvyazTimePicker.Value;
             Statistic();
         }//Дата Ув'язнення
 
@@ -349,11 +246,11 @@ namespace Kursova
 
             if (checkTerm.Checked)
             {
-                Poisk.Term = -1;
+                Person.exempl.Term = -1;
             }
             else
             {
-                Poisk.Term = term;
+                Person.exempl.Term = term;
             }
             Statistic();
         } //Чекбокс терміну ув'язнення
@@ -363,11 +260,11 @@ namespace Kursova
 
             if (checkKamNum.Checked)
             {
-                Poisk.NumKam = -1;
+                Person.exempl.NumKam = -1;
             }
             else
             {
-                Poisk.NumKam = (int)KamNum.Value;
+                Person.exempl.NumKam = (int)KamNum.Value;
             }
         }//Чекбокс номеру камери
         private void CheckDataNar_CheckedChanged(object sender, EventArgs e)
@@ -376,11 +273,11 @@ namespace Kursova
 
             if (checkDataNar.Checked)
             {
-                Poisk.DateNar = new(1900, 01, 01);
+                Person.exempl.DateNar = new(1900, 01, 01);
             }
             else
             {
-                Poisk.DateNar = DataNarTimePicker.Value;
+                Person.exempl.DateNar = DataNarTimePicker.Value;
             }
         }//Чекбокс дати народження
         private void CheckDataUvyaz_CheckedChanged(object sender, EventArgs e)
@@ -389,11 +286,11 @@ namespace Kursova
 
             if (checkDataUvyaz.Checked)
             {
-                Poisk.DateUvyaz = new(1900, 01, 01);
+                Person.exempl.DateUvyaz = new(1900, 01, 01);
             }
             else
             {
-                Poisk.DateUvyaz = DataUvyazTimePicker.Value;
+                Person.exempl.DateUvyaz = DataUvyazTimePicker.Value;
             }
         }//Чекбокс дати ув'язнення
         private void CheckMama_CheckedChanged(object sender, EventArgs e)
@@ -470,29 +367,99 @@ namespace Kursova
             }
         }//Чекбокс Нема родичів
 
-        private void DobPerson_Click(object sender, EventArgs e)
-        {
-            DobViazn f = new();
-            f.Show();
-        }
-        private void DobPerson_MouseEnter(object sender, EventArgs e) =>
-            DobPerson.ForeColor = Color.Gray;
-        private void DobPerson_MouseLeave(object sender, EventArgs e) =>
-            DobPerson.ForeColor = Color.Black;
-
-        private void toolStripStatusLabel3_Click_1(object sender, EventArgs e)
-        {
-            DelViazn f = new();
-            f.Show();
-        }
-
-        private void toolStripStatusLabel3_MouseEnter(object sender, EventArgs e)
-            => toolStripStatusLabel3.ForeColor = Color.Gray;
-
-        private void toolStripStatusLabel3_MouseLeave(object sender, EventArgs e)
-            => toolStripStatusLabel3.ForeColor = Color.Black;
-
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
             Application.Exit();
+
+
+        public void Statistic()
+        {
+            int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            foreach (var i in Data.data)
+            {
+                if (Person.exempl.NumKam == -1)
+                {
+                    count[0] = Data.data.Count;
+                }
+                else if (i.NumKam == Person.exempl.NumKam) count[0]++;
+
+                if (Person.exempl.Term == -1)
+                {
+                    count[1] = Data.data.Count;
+                }
+                else if (i.Term == Person.exempl.Term) count[1]++;
+
+                if (Person.exempl.Statya == -1)
+                {
+                    count[2] = Data.data.Count;
+                }
+                else if (i.Statya == Person.exempl.Statya) count[2]++;
+
+                if (Person.exempl.Stat == "Усі")
+                {
+                    count[3] = Data.data.Count;
+                }
+                else if (i.Stat == Person.exempl.Stat) count[3]++;
+
+                if (Person.exempl.Haract == "-")
+                {
+                    count[4] = Data.data.Count;
+                }
+                else if (i.Haract == Person.exempl.Haract) count[4]++;
+
+                if (Person.exempl.NumKam == -1)
+                {
+                    count[5] = Data.data.Count;
+                }
+                else if (i.NumKam == Person.exempl.NumKam) count[5]++;
+
+                if (Person.exempl.DateNar == new DateTime(1900, 01, 01))
+                {
+                    count[6] = Data.data.Count;
+                }
+                else if (i.DateNar == Person.exempl.DateNar) count[6]++;
+
+                if (Person.exempl.DateUvyaz == new DateTime(1900, 01, 01))
+                {
+                    count[7] = Data.data.Count;
+                }
+                else if (i.DateUvyaz == Person.exempl.DateUvyaz) count[7]++;
+
+                if (Person.exempl.Ierarh == "-")
+                {
+                    count[8] = Data.data.Count;
+                }
+                else if (i.Ierarh == Person.exempl.Ierarh) count[8]++;
+            }
+
+            label3.Text = Convert.ToString(count[0]);
+            label10.Text = Convert.ToString(count[1]);
+            label4.Text = Convert.ToString(count[2]);
+            label11.Text = Convert.ToString(count[3]);
+            label13.Text = Convert.ToString(count[4]);
+            label3.Text = Convert.ToString(count[5]);
+            label2.Text = Convert.ToString(count[6]);
+            label5.Text = Convert.ToString(count[7]);
+            label12.Text = Convert.ToString(count[8]);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            AddPrisoner f = new();
+            f.ShowDialog();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            int lastIndex = dataGridView1.SelectedRows.Count - 1;
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[lastIndex];
+
+                Confirmation f = new(selectedRow);
+                f.ShowDialog();
+            }
+        }
+
     }
 }

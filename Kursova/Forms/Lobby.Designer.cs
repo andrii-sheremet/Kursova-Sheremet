@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             groupBox9 = new GroupBox();
             ierarhField = new ComboBox();
             label12 = new Label();
@@ -80,16 +81,18 @@
             groupBox5 = new GroupBox();
             findButton = new Button();
             splitContainer1 = new SplitContainer();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            DobPerson = new ToolStripStatusLabel();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
-            toolStripStatusLabel3 = new ToolStripStatusLabel();
             exceptionPanel = new Panel();
             label15 = new Label();
             label14 = new Label();
             dataGridView1 = new DataGridView();
             splitter1 = new Splitter();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            DobPerson = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
+            toolStripStatusLabel3 = new ToolStripStatusLabel();
+            toolStrip1 = new ToolStrip();
+            toolStripButton1 = new ToolStripButton();
+            toolStripButton2 = new ToolStripButton();
             groupBox9.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)KamNum).BeginInit();
@@ -107,9 +110,9 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            statusStrip1.SuspendLayout();
             exceptionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox9
@@ -161,6 +164,8 @@
             // checkDataUvyaz
             // 
             checkDataUvyaz.AutoSize = true;
+            checkDataUvyaz.Checked = true;
+            checkDataUvyaz.CheckState = CheckState.Checked;
             checkDataUvyaz.Location = new Point(6, 53);
             checkDataUvyaz.Name = "checkDataUvyaz";
             checkDataUvyaz.Size = new Size(72, 19);
@@ -194,6 +199,8 @@
             // checkKamNum
             // 
             checkKamNum.AutoSize = true;
+            checkKamNum.Checked = true;
+            checkKamNum.CheckState = CheckState.Checked;
             checkKamNum.Location = new Point(123, 21);
             checkKamNum.Name = "checkKamNum";
             checkKamNum.Size = new Size(42, 19);
@@ -344,7 +351,7 @@
             statField.Name = "statField";
             statField.Size = new Size(51, 23);
             statField.TabIndex = 4;
-            statField.SelectedIndexChanged += StatField_SelectedIndexChanged;
+            statField.SelectedIndexChanged += statField_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -361,6 +368,8 @@
             // checkDataNar
             // 
             checkDataNar.AutoSize = true;
+            checkDataNar.Checked = true;
+            checkDataNar.CheckState = CheckState.Checked;
             checkDataNar.Location = new Point(6, 50);
             checkDataNar.Name = "checkDataNar";
             checkDataNar.Size = new Size(72, 19);
@@ -477,6 +486,8 @@
             // checkTerm
             // 
             checkTerm.AutoSize = true;
+            checkTerm.Checked = true;
+            checkTerm.CheckState = CheckState.Checked;
             checkTerm.Location = new Point(123, 25);
             checkTerm.Name = "checkTerm";
             checkTerm.Size = new Size(45, 19);
@@ -661,12 +672,11 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Location = new Point(0, 25);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(statusStrip1);
             splitContainer1.Panel1.Controls.Add(exceptionPanel);
             splitContainer1.Panel1.Controls.Add(dataGridView1);
             splitContainer1.Panel1.Controls.Add(splitter1);
@@ -688,55 +698,9 @@
             splitContainer1.Panel2.Controls.Add(groupBox11);
             splitContainer1.Panel2.Controls.Add(groupBox6);
             splitContainer1.Panel2.Controls.Add(findButton);
-            splitContainer1.Size = new Size(1001, 401);
-            splitContainer1.SplitterDistance = 558;
+            splitContainer1.Size = new Size(988, 399);
+            splitContainer1.SplitterDistance = 550;
             splitContainer1.TabIndex = 1;
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.BackColor = SystemColors.Control;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, DobPerson, toolStripStatusLabel2, toolStripStatusLabel3 });
-            statusStrip1.Location = new Point(3, 371);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(555, 30);
-            statusStrip1.TabIndex = 14;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(17, 25);
-            toolStripStatusLabel1.Text = "|";
-            // 
-            // DobPerson
-            // 
-            DobPerson.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            DobPerson.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            DobPerson.Name = "DobPerson";
-            DobPerson.Size = new Size(138, 25);
-            DobPerson.Text = "Додати в'язня";
-            DobPerson.Click += DobPerson_Click;
-            DobPerson.MouseEnter += DobPerson_MouseEnter;
-            DobPerson.MouseLeave += DobPerson_MouseLeave;
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(17, 25);
-            toolStripStatusLabel2.Text = "|";
-            // 
-            // toolStripStatusLabel3
-            // 
-            toolStripStatusLabel3.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripStatusLabel3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            toolStripStatusLabel3.Size = new Size(157, 25);
-            toolStripStatusLabel3.Text = "Видалити в'язня";
-            toolStripStatusLabel3.Click += toolStripStatusLabel3_Click_1;
-            toolStripStatusLabel3.MouseEnter += toolStripStatusLabel3_MouseEnter;
-            toolStripStatusLabel3.MouseLeave += toolStripStatusLabel3_MouseLeave;
             // 
             // exceptionPanel
             // 
@@ -774,35 +738,34 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.ColumnHeadersHeight = 35;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
-            dataGridView1.Dock = DockStyle.Top;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(3, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridView1.RowHeadersVisible = false;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(555, 366);
+            dataGridView1.Size = new Size(547, 399);
             dataGridView1.TabIndex = 1;
             dataGridView1.TabStop = false;
             // 
@@ -810,16 +773,66 @@
             // 
             splitter1.Location = new Point(0, 0);
             splitter1.Name = "splitter1";
-            splitter1.Size = new Size(3, 401);
+            splitter1.Size = new Size(3, 399);
             splitter1.TabIndex = 0;
             splitter1.TabStop = false;
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(23, 23);
+            // 
+            // DobPerson
+            // 
+            DobPerson.Name = "DobPerson";
+            DobPerson.Size = new Size(23, 23);
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(23, 23);
+            // 
+            // toolStripStatusLabel3
+            // 
+            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Size = new Size(23, 23);
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2 });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(988, 25);
+            toolStrip1.TabIndex = 2;
+            toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(86, 22);
+            toolStripButton1.Text = "Додати в'язня";
+            toolStripButton1.Click += toolStripButton1_Click;
+            // 
+            // toolStripButton2
+            // 
+            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+            toolStripButton2.ImageTransparentColor = Color.Magenta;
+            toolStripButton2.Name = "toolStripButton2";
+            toolStripButton2.Size = new Size(99, 22);
+            toolStripButton2.Text = "Видалити в'язня";
+            toolStripButton2.Click += toolStripButton2_Click;
             // 
             // Lobby
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1001, 401);
+            ClientSize = new Size(988, 424);
             Controls.Add(splitContainer1);
+            Controls.Add(toolStrip1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Lobby";
@@ -852,29 +865,30 @@
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
             exceptionPanel.ResumeLayout(false);
             exceptionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
+
         private GroupBox groupBox9;
         public ComboBox ierarhField;
-        private Label label12;
-        private Label label4;
+        public Label label12;
+        public Label label4;
         private CheckBox checkDataUvyaz;
-        private Label label5;
+        public Label label5;
         public DateTimePicker DataUvyazTimePicker;
         private CheckBox checkKamNum;
-        private Label label3;
+        public Label label3;
         private GroupBox groupBox4;
         private CheckBox checkNemaRod;
         private Label label9;
@@ -886,13 +900,13 @@
         public NumericUpDown KamNum;
         private GroupBox groupBox8;
         public ComboBox statField;
-        private Label label11;
+        public Label label11;
         private CheckBox checkDataNar;
         private Button zbrosButton;
         private GroupBox groupBox10;
         public ComboBox haractField;
-        private Label label13;
-        private Label label2;
+        public Label label13;
+        public Label label2;
         public ComboBox statyaField;
         private GroupBox groupBox7;
         private Label labelSum;
@@ -900,7 +914,7 @@
         private CheckBox checkTerm;
         private Label label1;
         public TrackBar termBar1;
-        private Label label10;
+        public Label label10;
         private GroupBox groupBox1;
         public DateTimePicker DataNarTimePicker;
         private GroupBox groupBox6;
@@ -915,7 +929,6 @@
         private GroupBox groupBox5;
         private Button findButton;
         private SplitContainer splitContainer1;
-        private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel DobPerson;
         private ToolStripStatusLabel toolStripStatusLabel2;
@@ -923,7 +936,10 @@
         private Panel exceptionPanel;
         private Label label15;
         private Label label14;
-        private DataGridView dataGridView1;
         private Splitter splitter1;
+        private ToolStrip toolStrip1;
+        private ToolStripButton toolStripButton1;
+        private ToolStripButton toolStripButton2;
+        public DataGridView dataGridView1;
     }
 }

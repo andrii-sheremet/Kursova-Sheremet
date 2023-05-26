@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Kursova
 {
-    internal static class Data
+    internal class Data
     {
         public static List<Person> data = new();
 
-        private static string file = @"C:\Users\User\Desktop\Курсова\VS\Kursova\Kursova\Documents\data.doc";
+        private static string file = @"Documents\data.doc";
         private static string text = File.ReadAllText(file);
 
         public static void ReadData()
@@ -20,10 +20,10 @@ namespace Kursova
 
             foreach (string s in pers)
             {
+                s.Replace("\n", "").Trim();
+
                 if (s.Length > 0)
                 {
-                    s.Replace("\r\n", "").Trim();
-
                     string[] i = s.Split(',');
                     string[] a = i[1].Replace(" 0:00:00", "").Split(' ');
                     string[] b = i[4].Replace(" 0:00:00", "").Split(' ');
@@ -52,34 +52,45 @@ namespace Kursova
         public static void AddToData(Person p)
         {
             string res = $"\r\n{p.SecondName} {p.FirstName} {p.ThirdName}" +
-                $",{p.DateNar.Year} {p.DateNar.Month} {p.DateNar.Day},{p.Stat}" +
-                $",{p.Statya},{p.DateUvyaz.Year} {p.DateUvyaz.Month} {p.DateUvyaz.Day},{p.Term}" +
-                $",{p.Rod},{p.NumKam},{p.Ierarh},{p.Haract};";
+                $",{p.DateNar.Year} {p.DateNar.Month} {p.DateNar.Day}," +
+                $"{p.Stat},{p.Statya}," +
+                $"{p.DateUvyaz.Year} {p.DateUvyaz.Month} {p.DateUvyaz.Day}," +
+                $"{p.Term},{p.Rod},{p.NumKam},{p.Ierarh},{p.Haract};";
 
+            WriteData(text + res);
+        }
+
+        private static void WriteData(string text)
+        {
             using (FileStream fs = File.Create(file))
             {
-                byte[] info = new UTF8Encoding(true).GetBytes(text + res);
+                byte[] info = new UTF8Encoding(true).GetBytes(text);
                 fs.Write(info, 0, info.Length);
             }
 
             Data.ReadData();
         }
 
-        public static List<Person> Find(string name)
+        public static void DelPers(string? name, DateTime birthday,
+            int numkam, int term)
         {
-            List < Person > newList = new();
+            string text = "";
 
-            if (name == "") return data;
-
-            foreach (Person p in data)
+            foreach(var p in data)
             {
-                if ($"{p.SecondName} {p.FirstName} {p.ThirdName}".Contains(name))
-                {
-                    newList.Add(p);
-                }
-            }
+                if ((name.Contains($"{p.SecondName} {p.FirstName} {p.ThirdName}")
+                    && numkam == p.NumKam)
+                    && term == p.Term
+                    && birthday == p.DateNar)
+                    continue;
 
-            return newList;
+                text += $"{p.SecondName} {p.FirstName} {p.ThirdName}" +
+                    $",{p.DateNar.Year} {p.DateNar.Month} {p.DateNar.Day}," +
+                    $"{p.Stat},{p.Statya}," +
+                    $"{p.DateUvyaz.Year} {p.DateUvyaz.Month} {p.DateUvyaz.Day}," +
+                    $"{p.Term},{p.Rod},{p.NumKam},{p.Ierarh},{p.Haract};";
+            }
+            WriteData(text);
         }
     }
 }
