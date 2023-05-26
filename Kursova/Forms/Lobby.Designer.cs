@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             groupBox9 = new GroupBox();
             ierarhField = new ComboBox();
@@ -117,11 +117,13 @@
             // 
             // groupBox9
             // 
+            groupBox9.Anchor = AnchorStyles.None;
+            groupBox9.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox9.Controls.Add(ierarhField);
             groupBox9.Controls.Add(label12);
-            groupBox9.Location = new Point(222, 230);
+            groupBox9.Location = new Point(222, 229);
             groupBox9.Name = "groupBox9";
-            groupBox9.Size = new Size(201, 48);
+            groupBox9.Size = new Size(201, 47);
             groupBox9.TabIndex = 8;
             groupBox9.TabStop = false;
             groupBox9.Text = "Місце у ієрархії";
@@ -223,6 +225,8 @@
             // 
             // groupBox4
             // 
+            groupBox4.Anchor = AnchorStyles.None;
+            groupBox4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox4.Controls.Add(checkNemaRod);
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(checkMama);
@@ -232,7 +236,7 @@
             groupBox4.Controls.Add(checkHusb);
             groupBox4.Location = new Point(222, 155);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(201, 72);
+            groupBox4.Size = new Size(201, 75);
             groupBox4.TabIndex = 6;
             groupBox4.TabStop = false;
             groupBox4.Text = "Живі родичі";
@@ -261,7 +265,7 @@
             label9.TabIndex = 11;
             label9.Text = "x";
             label9.TextAlign = ContentAlignment.MiddleCenter;
-            label9.Click += label9_Click;
+            label9.Click += Label9_Click;
             // 
             // checkMama
             // 
@@ -333,11 +337,13 @@
             // 
             // groupBox8
             // 
+            groupBox8.Anchor = AnchorStyles.None;
+            groupBox8.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox8.Controls.Add(statField);
             groupBox8.Controls.Add(label11);
             groupBox8.Location = new Point(14, 75);
             groupBox8.Name = "groupBox8";
-            groupBox8.Size = new Size(88, 57);
+            groupBox8.Size = new Size(88, 58);
             groupBox8.TabIndex = 2;
             groupBox8.TabStop = false;
             groupBox8.Text = "Стать";
@@ -351,7 +357,7 @@
             statField.Name = "statField";
             statField.Size = new Size(51, 23);
             statField.TabIndex = 4;
-            statField.SelectedIndexChanged += statField_SelectedIndexChanged;
+            statField.SelectedIndexChanged += StatField_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -380,24 +386,28 @@
             // 
             // zbrosButton
             // 
+            zbrosButton.Anchor = AnchorStyles.None;
+            zbrosButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             zbrosButton.BackColor = SystemColors.ControlDark;
             zbrosButton.FlatStyle = FlatStyle.Flat;
-            zbrosButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            zbrosButton.Location = new Point(320, 341);
+            zbrosButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            zbrosButton.Location = new Point(305, 341);
             zbrosButton.Name = "zbrosButton";
-            zbrosButton.Size = new Size(103, 49);
+            zbrosButton.Size = new Size(118, 49);
             zbrosButton.TabIndex = 19;
-            zbrosButton.Text = "Оновлення";
+            zbrosButton.Text = "Перезапустити";
             zbrosButton.UseVisualStyleBackColor = false;
-            zbrosButton.Click += zbrosButton_Click;
+            zbrosButton.Click += ZbrosButton_Click;
             // 
             // groupBox10
             // 
+            groupBox10.Anchor = AnchorStyles.None;
+            groupBox10.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox10.Controls.Add(haractField);
             groupBox10.Controls.Add(label13);
             groupBox10.Location = new Point(222, 277);
             groupBox10.Name = "groupBox10";
-            groupBox10.Size = new Size(201, 54);
+            groupBox10.Size = new Size(201, 59);
             groupBox10.TabIndex = 10;
             groupBox10.TabStop = false;
             groupBox10.Text = "Особливості характеру";
@@ -450,10 +460,12 @@
             // 
             // groupBox7
             // 
+            groupBox7.Anchor = AnchorStyles.None;
+            groupBox7.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox7.Controls.Add(labelSum);
             groupBox7.Location = new Point(222, 334);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(92, 56);
+            groupBox7.Size = new Size(77, 56);
             groupBox7.TabIndex = 6;
             groupBox7.TabStop = false;
             groupBox7.Text = "Усього";
@@ -464,7 +476,7 @@
             labelSum.BackColor = SystemColors.ControlDark;
             labelSum.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelSum.ForeColor = Color.DarkGreen;
-            labelSum.Location = new Point(38, 21);
+            labelSum.Location = new Point(24, 20);
             labelSum.Name = "labelSum";
             labelSum.Size = new Size(19, 21);
             labelSum.TabIndex = 6;
@@ -472,13 +484,15 @@
             // 
             // groupBox11
             // 
+            groupBox11.Anchor = AnchorStyles.None;
+            groupBox11.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox11.Controls.Add(checkTerm);
             groupBox11.Controls.Add(label1);
             groupBox11.Controls.Add(termBar1);
             groupBox11.Controls.Add(label10);
             groupBox11.Location = new Point(14, 205);
             groupBox11.Name = "groupBox11";
-            groupBox11.Size = new Size(200, 73);
+            groupBox11.Size = new Size(200, 71);
             groupBox11.TabIndex = 7;
             groupBox11.TabStop = false;
             groupBox11.Text = "Термін";
@@ -531,12 +545,14 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.None;
+            groupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox1.Controls.Add(checkDataNar);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(DataNarTimePicker);
             groupBox1.Location = new Point(14, 131);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(199, 75);
+            groupBox1.Size = new Size(199, 77);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Дата народження";
@@ -552,15 +568,17 @@
             // 
             // groupBox6
             // 
+            groupBox6.Anchor = AnchorStyles.None;
+            groupBox6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox6.Controls.Add(label8);
             groupBox6.Controls.Add(label6);
             groupBox6.Controls.Add(PBTextBox);
             groupBox6.Controls.Add(label7);
             groupBox6.Controls.Add(PrizvTextBox);
             groupBox6.Controls.Add(ImyaTextBox);
-            groupBox6.Location = new Point(14, 1);
+            groupBox6.Location = new Point(14, 3);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(409, 68);
+            groupBox6.Size = new Size(409, 66);
             groupBox6.TabIndex = 1;
             groupBox6.TabStop = false;
             groupBox6.Text = "ПІБ";
@@ -586,6 +604,7 @@
             // PBTextBox
             // 
             PBTextBox.Location = new Point(272, 37);
+            PBTextBox.MaxLength = 100;
             PBTextBox.Name = "PBTextBox";
             PBTextBox.PlaceholderText = "Побатькові";
             PBTextBox.Size = new Size(131, 23);
@@ -605,6 +624,7 @@
             // 
             PrizvTextBox.AcceptsTab = true;
             PrizvTextBox.Location = new Point(6, 37);
+            PrizvTextBox.MaxLength = 100;
             PrizvTextBox.Name = "PrizvTextBox";
             PrizvTextBox.PlaceholderText = "Прізвище";
             PrizvTextBox.Size = new Size(120, 23);
@@ -614,6 +634,7 @@
             // ImyaTextBox
             // 
             ImyaTextBox.Location = new Point(134, 37);
+            ImyaTextBox.MaxLength = 100;
             ImyaTextBox.Name = "ImyaTextBox";
             ImyaTextBox.PlaceholderText = "Ім'я";
             ImyaTextBox.Size = new Size(130, 23);
@@ -622,30 +643,36 @@
             // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.None;
+            groupBox2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox2.Controls.Add(checkKamNum);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(KamNum);
             groupBox2.Location = new Point(14, 277);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(200, 54);
+            groupBox2.Size = new Size(200, 59);
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "№ Камери";
             // 
             // groupBox3
             // 
+            groupBox3.Anchor = AnchorStyles.None;
+            groupBox3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox3.Controls.Add(checkDataUvyaz);
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(DataUvyazTimePicker);
-            groupBox3.Location = new Point(221, 74);
+            groupBox3.Location = new Point(221, 75);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(202, 75);
+            groupBox3.Size = new Size(202, 74);
             groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "Дата ув'язнення";
             // 
             // groupBox5
             // 
+            groupBox5.Anchor = AnchorStyles.None;
+            groupBox5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             groupBox5.Controls.Add(statyaField);
             groupBox5.Controls.Add(label4);
             groupBox5.Location = new Point(105, 75);
@@ -657,6 +684,8 @@
             // 
             // findButton
             // 
+            findButton.Anchor = AnchorStyles.None;
+            findButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             findButton.BackColor = SystemColors.ButtonFace;
             findButton.FlatStyle = FlatStyle.Flat;
             findButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
@@ -704,6 +733,7 @@
             // 
             // exceptionPanel
             // 
+            exceptionPanel.Anchor = AnchorStyles.None;
             exceptionPanel.Controls.Add(label15);
             exceptionPanel.Controls.Add(label14);
             exceptionPanel.Location = new Point(113, 142);
@@ -738,32 +768,32 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.ColumnHeadersHeight = 35;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(3, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(547, 399);
             dataGridView1.TabIndex = 1;
@@ -814,7 +844,7 @@
             toolStripButton1.Name = "toolStripButton1";
             toolStripButton1.Size = new Size(86, 22);
             toolStripButton1.Text = "Додати в'язня";
-            toolStripButton1.Click += toolStripButton1_Click;
+            toolStripButton1.Click += ToolStripButton1_Click;
             // 
             // toolStripButton2
             // 
@@ -824,7 +854,7 @@
             toolStripButton2.Name = "toolStripButton2";
             toolStripButton2.Size = new Size(99, 22);
             toolStripButton2.Text = "Видалити в'язня";
-            toolStripButton2.Click += toolStripButton2_Click;
+            toolStripButton2.Click += ToolStripButton2_Click;
             // 
             // Lobby
             // 
@@ -835,6 +865,7 @@
             Controls.Add(toolStrip1);
             MaximizeBox = false;
             MinimizeBox = false;
+            MinimumSize = new Size(878, 406);
             Name = "Lobby";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;

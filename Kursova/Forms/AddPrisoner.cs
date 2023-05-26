@@ -35,27 +35,27 @@ namespace Kursova
             if (PBTextBox.Text == "") PBTextBox.BackColor = Color.Pink;
 
 
-            p.Rod = "";
-            if (checkMama.Checked) p.Rod += "Мати ";
-            if (checkDad.Checked) p.Rod += "Батько ";
-            if (checkKid.Checked) p.Rod += "Діти ";
-            if (checkHusb.Checked) p.Rod += "Чоловік/Дружина ";
-            if (checkBro.Checked) p.Rod += "Брат/Сестра ";
-            if (checkNemaRod.Checked) p.Rod = "Нема родичів ";
+            p.Family = "";
+            if (checkMama.Checked) p.Family += "Мати ";
+            if (checkDad.Checked) p.Family += "Батько ";
+            if (checkKid.Checked) p.Family += "Діти ";
+            if (checkHusb.Checked) p.Family += "Чоловік/Дружина ";
+            if (checkBro.Checked) p.Family += "Брат/Сестра ";
+            if (checkNemaRod.Checked) p.Family = "Нема родичів ";
 
             string Wrong = "";
             Wrong += p.SecondName == "" ? "Прізвище, " : "";
             Wrong += p.FirstName == "" ? "Ім'я, " : "";
             Wrong += p.ThirdName == "" ? "Побатькові, " : "";
-            Wrong += p.DateUvyaz == new DateTime(1, 1, 1)
+            Wrong += p.ImprisDate == new DateTime(1, 1, 1)
                 ? "Дата ув'язнення, " : "";
-            Wrong += p.DateNar == new DateTime(1, 1, 1)
+            Wrong += p.BirthDay == new DateTime(1, 1, 1)
                 ? "Дата народження, " : "";
             Wrong += p.Term == -1 ? "Термін ув'язнення, " : "";
             Wrong += p.NumKam == -1 ? "Номер камеери, " : "";
-            Wrong += p.Statya == -1 ? "Стаття, " : "";
-            Wrong += p.Stat == "" ? "Стать, " : "";
-            Wrong += p.Rod == "" ? "Родина, " : "";
+            Wrong += p.Article == -1 ? "Стаття, " : "";
+            Wrong += p.Gender == "" ? "Стать, " : "";
+            Wrong += p.Family == "" ? "Родина, " : "";
             Wrong += p.Ierarh == "" ? "Місце в ієрархії, " : "";
             Wrong += p.Haract == "" ? "Особливість характеру " : "";
 
@@ -107,10 +107,10 @@ namespace Kursova
             switch (statField.SelectedIndex)
             {
                 case 0:
-                    p.Stat = "W";
+                    p.Gender = "W";
                     break;
                 case 1:
-                    p.Stat = "M";
+                    p.Gender = "M";
                     break;
             }
         }
@@ -144,11 +144,11 @@ namespace Kursova
 
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            p.DateNar = DataNarTimePicker.Value;
+            p.BirthDay = DataNarTimePicker.Value;
         }
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            p.DateUvyaz = DataUvyazTimePicker.Value;
+            p.ImprisDate = DataUvyazTimePicker.Value;
         }
 
         private void haractField_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,7 +199,7 @@ namespace Kursova
 
         private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            p.Statya = Convert.ToInt32(statyaField.Text[3..]);
+            p.Article = Convert.ToInt32(statyaField.Text[3..]);
         }
 
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)

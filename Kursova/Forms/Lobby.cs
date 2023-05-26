@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,16 @@ namespace Kursova
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(Lobby_KeyDown);
 
+            checkTerm.Checked = checkKamNum.Checked = checkDataNar.Checked
+                = checkDataUvyaz.Checked = true;
+
+            termBar1.Enabled = KamNum.Enabled = DataNarTimePicker.Enabled
+                = DataUvyazTimePicker.Enabled = false;
+
             Data.ReadData();
             Statistic();
         }
+
         private void Lobby_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -48,14 +56,14 @@ namespace Kursova
                     CheckBox checkBox = (CheckBox)activeControl;
                     checkBox.Checked = !checkBox.Checked;
                 }
-                else if (activeControl is System.Windows.Forms.Button)
+                else if (activeControl is Button)
                 {
-                    System.Windows.Forms.Button button = (System.Windows.Forms.Button)activeControl;
+                    Button button = (Button)activeControl;
                     button.PerformClick();
                 }
-                else if (activeControl is System.Windows.Forms.ComboBox)
+                else if (activeControl is ComboBox)
                 {
-                    System.Windows.Forms.ComboBox comboBox = (System.Windows.Forms.ComboBox)activeControl;
+                    ComboBox comboBox = (ComboBox)activeControl;
                     int selectedIndex = comboBox.SelectedIndex;
                     if (selectedIndex < comboBox.Items.Count - 1)
                     {
@@ -64,7 +72,6 @@ namespace Kursova
                 }
             }
         }
-
 
         private void findButton_Click(object sender, EventArgs e)
         {
@@ -82,12 +89,12 @@ namespace Kursova
 
             int count = 0;
 
-            foreach (var i in Person.exempl.Search())
+            foreach (var i in Person.exampl.Search())
             {
                 table.Rows.Add
                     ($"{i.SecondName} {i.FirstName} {i.ThirdName}",
-                    i.DateNar, $"ст.{i.Statya} ККУ", i.Term,
-                    $"№ {i.NumKam}", i.Rod, i.Ierarh, i.Haract);
+                    i.BirthDay, $"ст.{i.Article} ККУ", i.Term,
+                    $"№ {i.NumKam}", i.Family, i.Ierarh, i.Haract);
                 count++;
             }
 
@@ -106,39 +113,42 @@ namespace Kursova
 
             dataGridView1.DataSource = table;
         }
-        private void label9_Click(object sender, EventArgs e)
-        {
-            RodDef();
-        }
-        private void zbrosButton_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
 
-        public void RodDef() =>
+        private void Label9_Click(object sender, EventArgs e)
+        {
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
+        }
+
+        private void ZbrosButton_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+            Process.Start(Application.ExecutablePath, "Lobby");
+        }
 
         //Поля вводу ПІБ
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
-            Person.exempl.SecondName = PrizvTextBox.Text.Trim();
+            Person.exampl.SecondName = PrizvTextBox.Text.Trim();
             Statistic();
             findButton_Click(sender, e);
         }//Прізвище
+
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
-            Person.exempl.FirstName = ImyaTextBox.Text.Trim();
+            Person.exampl.FirstName = ImyaTextBox.Text.Trim();
             Statistic();
             findButton_Click(sender, e);
         }//Ім'я
+
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
-            Person.exempl.ThirdName = PBTextBox.Text.Trim();
+            Person.exampl.ThirdName = PBTextBox.Text.Trim();
             Statistic();
             findButton_Click(sender, e);
         }//Побатькові
+
 
         //СкроллБар
         private void TermBar1_Scroll(object sender, EventArgs e)
@@ -170,7 +180,7 @@ namespace Kursova
                     term = 15;
                     break;
             }
-            Person.exempl.Term = term;
+            Person.exampl.Term = term;
             Statistic();
         }//Термін ув'язнення
 
@@ -180,27 +190,27 @@ namespace Kursova
         {
             if (statyaField.Text == "-" || statyaField.Text == "")
             {
-                Person.exempl.Statya = -1;
+                Person.exampl.Article = -1;
             }
             else
             {
-                Person.exempl.Statya = Convert.ToInt32(statyaField.Text[3..]);
+                Person.exampl.Article = Convert.ToInt32(statyaField.Text[3..]);
             }
             Statistic();
         }//Стат'я
 
-        private void statField_SelectedIndexChanged(object sender, EventArgs e)
+        private void StatField_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (statField.SelectedIndex)
             {
                 case 0:
-                    Person.exempl.Stat = "Усі";
+                    Person.exampl.Gender = "Усі";
                     break;
                 case 1:
-                    Person.exempl.Stat = "W";
+                    Person.exampl.Gender = "W";
                     break;
                 case 2:
-                    Person.exempl.Stat = "M";
+                    Person.exampl.Gender = "M";
                     break;
             }
             Statistic();
@@ -208,32 +218,32 @@ namespace Kursova
 
         private void IerarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Person.exempl.Ierarh = ierarhField.Text;
+            Person.exampl.Ierarh = ierarhField.Text;
             Statistic();
         }//Місце в іерархії
 
         private void HaractField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Person.exempl.Haract = haractField.Text;
+            Person.exampl.Haract = haractField.Text;
             Statistic();
         }//Особливість характеру
 
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
-            Person.exempl.NumKam = Convert.ToInt32(KamNum.Value);
+            Person.exampl.NumKam = Convert.ToInt32(KamNum.Value);
             Statistic();
         }//Поле для вводу номера камери
 
         //TimePickers
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            Person.exempl.DateNar = DataNarTimePicker.Value;
+            Person.exampl.BirthDay = DataNarTimePicker.Value;
             Statistic();
         }//Дата Народження
 
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            Person.exempl.DateUvyaz = DataUvyazTimePicker.Value;
+            Person.exampl.ImprisDate = DataUvyazTimePicker.Value;
             Statistic();
         }//Дата Ув'язнення
 
@@ -246,53 +256,57 @@ namespace Kursova
 
             if (checkTerm.Checked)
             {
-                Person.exempl.Term = -1;
+                Person.exampl.Term = -1;
             }
             else
             {
-                Person.exempl.Term = term;
+                Person.exampl.Term = term;
             }
             Statistic();
         } //Чекбокс терміну ув'язнення
+
         private void CheckKamNum_CheckedChanged(object sender, EventArgs e)
         {
             KamNum.Enabled = !checkKamNum.Checked;
 
             if (checkKamNum.Checked)
             {
-                Person.exempl.NumKam = -1;
+                Person.exampl.NumKam = -1;
             }
             else
             {
-                Person.exempl.NumKam = (int)KamNum.Value;
+                Person.exampl.NumKam = (int)KamNum.Value;
             }
         }//Чекбокс номеру камери
+
         private void CheckDataNar_CheckedChanged(object sender, EventArgs e)
         {
             DataNarTimePicker.Enabled = !checkDataNar.Checked;
 
             if (checkDataNar.Checked)
             {
-                Person.exempl.DateNar = new(1900, 01, 01);
+                Person.exampl.BirthDay = new(1900, 01, 01);
             }
             else
             {
-                Person.exempl.DateNar = DataNarTimePicker.Value;
+                Person.exampl.BirthDay = DataNarTimePicker.Value;
             }
         }//Чекбокс дати народження
+
         private void CheckDataUvyaz_CheckedChanged(object sender, EventArgs e)
         {
             DataUvyazTimePicker.Enabled = !checkDataUvyaz.Checked;
 
             if (checkDataUvyaz.Checked)
             {
-                Person.exempl.DateUvyaz = new(1900, 01, 01);
+                Person.exampl.ImprisDate = new(1900, 01, 01);
             }
             else
             {
-                Person.exempl.DateUvyaz = DataUvyazTimePicker.Value;
+                Person.exampl.ImprisDate = DataUvyazTimePicker.Value;
             }
         }//Чекбокс дати ув'язнення
+
         private void CheckMama_CheckedChanged(object sender, EventArgs e)
         {
             if (checkMama.Checked)
@@ -305,6 +319,7 @@ namespace Kursova
                 rod.Remove(1);
             }
         }//Чекбокс Мати
+
         private void CheckDad_CheckedChanged(object sender, EventArgs e)
         {
             if (checkDad.Checked)
@@ -317,6 +332,7 @@ namespace Kursova
                 rod.Remove(2);
             }
         }//Чекбокс Батько
+
         private void CheckKid_CheckedChanged(object sender, EventArgs e)
         {
             if (checkKid.Checked)
@@ -329,6 +345,7 @@ namespace Kursova
                 rod.Remove(3);
             }
         }//Чекбокс Діти
+
         private void CheckHusb_CheckedChanged(object sender, EventArgs e)
         {
             if (checkHusb.Checked)
@@ -341,6 +358,7 @@ namespace Kursova
                 rod.Remove(4);
             }
         }//Чекбокс Чоловік/Дружина
+
         private void CheckBro_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBro.Checked)
@@ -353,6 +371,7 @@ namespace Kursova
                 rod.Remove(5);
             }
         } //Чекбокс Брат/Сетсра
+
         private void CheckNemaRod_CheckedChanged(object sender, EventArgs e)
         {
             if (checkNemaRod.Checked)
@@ -367,9 +386,32 @@ namespace Kursova
             }
         }//Чекбокс Нема родичів
 
+        private void ToolStripButton1_Click(object sender, EventArgs e)
+        {
+            AddPrisoner f = new();
+            f.ShowDialog();
+        }
+
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            int lastIndex = dataGridView1.SelectedRows.Count - 1;
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[lastIndex];
+
+                Confirmation f = new(selectedRow);
+                f.ShowDialog();
+            }
+            else
+            {
+                RowChoose f = new();
+                f.ShowDialog();
+            }
+
+        }
+
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
             Application.Exit();
-
 
         public void Statistic()
         {
@@ -377,59 +419,59 @@ namespace Kursova
 
             foreach (var i in Data.data)
             {
-                if (Person.exempl.NumKam == -1)
+                if (Person.exampl.NumKam == -1)
                 {
                     count[0] = Data.data.Count;
                 }
-                else if (i.NumKam == Person.exempl.NumKam) count[0]++;
+                else if (i.NumKam == Person.exampl.NumKam) count[0]++;
 
-                if (Person.exempl.Term == -1)
+                if (Person.exampl.Term == -1)
                 {
                     count[1] = Data.data.Count;
                 }
-                else if (i.Term == Person.exempl.Term) count[1]++;
+                else if (i.Term == Person.exampl.Term) count[1]++;
 
-                if (Person.exempl.Statya == -1)
+                if (Person.exampl.Article == -1)
                 {
                     count[2] = Data.data.Count;
                 }
-                else if (i.Statya == Person.exempl.Statya) count[2]++;
+                else if (i.Article == Person.exampl.Article) count[2]++;
 
-                if (Person.exempl.Stat == "Усі")
+                if (Person.exampl.Gender == "Усі")
                 {
                     count[3] = Data.data.Count;
                 }
-                else if (i.Stat == Person.exempl.Stat) count[3]++;
+                else if (i.Gender == Person.exampl.Gender) count[3]++;
 
-                if (Person.exempl.Haract == "-")
+                if (Person.exampl.Haract == "-")
                 {
                     count[4] = Data.data.Count;
                 }
-                else if (i.Haract == Person.exempl.Haract) count[4]++;
+                else if (i.Haract == Person.exampl.Haract) count[4]++;
 
-                if (Person.exempl.NumKam == -1)
+                if (Person.exampl.NumKam == -1)
                 {
                     count[5] = Data.data.Count;
                 }
-                else if (i.NumKam == Person.exempl.NumKam) count[5]++;
+                else if (i.NumKam == Person.exampl.NumKam) count[5]++;
 
-                if (Person.exempl.DateNar == new DateTime(1900, 01, 01))
+                if (Person.exampl.BirthDay == new DateTime(1900, 01, 01))
                 {
                     count[6] = Data.data.Count;
                 }
-                else if (i.DateNar == Person.exempl.DateNar) count[6]++;
+                else if (i.BirthDay == Person.exampl.BirthDay) count[6]++;
 
-                if (Person.exempl.DateUvyaz == new DateTime(1900, 01, 01))
+                if (Person.exampl.ImprisDate == new DateTime(1900, 01, 01))
                 {
                     count[7] = Data.data.Count;
                 }
-                else if (i.DateUvyaz == Person.exempl.DateUvyaz) count[7]++;
+                else if (i.ImprisDate == Person.exampl.ImprisDate) count[7]++;
 
-                if (Person.exempl.Ierarh == "-")
+                if (Person.exampl.Ierarh == "-")
                 {
                     count[8] = Data.data.Count;
                 }
-                else if (i.Ierarh == Person.exempl.Ierarh) count[8]++;
+                else if (i.Ierarh == Person.exampl.Ierarh) count[8]++;
             }
 
             label3.Text = Convert.ToString(count[0]);
@@ -442,24 +484,5 @@ namespace Kursova
             label5.Text = Convert.ToString(count[7]);
             label12.Text = Convert.ToString(count[8]);
         }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            AddPrisoner f = new();
-            f.ShowDialog();
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            int lastIndex = dataGridView1.SelectedRows.Count - 1;
-            if (dataGridView1.SelectedRows.Count != 0)
-            {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[lastIndex];
-
-                Confirmation f = new(selectedRow);
-                f.ShowDialog();
-            }
-        }
-
     }
 }

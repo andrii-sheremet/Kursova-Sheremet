@@ -74,6 +74,7 @@
             Controls.Add(label1);
             Controls.Add(PasswordField);
             Controls.Add(buttonOk);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Avtoris";

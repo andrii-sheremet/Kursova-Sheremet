@@ -77,7 +77,7 @@
             // groupBox10
             // 
             groupBox10.Controls.Add(haractField);
-            groupBox10.Location = new Point(166, 152);
+            groupBox10.Location = new Point(166, 144);
             groupBox10.Name = "groupBox10";
             groupBox10.Size = new Size(126, 66);
             groupBox10.TabIndex = 28;
@@ -98,7 +98,7 @@
             // groupBox9
             // 
             groupBox9.Controls.Add(ierarhField);
-            groupBox9.Location = new Point(298, 152);
+            groupBox9.Location = new Point(298, 144);
             groupBox9.Name = "groupBox9";
             groupBox9.Size = new Size(126, 66);
             groupBox9.TabIndex = 26;
@@ -119,7 +119,7 @@
             // groupBox8
             // 
             groupBox8.Controls.Add(statField);
-            groupBox8.Location = new Point(12, 89);
+            groupBox8.Location = new Point(12, 80);
             groupBox8.Name = "groupBox8";
             groupBox8.Size = new Size(67, 57);
             groupBox8.TabIndex = 20;
@@ -146,7 +146,7 @@
             groupBox4.Controls.Add(checkBro);
             groupBox4.Controls.Add(checkHusb);
             groupBox4.FlatStyle = FlatStyle.Flat;
-            groupBox4.Location = new Point(166, 215);
+            groupBox4.Location = new Point(166, 207);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(258, 62);
             groupBox4.TabIndex = 24;
@@ -224,7 +224,7 @@
             // groupBox5
             // 
             groupBox5.Controls.Add(statyaField);
-            groupBox5.Location = new Point(85, 88);
+            groupBox5.Location = new Point(85, 80);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(75, 58);
             groupBox5.TabIndex = 21;
@@ -245,7 +245,7 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(DataUvyazTimePicker);
-            groupBox3.Location = new Point(166, 88);
+            groupBox3.Location = new Point(166, 80);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(146, 58);
             groupBox3.TabIndex = 22;
@@ -265,9 +265,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(KamNum);
-            groupBox2.Location = new Point(318, 92);
+            groupBox2.Location = new Point(318, 80);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(103, 54);
+            groupBox2.Size = new Size(103, 58);
             groupBox2.TabIndex = 27;
             groupBox2.TabStop = false;
             groupBox2.Text = "№ Камери";
@@ -287,7 +287,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(DataNarTimePicker);
-            groupBox1.Location = new Point(12, 144);
+            groupBox1.Location = new Point(12, 136);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(148, 60);
             groupBox1.TabIndex = 23;
@@ -308,7 +308,7 @@
             // 
             groupBox11.Controls.Add(label1);
             groupBox11.Controls.Add(termBar1);
-            groupBox11.Location = new Point(12, 203);
+            groupBox11.Location = new Point(12, 195);
             groupBox11.Name = "groupBox11";
             groupBox11.Size = new Size(148, 74);
             groupBox11.TabIndex = 25;
@@ -411,7 +411,7 @@
             DobButton.BackColor = SystemColors.ButtonFace;
             DobButton.FlatStyle = FlatStyle.Flat;
             DobButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            DobButton.Location = new Point(112, 283);
+            DobButton.Location = new Point(112, 275);
             DobButton.Name = "DobButton";
             DobButton.Size = new Size(200, 48);
             DobButton.TabIndex = 30;
@@ -419,12 +419,12 @@
             DobButton.UseVisualStyleBackColor = false;
             DobButton.Click += DobButton_Click;
             // 
-            // DobViazn
+            // AddPrisoner
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(436, 338);
+            ClientSize = new Size(436, 328);
             Controls.Add(DobButton);
             Controls.Add(groupBox10);
             Controls.Add(groupBox9);
@@ -436,9 +436,10 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox11);
             Controls.Add(groupBox6);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "DobViazn";
+            Name = "AddPrisoner";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Додати в'язня";

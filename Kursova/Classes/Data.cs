@@ -52,10 +52,10 @@ namespace Kursova
         public static void AddToData(Person p)
         {
             string res = $"\r\n{p.SecondName} {p.FirstName} {p.ThirdName}" +
-                $",{p.DateNar.Year} {p.DateNar.Month} {p.DateNar.Day}," +
-                $"{p.Stat},{p.Statya}," +
-                $"{p.DateUvyaz.Year} {p.DateUvyaz.Month} {p.DateUvyaz.Day}," +
-                $"{p.Term},{p.Rod},{p.NumKam},{p.Ierarh},{p.Haract};";
+                $",{p.BirthDay.Year} {p.BirthDay.Month} {p.BirthDay.Day}," +
+                $"{p.Gender},{p.Article}," +
+                $"{p.ImprisDate.Year} {p.ImprisDate.Month} {p.ImprisDate.Day}," +
+                $"{p.Term},{p.Family},{p.NumKam},{p.Ierarh},{p.Haract};";
 
             WriteData(text + res);
         }
@@ -81,14 +81,14 @@ namespace Kursova
                 if ((name.Contains($"{p.SecondName} {p.FirstName} {p.ThirdName}")
                     && numkam == p.NumKam)
                     && term == p.Term
-                    && birthday == p.DateNar)
+                    && birthday == p.BirthDay)
                     continue;
 
                 text += $"{p.SecondName} {p.FirstName} {p.ThirdName}" +
-                    $",{p.DateNar.Year} {p.DateNar.Month} {p.DateNar.Day}," +
-                    $"{p.Stat},{p.Statya}," +
-                    $"{p.DateUvyaz.Year} {p.DateUvyaz.Month} {p.DateUvyaz.Day}," +
-                    $"{p.Term},{p.Rod},{p.NumKam},{p.Ierarh},{p.Haract};";
+                    $",{p.BirthDay.Year} {p.BirthDay.Month} {p.BirthDay.Day}," +
+                    $"{p.Gender},{p.Article}," +
+                    $"{p.ImprisDate.Year} {p.ImprisDate.Month} {p.ImprisDate.Day}," +
+                    $"{p.Term},{p.Family},{p.NumKam},{p.Ierarh},{p.Haract};";
             }
             WriteData(text);
         }

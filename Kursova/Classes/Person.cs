@@ -8,25 +8,25 @@ namespace Kursova
 {
     internal class Person
     {
-        public static Person exempl = new();
+        public static Person exampl = new();
 
         public string FirstName { get; set; } = "";
         public string SecondName { get; set; } = "";
         public string ThirdName { get; set; } = "";
-        public DateTime DateNar { get; set; } = new(1900, 01, 01);
-        public string Stat { get; set; } = "Усі";
-        public int Statya { get; set; } = -1;
-        public DateTime DateUvyaz { get; set; } = new(1900, 01, 01);
+        public DateTime BirthDay { get; set; } = new(1900, 01, 01);
+        public string Gender { get; set; } = "Усі";
+        public int Article { get; set; } = -1;
+        public DateTime ImprisDate { get; set; } = new(1900, 01, 01);
         public int Term { get; set; } = -1;
-        public string Rod { get; set; } = "";
+        public string Family { get; set; } = "";
         public int NumKam { get; set; } = -1;
         public string Ierarh { get; set; } = "-";
         public string Haract { get; set; } = "-";
 
         public Person() { }
 
-        public Person(string name, DateTime dateNar, string stat,
-            int statya, DateTime dateUvyaz, int term, string rodInd,
+        public Person(string name, DateTime birthday, string gender,
+            int article, DateTime imprisDate, int term, string famInd,
             int numKam, string ierarh, string haract) : base()
         {
 
@@ -35,12 +35,12 @@ namespace Kursova
             FirstName = n[1];
             ThirdName = n[2];
 
-            DateNar = dateNar;
-            Stat = stat;
-            Statya = statya;
-            DateUvyaz = dateUvyaz;
+            BirthDay = birthday;
+            Gender = gender;
+            Article = article;
+            ImprisDate = imprisDate;
             Term = term;
-            Rod = rodInd;
+            Family = famInd;
             NumKam = numKam;
             Ierarh = ierarh;
             Haract = haract;
@@ -60,18 +60,18 @@ namespace Kursova
                     || SecondName == "")
                     && (i.ThirdName.ToUpper().Contains(ThirdName.ToUpper())
                     || ThirdName == "")
-                    && (DateNar == i.DateNar
-                    || DateNar == defTime)
-                    && (DateUvyaz == i.DateUvyaz
-                    || DateUvyaz == defTime)
+                    && (BirthDay == i.BirthDay
+                    || BirthDay == defTime)
+                    && (ImprisDate == i.ImprisDate
+                    || ImprisDate == defTime)
                     && (Ierarh == i.Ierarh
                     || Ierarh == "-")
                     && (Haract == i.Haract
                     || Haract == "-")
-                    && (Stat == i.Stat
-                    || Stat == "Усі")
-                    && (Statya == i.Statya
-                    || Statya == -1)
+                    && (Gender == i.Gender
+                    || Gender == "Усі")
+                    && (Article == i.Article
+                    || Article == -1)
                     && (NumKam == i.NumKam
                     || NumKam == -1)
                     && (Term == i.Term

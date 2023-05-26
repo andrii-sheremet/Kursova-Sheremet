@@ -1,6 +1,6 @@
 ﻿namespace Kursova
 {
-    partial class Wrong
+    partial class RowChoose
     {
         /// <summary>
         /// Required designer variable.
@@ -30,55 +30,38 @@
         {
             button1 = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(114, 125);
+            button1.Location = new Point(113, 88);
             button1.Name = "button1";
-            button1.Size = new Size(70, 30);
-            button1.TabIndex = 0;
-            button1.Text = "OK";
+            button1.Size = new Size(84, 26);
+            button1.TabIndex = 5;
+            button1.Text = "Добре";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(268, 21);
-            label1.TabIndex = 1;
-            label1.Text = "Заповніть будь ласка наступні поля:";
+            label1.Size = new Size(301, 63);
+            label1.TabIndex = 4;
+            label1.Text = "Виберіть людину яку хочете видалити\r\n(натисніть на перший з ліва квадрат,\r\nщоб обрати людину)";
             // 
-            // textBox1
-            // 
-            textBox1.BackColor = SystemColors.Control;
-            textBox1.Location = new Point(12, 33);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(268, 86);
-            textBox1.TabIndex = 2;
-            // 
-            // Wrong
+            // RowChoose
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(296, 159);
+            ClientSize = new Size(323, 126);
             ControlBox = false;
-            Controls.Add(textBox1);
-            Controls.Add(label1);
             Controls.Add(button1);
+            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "Wrong";
-            ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Помилка";
+            Name = "RowChoose";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -87,6 +70,5 @@
 
         private Button button1;
         private Label label1;
-        private TextBox textBox1;
     }
 }
