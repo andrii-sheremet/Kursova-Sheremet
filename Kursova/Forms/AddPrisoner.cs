@@ -17,7 +17,6 @@ namespace Kursova
             new("- - -", new(1, 1, 1), "", -1,
                 new(1, 1, 1), -1, "", -1, "", "");
 
-
         public AddPrisoner()
         {
             InitializeComponent();
@@ -121,33 +120,39 @@ namespace Kursova
         {
             if (checkMama.Checked) checkNemaRod.Checked = false;
         }//Чекбокс Мати
+
         private void checkDad_CheckedChanged(object sender, EventArgs e)
         {
             if (checkDad.Checked) checkNemaRod.Checked = false;
         }//Чекбокс Батько
+
         private void checkKid_CheckedChanged(object sender, EventArgs e)
         {
             if (checkKid.Checked) checkNemaRod.Checked = false;
         }//Чекбокс Діти
+
         private void checkHusb_CheckedChanged(object sender, EventArgs e)
         {
             if (checkHusb.Checked) checkNemaRod.Checked = false;
         }//Чекбокс Чоловік/Дружина
+
         private void checkBro_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBro.Checked) checkNemaRod.Checked = false;
         } //Чекбокс Брат/Сетсра
+
         private void checkNemaRod_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkNemaRod.Checked) checkMama.Checked = checkDad.Checked = checkKid.Checked
+            if (checkNemaRod.Checked) checkMama.Checked =
+                    checkDad.Checked = checkKid.Checked
                     = checkHusb.Checked = checkBro.Checked = false;
         }//Чекбокс Нема родичів
-
 
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             p.BirthDay = DataNarTimePicker.Value;
         }
+
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             p.ImprisDate = DataUvyazTimePicker.Value;

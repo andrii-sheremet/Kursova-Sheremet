@@ -52,7 +52,7 @@
             button1.TabIndex = 1;
             button1.Text = "Так";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // button2
             // 
@@ -62,7 +62,7 @@
             button2.TabIndex = 2;
             button2.Text = "Ні";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // Prizon
             // 

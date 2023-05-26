@@ -53,8 +53,6 @@ namespace Kursova
             List<Person> list = new();
             DateTime defTime = new(1900, 01, 01);
 
-            
-
             foreach (var i in Data.data)
             {
                 bool famBool = false;

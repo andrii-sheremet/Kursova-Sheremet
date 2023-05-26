@@ -34,6 +34,78 @@ namespace Kursova
             Statistic();
         }
 
+        public void Statistic()
+        {
+            int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            foreach (var i in Data.data)
+            {
+                if (Person.exampl.NumKam == -1)
+                {
+                    count[0] = Data.data.Count;
+                }
+                else if (i.NumKam == Person.exampl.NumKam) count[0]++;
+
+                if (Person.exampl.Term == -1)
+                {
+                    count[1] = Data.data.Count;
+                }
+                else if (i.Term == Person.exampl.Term) count[1]++;
+
+                if (Person.exampl.Article == -1)
+                {
+                    count[2] = Data.data.Count;
+                }
+                else if (i.Article == Person.exampl.Article) count[2]++;
+
+                if (Person.exampl.Gender == "Усі")
+                {
+                    count[3] = Data.data.Count;
+                }
+                else if (i.Gender == Person.exampl.Gender) count[3]++;
+
+                if (Person.exampl.Haract == "-")
+                {
+                    count[4] = Data.data.Count;
+                }
+                else if (i.Haract == Person.exampl.Haract) count[4]++;
+
+                if (Person.exampl.NumKam == -1)
+                {
+                    count[5] = Data.data.Count;
+                }
+                else if (i.NumKam == Person.exampl.NumKam) count[5]++;
+
+                if (Person.exampl.BirthDay == new DateTime(1900, 01, 01))
+                {
+                    count[6] = Data.data.Count;
+                }
+                else if (i.BirthDay == Person.exampl.BirthDay) count[6]++;
+
+                if (Person.exampl.ImprisDate == new DateTime(1900, 01, 01))
+                {
+                    count[7] = Data.data.Count;
+                }
+                else if (i.ImprisDate == Person.exampl.ImprisDate) count[7]++;
+
+                if (Person.exampl.Ierarh == "-")
+                {
+                    count[8] = Data.data.Count;
+                }
+                else if (i.Ierarh == Person.exampl.Ierarh) count[8]++;
+            }
+
+            label3.Text = Convert.ToString(count[0]);
+            label10.Text = Convert.ToString(count[1]);
+            label4.Text = Convert.ToString(count[2]);
+            label11.Text = Convert.ToString(count[3]);
+            label13.Text = Convert.ToString(count[4]);
+            label3.Text = Convert.ToString(count[5]);
+            label2.Text = Convert.ToString(count[6]);
+            label5.Text = Convert.ToString(count[7]);
+            label12.Text = Convert.ToString(count[8]);
+        }
+
         private void Lobby_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -396,7 +468,8 @@ namespace Kursova
             int lastIndex = dataGridView1.SelectedRows.Count - 1;
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[lastIndex];
+                DataGridViewRow selectedRow 
+                    = dataGridView1.SelectedRows[lastIndex];
 
                 Confirmation f = new(selectedRow);
                 f.ShowDialog();
@@ -412,76 +485,5 @@ namespace Kursova
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
             Application.Exit();
 
-        public void Statistic()
-        {
-            int[] count = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-            foreach (var i in Data.data)
-            {
-                if (Person.exampl.NumKam == -1)
-                {
-                    count[0] = Data.data.Count;
-                }
-                else if (i.NumKam == Person.exampl.NumKam) count[0]++;
-
-                if (Person.exampl.Term == -1)
-                {
-                    count[1] = Data.data.Count;
-                }
-                else if (i.Term == Person.exampl.Term) count[1]++;
-
-                if (Person.exampl.Article == -1)
-                {
-                    count[2] = Data.data.Count;
-                }
-                else if (i.Article == Person.exampl.Article) count[2]++;
-
-                if (Person.exampl.Gender == "Усі")
-                {
-                    count[3] = Data.data.Count;
-                }
-                else if (i.Gender == Person.exampl.Gender) count[3]++;
-
-                if (Person.exampl.Haract == "-")
-                {
-                    count[4] = Data.data.Count;
-                }
-                else if (i.Haract == Person.exampl.Haract) count[4]++;
-
-                if (Person.exampl.NumKam == -1)
-                {
-                    count[5] = Data.data.Count;
-                }
-                else if (i.NumKam == Person.exampl.NumKam) count[5]++;
-
-                if (Person.exampl.BirthDay == new DateTime(1900, 01, 01))
-                {
-                    count[6] = Data.data.Count;
-                }
-                else if (i.BirthDay == Person.exampl.BirthDay) count[6]++;
-
-                if (Person.exampl.ImprisDate == new DateTime(1900, 01, 01))
-                {
-                    count[7] = Data.data.Count;
-                }
-                else if (i.ImprisDate == Person.exampl.ImprisDate) count[7]++;
-
-                if (Person.exampl.Ierarh == "-")
-                {
-                    count[8] = Data.data.Count;
-                }
-                else if (i.Ierarh == Person.exampl.Ierarh) count[8]++;
-            }
-
-            label3.Text = Convert.ToString(count[0]);
-            label10.Text = Convert.ToString(count[1]);
-            label4.Text = Convert.ToString(count[2]);
-            label11.Text = Convert.ToString(count[3]);
-            label13.Text = Convert.ToString(count[4]);
-            label3.Text = Convert.ToString(count[5]);
-            label2.Text = Convert.ToString(count[6]);
-            label5.Text = Convert.ToString(count[7]);
-            label12.Text = Convert.ToString(count[8]);
-        }
     }
 }
