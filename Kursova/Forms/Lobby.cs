@@ -17,7 +17,6 @@ namespace Kursova
     {
 
         private int term = 1;
-        public SortedList<int, string> rod = new() { { 0, "" } };
 
         public Lobby()
         {
@@ -124,7 +123,6 @@ namespace Kursova
         private void ZbrosButton_Click(object sender, EventArgs e)
         {
             Application.Restart();
-            Process.Start(Application.ExecutablePath, "Lobby");
         }
 
         //Поля вводу ПІБ
@@ -311,12 +309,12 @@ namespace Kursova
         {
             if (checkMama.Checked)
             {
-                rod.Add(1, "Мати");
+                Person.exampl.fam.Add(1, "Мати");
                 checkNemaRod.Checked = false;
             }
             else
             {
-                rod.Remove(1);
+                Person.exampl.fam.Remove(1);
             }
         }//Чекбокс Мати
 
@@ -324,12 +322,12 @@ namespace Kursova
         {
             if (checkDad.Checked)
             {
-                rod.Add(2, "Батько");
+                Person.exampl.fam.Add(2, "Батько");
                 checkNemaRod.Checked = false;
             }
             else
             {
-                rod.Remove(2);
+                Person.exampl.fam.Remove(2);
             }
         }//Чекбокс Батько
 
@@ -337,12 +335,12 @@ namespace Kursova
         {
             if (checkKid.Checked)
             {
-                rod.Add(3, "Діти");
+                Person.exampl.fam.Add(3, "Діти");
                 checkNemaRod.Checked = false;
             }
             else
             {
-                rod.Remove(3);
+                Person.exampl.fam.Remove(3);
             }
         }//Чекбокс Діти
 
@@ -350,12 +348,12 @@ namespace Kursova
         {
             if (checkHusb.Checked)
             {
-                rod.Add(4, "Чоловік/Дружина");
+                Person.exampl.fam.Add(4, "Чоловік/Дружина");
                 checkNemaRod.Checked = false;
             }
             else
             {
-                rod.Remove(4);
+                Person.exampl.fam.Remove(4);
             }
         }//Чекбокс Чоловік/Дружина
 
@@ -363,12 +361,12 @@ namespace Kursova
         {
             if (checkBro.Checked)
             {
-                rod.Add(5, "Брат/Сестра");
+                Person.exampl.fam.Add(5, "Брат/Сестра");
                 checkNemaRod.Checked = false;
             }
             else
             {
-                rod.Remove(5);
+                Person.exampl.fam.Remove(5);
             }
         } //Чекбокс Брат/Сетсра
 
@@ -376,13 +374,14 @@ namespace Kursova
         {
             if (checkNemaRod.Checked)
             {
-                rod.Add(6, "Нема родичів");
+                Person.exampl.fam.Clear();
+                Person.exampl.fam.Add(6, "Нема родичів");
                 checkMama.Checked = checkDad.Checked = checkKid.Checked
                     = checkHusb.Checked = checkBro.Checked = false;
             }
             else
             {
-                rod.Remove(6);
+                Person.exampl.fam.Remove(6);
             }
         }//Чекбокс Нема родичів
 

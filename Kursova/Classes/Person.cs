@@ -10,6 +10,8 @@ namespace Kursova
     {
         public static Person exampl = new();
 
+        public SortedList<int, string> fam = new() { { 0, "" } }; 
+
         public string FirstName { get; set; } = "";
         public string SecondName { get; set; } = "";
         public string ThirdName { get; set; } = "";
@@ -27,7 +29,7 @@ namespace Kursova
 
         public Person(string name, DateTime birthday, string gender,
             int article, DateTime imprisDate, int term, string famInd,
-            int numKam, string ierarh, string haract) : base()
+            int numKam, string ierarh, string haract)
         {
 
             string[] n = name.Split(' ');
@@ -46,14 +48,23 @@ namespace Kursova
             Haract = haract;
         }
 
-
         public List<Person> Search()
         {
             List<Person> list = new();
             DateTime defTime = new(1900, 01, 01);
 
+            
+
             foreach (var i in Data.data)
             {
+                bool famBool = false;
+                foreach (KeyValuePair<int, string> memb in fam)
+                {
+                    famBool = i.Family.Contains(memb.Value);
+
+                    if (!famBool) break;
+                }
+
                 if ((i.FirstName.ToUpper().Contains(FirstName.ToUpper())
                     || FirstName == "")
                     && (i.SecondName.ToUpper().Contains(SecondName.ToUpper())
@@ -68,6 +79,7 @@ namespace Kursova
                     || Ierarh == "-")
                     && (Haract == i.Haract
                     || Haract == "-")
+                    && famBool
                     && (Gender == i.Gender
                     || Gender == "Усі")
                     && (Article == i.Article

@@ -14,7 +14,7 @@ namespace Kursova
     public partial class AddPrisoner : Form
     {
         private Person p =
-            new("1 1 1", new(1, 1, 1), "", -1,
+            new("- - -", new(1, 1, 1), "", -1,
                 new(1, 1, 1), -1, "", -1, "", "");
 
 
@@ -34,7 +34,6 @@ namespace Kursova
             if (ImyaTextBox.Text == "") ImyaTextBox.BackColor = Color.Pink;
             if (PBTextBox.Text == "") PBTextBox.BackColor = Color.Pink;
 
-
             p.Family = "";
             if (checkMama.Checked) p.Family += "Мати ";
             if (checkDad.Checked) p.Family += "Батько ";
@@ -44,15 +43,18 @@ namespace Kursova
             if (checkNemaRod.Checked) p.Family = "Нема родичів ";
 
             string Wrong = "";
-            Wrong += p.SecondName == "" ? "Прізвище, " : "";
-            Wrong += p.FirstName == "" ? "Ім'я, " : "";
-            Wrong += p.ThirdName == "" ? "Побатькові, " : "";
+            Wrong += p.SecondName == "" || p.SecondName == "-"
+                ? "Прізвище, " : "";
+            Wrong += p.FirstName == "" || p.FirstName == "-"
+                ? "Ім'я, " : "";
+            Wrong += p.ThirdName == "" || p.ThirdName == "-"
+                ? "Побатькові, " : "";
             Wrong += p.ImprisDate == new DateTime(1, 1, 1)
                 ? "Дата ув'язнення, " : "";
             Wrong += p.BirthDay == new DateTime(1, 1, 1)
                 ? "Дата народження, " : "";
             Wrong += p.Term == -1 ? "Термін ув'язнення, " : "";
-            Wrong += p.NumKam == -1 ? "Номер камеери, " : "";
+            Wrong += p.NumKam == -1 ? "Номер камери, " : "";
             Wrong += p.Article == -1 ? "Стаття, " : "";
             Wrong += p.Gender == "" ? "Стать, " : "";
             Wrong += p.Family == "" ? "Родина, " : "";
@@ -209,6 +211,10 @@ namespace Kursova
                 PrizvTextBox.BackColor = Color.White;
                 p.SecondName = PrizvTextBox.Text;
             }
+            else
+            {
+                p.SecondName = "";
+            }
         }
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
@@ -218,6 +224,10 @@ namespace Kursova
                 ImyaTextBox.BackColor = Color.White;
                 p.FirstName = ImyaTextBox.Text;
             }
+            else
+            {
+                p.FirstName = "";
+            }
         }
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
@@ -226,6 +236,10 @@ namespace Kursova
             {
                 PBTextBox.BackColor = Color.White;
                 p.ThirdName = PBTextBox.Text;
+            }
+            else
+            {
+                p.ThirdName = "";
             }
         }
     }
