@@ -345,6 +345,7 @@ namespace Kursova
             {
                 Person.exampl.NumKam = (int)KamNum.Value;
             }
+            Statistic();
         }//Чекбокс номеру камери
 
         private void CheckDataNar_CheckedChanged(object sender, EventArgs e)
@@ -359,6 +360,7 @@ namespace Kursova
             {
                 Person.exampl.BirthDay = DataNarTimePicker.Value;
             }
+            Statistic();
         }//Чекбокс дати народження
 
         private void CheckDataUvyaz_CheckedChanged(object sender, EventArgs e)
@@ -373,6 +375,7 @@ namespace Kursova
             {
                 Person.exampl.ImprisDate = DataUvyazTimePicker.Value;
             }
+            Statistic();
         }//Чекбокс дати ув'язнення
 
         private void CheckMama_CheckedChanged(object sender, EventArgs e)
@@ -467,7 +470,7 @@ namespace Kursova
             int lastIndex = dataGridView1.SelectedRows.Count - 1;
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                DataGridViewRow selectedRow 
+                DataGridViewRow selectedRow
                     = dataGridView1.SelectedRows[lastIndex];
 
                 Confirmation f = new(selectedRow);
@@ -484,6 +487,5 @@ namespace Kursova
 
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
             Application.Exit();
-
     }
 }
