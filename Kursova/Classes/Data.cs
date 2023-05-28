@@ -10,12 +10,17 @@ namespace Kursova
     internal class Data
     {
         public static List<Person> data = new();
+        // Лист із даними про всіх в'язнів.
 
-        private static string file = @"Documents\data.doc";
-        private static string text = File.ReadAllText(file);
+        private static readonly string file = @"Documents\data.doc";
+        private static string? text;
 
         public static void ReadData()
         {
+            data.Clear();
+
+            text = File.ReadAllText(file);
+
             string[] pers = text.Split(';');
 
             foreach (string s in pers)
@@ -48,6 +53,7 @@ namespace Kursova
                 }
             }
         }
+        // Метод, який зчитує інформацію з файлу, та записує її у лист.
 
         public static void AddToData(Person p)
         {
@@ -59,6 +65,7 @@ namespace Kursova
 
             WriteData(text + res);
         }
+        // Метод, який додає у кінець файлу нового в'язня.
 
         private static void WriteData(string text)
         {
@@ -67,9 +74,9 @@ namespace Kursova
                 byte[] info = new UTF8Encoding(true).GetBytes(text);
                 fs.Write(info, 0, info.Length);
             }
-
-            Data.ReadData();
+            ReadData();
         }
+        // Метод, який записує даний текст у файл.
 
         public static void DelPers(string? name, DateTime birthday,
             int numkam, int term)
@@ -92,5 +99,6 @@ namespace Kursova
             }
             WriteData(text);
         }
-    }
+        // Метод, який видаляє одного з в'язнів за заданими критеріями.
+    }// Класс для збереження, зчитування та взаєодії з файлом даних
 }

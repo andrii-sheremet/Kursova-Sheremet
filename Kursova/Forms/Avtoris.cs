@@ -16,7 +16,7 @@ namespace Kursova
             InitializeComponent();
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ButtonOk_Click(object sender, EventArgs e)
         {
             if (PasswordField.Text == "1111")
             {
@@ -30,8 +30,10 @@ namespace Kursova
                 PasswordField.BackColor = Color.LightPink;
             }
         }
+        // Натискання кнопки Ок.
 
         private void PasswordField_TextChanged(object sender, EventArgs e) =>
             PasswordField.BackColor = Color.White;
+        // Введення не правильного паролю.
     }
 }

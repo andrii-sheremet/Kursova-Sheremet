@@ -93,7 +93,7 @@
             haractField.Name = "haractField";
             haractField.Size = new Size(114, 23);
             haractField.TabIndex = 17;
-            haractField.SelectedIndexChanged += haractField_SelectedIndexChanged;
+            haractField.SelectedIndexChanged += HaractField_SelectedIndexChanged;
             // 
             // groupBox9
             // 
@@ -114,7 +114,7 @@
             ierarhField.Name = "ierarhField";
             ierarhField.Size = new Size(108, 23);
             ierarhField.TabIndex = 15;
-            ierarhField.SelectedIndexChanged += ierarhField_SelectedIndexChanged;
+            ierarhField.SelectedIndexChanged += IerarhField_SelectedIndexChanged;
             // 
             // groupBox8
             // 
@@ -135,7 +135,7 @@
             statField.Name = "statField";
             statField.Size = new Size(51, 23);
             statField.TabIndex = 4;
-            statField.SelectedIndexChanged += statField_SelectedIndexChanged;
+            statField.SelectedIndexChanged += StatField_SelectedIndexChanged;
             // 
             // groupBox4
             // 
@@ -163,7 +163,7 @@
             checkNemaRod.TabIndex = 13;
             checkNemaRod.Text = "Нема родичів";
             checkNemaRod.UseVisualStyleBackColor = true;
-            checkNemaRod.CheckedChanged += checkNemaRod_CheckedChanged;
+            checkNemaRod.CheckedChanged += CheckNemaRod_CheckedChanged;
             // 
             // checkMama
             // 
@@ -174,7 +174,7 @@
             checkMama.TabIndex = 8;
             checkMama.Text = "Мати";
             checkMama.UseVisualStyleBackColor = true;
-            checkMama.CheckedChanged += checkMama_CheckedChanged;
+            checkMama.CheckedChanged += CheckMama_CheckedChanged;
             // 
             // checkDad
             // 
@@ -185,7 +185,7 @@
             checkDad.TabIndex = 9;
             checkDad.Text = "Батько";
             checkDad.UseVisualStyleBackColor = true;
-            checkDad.CheckedChanged += checkDad_CheckedChanged;
+            checkDad.CheckedChanged += CheckDad_CheckedChanged;
             // 
             // checkKid
             // 
@@ -196,7 +196,7 @@
             checkKid.TabIndex = 10;
             checkKid.Text = "Діти";
             checkKid.UseVisualStyleBackColor = true;
-            checkKid.CheckedChanged += checkKid_CheckedChanged;
+            checkKid.CheckedChanged += CheckKid_CheckedChanged;
             // 
             // checkBro
             // 
@@ -208,7 +208,7 @@
             checkBro.TabIndex = 12;
             checkBro.Text = "Брат/Сестра";
             checkBro.UseVisualStyleBackColor = true;
-            checkBro.CheckedChanged += checkBro_CheckedChanged;
+            checkBro.CheckedChanged += CheckBro_CheckedChanged;
             // 
             // checkHusb
             // 
@@ -219,7 +219,7 @@
             checkHusb.TabIndex = 11;
             checkHusb.Text = "Чоловік/Жінка";
             checkHusb.UseVisualStyleBackColor = true;
-            checkHusb.CheckedChanged += checkHusb_CheckedChanged;
+            checkHusb.CheckedChanged += CheckHusb_CheckedChanged;
             // 
             // groupBox5
             // 
@@ -240,7 +240,7 @@
             statyaField.Name = "statyaField";
             statyaField.Size = new Size(59, 23);
             statyaField.TabIndex = 5;
-            statyaField.SelectedIndexChanged += statyaField_SelectedIndexChanged;
+            statyaField.SelectedIndexChanged += StatyaField_SelectedIndexChanged;
             // 
             // groupBox3
             // 
@@ -301,7 +301,7 @@
             DataNarTimePicker.Name = "DataNarTimePicker";
             DataNarTimePicker.Size = new Size(121, 23);
             DataNarTimePicker.TabIndex = 3;
-            DataNarTimePicker.Value = new DateTime(2023, 4, 4, 0, 0, 0, 0);
+            DataNarTimePicker.Value = new DateTime(2023, 5, 29, 0, 0, 0, 0);
             DataNarTimePicker.ValueChanged += DataNarTimePicker_ValueChanged;
             // 
             // groupBox11
@@ -334,7 +334,7 @@
             termBar1.SmallChange = 2;
             termBar1.TabIndex = 2;
             termBar1.Value = 1;
-            termBar1.Scroll += termBar1_Scroll;
+            termBar1.Scroll += TermBar1_Scroll;
             // 
             // groupBox6
             // 
@@ -356,9 +356,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(272, 19);
             label8.Name = "label8";
-            label8.Size = new Size(69, 15);
+            label8.Size = new Size(72, 15);
             label8.TabIndex = 6;
-            label8.Text = "Побатькові";
+            label8.Text = "По батькові";
             // 
             // label6
             // 
@@ -373,7 +373,7 @@
             // 
             PBTextBox.Location = new Point(272, 37);
             PBTextBox.Name = "PBTextBox";
-            PBTextBox.PlaceholderText = "Побатькові";
+            PBTextBox.PlaceholderText = "По батькові";
             PBTextBox.Size = new Size(131, 23);
             PBTextBox.TabIndex = 3;
             PBTextBox.TextChanged += PBTextBox_TextChanged;

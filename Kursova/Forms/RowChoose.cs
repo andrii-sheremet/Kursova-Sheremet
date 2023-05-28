@@ -17,7 +17,8 @@ namespace Kursova
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e) =>
+        private void Continue_Click(object sender, EventArgs e) =>
             this.Close();
+        // Натискання кнопки "Далі".
     }
 }

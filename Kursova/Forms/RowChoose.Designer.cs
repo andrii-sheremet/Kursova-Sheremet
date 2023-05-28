@@ -40,7 +40,7 @@
             button1.TabIndex = 5;
             button1.Text = "Добре";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Continue_Click;
             // 
             // label1
             // 

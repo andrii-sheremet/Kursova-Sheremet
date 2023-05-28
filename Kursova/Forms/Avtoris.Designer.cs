@@ -63,7 +63,7 @@
             buttonOk.TabIndex = 3;
             buttonOk.Text = "OK";
             buttonOk.UseVisualStyleBackColor = true;
-            buttonOk.Click += buttonOk_Click;
+            buttonOk.Click += ButtonOk_Click;
             // 
             // Avtoris
             // 

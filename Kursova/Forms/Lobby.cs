@@ -30,6 +30,9 @@ namespace Kursova
             termBar1.Enabled = KamNum.Enabled = DataNarTimePicker.Enabled
                 = DataUvyazTimePicker.Enabled = false;
 
+            statyaField.SelectedIndex = statField.SelectedIndex =
+            ierarhField.SelectedIndex = haractField.SelectedIndex = 0;
+
             Data.ReadData();
             Statistic();
         }
@@ -105,6 +108,7 @@ namespace Kursova
             label5.Text = Convert.ToString(count[7]);
             label12.Text = Convert.ToString(count[8]);
         }
+        // Метод, що виводить на екран статистичні зведення про знайдених людей.
 
         //Кнопки
         private void Lobby_KeyDown(object? sender, KeyEventArgs e)
@@ -117,7 +121,7 @@ namespace Kursova
             if (e.KeyCode == Keys.Enter)
             {
 #pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
-                findButton_Click(sender, e);
+                FindButton_Click(sender, e);
 #pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             }
             if (e.KeyCode == Keys.Space)
@@ -143,9 +147,10 @@ namespace Kursova
                     }
                 }
             }
-        }//Кнопки з клавіатури
+        }
+        // Натискання кнопки з клавіатури.
 
-        private void findButton_Click(object sender, EventArgs e)
+        private void FindButton_Click(object sender, EventArgs e)
         {
             Statistic();
 
@@ -184,41 +189,48 @@ namespace Kursova
             }
 
             dataGridView1.DataSource = table;
-        }//Кнопка пошуку
+        }
+        // Натискання кнопки пошуку.
 
         private void Label9_Click(object sender, EventArgs e)
         {
             checkMama.Checked = checkDad.Checked = checkKid.Checked
                 = checkNemaRod.Checked = checkHusb.Checked = checkBro.Checked
                 = false;
-        }//Кнопка збросу відомостей про родину
+        }
+        
+        // Натискання кнопки збросу відомостей про родину
 
         private void ZbrosButton_Click(object sender, EventArgs e)
         {
             Application.Restart();
-        }//Кнопка перезапуску
+        }
+        // Натискання кнопки перезапуску.
 
         //Поля вводу ПІБ
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
         {
             Person.exampl.SecondName = PrizvTextBox.Text.Trim();
             Statistic();
-            findButton_Click(sender, e);
-        }//Прізвище
+            FindButton_Click(sender, e);
+        }
+        // Поле вводу прізвища.
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
             Person.exampl.FirstName = ImyaTextBox.Text.Trim();
             Statistic();
-            findButton_Click(sender, e);
-        }//Ім'я
+            FindButton_Click(sender, e);
+        }
+        // Поле вводу ім'я.
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
             Person.exampl.ThirdName = PBTextBox.Text.Trim();
             Statistic();
-            findButton_Click(sender, e);
-        }//Побатькові
+            FindButton_Click(sender, e);
+        }
+        // Поле вводу по батькові.
 
         //СкроллБар
         private void TermBar1_Scroll(object sender, EventArgs e)
@@ -252,7 +264,8 @@ namespace Kursova
             }
             Person.exampl.Term = term;
             Statistic();
-        }//Термін ув'язнення
+        }
+        // СкроллБар терміну ув'язнення.
 
         //Полі вводу
         private void StatyaField_SelectedIndexChanged(object sender, EventArgs e)
@@ -266,7 +279,8 @@ namespace Kursova
                 Person.exampl.Article = Convert.ToInt32(statyaField.Text[3..]);
             }
             Statistic();
-        }//Стат'я
+        }
+        // Поле вводу статт'і.
 
         private void StatField_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -283,38 +297,44 @@ namespace Kursova
                     break;
             }
             Statistic();
-        }//Стать
+        }
+        // Поле вводу статі.
 
         private void IerarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Person.exampl.Ierarh = ierarhField.Text;
             Statistic();
-        }//Місце в іерархії
+        }
+        // Поле вводу інформації про місце в іерархії.
 
         private void HaractField_SelectedIndexChanged(object sender, EventArgs e)
         {
             Person.exampl.Haract = haractField.Text;
             Statistic();
-        }//Особливість характеру
+        }
+        // Поле вводу інформації про особливості характеру.
 
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
             Person.exampl.NumKam = Convert.ToInt32(KamNum.Value);
             Statistic();
-        }//Поле для вводу номера камери
+        }
+        //Поле для вводу номера камери.
 
         //Календарі
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Person.exampl.BirthDay = DataNarTimePicker.Value;
             Statistic();
-        }//Дата Народження
+        }
+        // Календар дати народження.
 
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Person.exampl.ImprisDate = DataUvyazTimePicker.Value;
             Statistic();
-        }//Дата Ув'язнення
+        }
+        // Календар дати ув'язнення.
 
         //Чекбокси
         private void CheckTerm_CheckedChanged(object sender, EventArgs e)
@@ -331,7 +351,8 @@ namespace Kursova
                 Person.exampl.Term = term;
             }
             Statistic();
-        } //Чекбокс терміну ув'язнення
+        } 
+        // Чекбокс терміну ув'язнення.
 
         private void CheckKamNum_CheckedChanged(object sender, EventArgs e)
         {
@@ -346,7 +367,8 @@ namespace Kursova
                 Person.exampl.NumKam = (int)KamNum.Value;
             }
             Statistic();
-        }//Чекбокс номеру камери
+        }
+        // Чекбокс номеру камери.
 
         private void CheckDataNar_CheckedChanged(object sender, EventArgs e)
         {
@@ -361,7 +383,8 @@ namespace Kursova
                 Person.exampl.BirthDay = DataNarTimePicker.Value;
             }
             Statistic();
-        }//Чекбокс дати народження
+        }
+        // Чекбокс дати народження. 
 
         private void CheckDataUvyaz_CheckedChanged(object sender, EventArgs e)
         {
@@ -376,7 +399,8 @@ namespace Kursova
                 Person.exampl.ImprisDate = DataUvyazTimePicker.Value;
             }
             Statistic();
-        }//Чекбокс дати ув'язнення
+        }
+        // Чекбокс дати ув'язнення.
 
         private void CheckMama_CheckedChanged(object sender, EventArgs e)
         {
@@ -389,7 +413,8 @@ namespace Kursova
             {
                 Person.exampl.fam.Remove(1);
             }
-        }//Чекбокс Мати
+        }
+        // Чекбокс відомостей про сім'ю (мати).
 
         private void CheckDad_CheckedChanged(object sender, EventArgs e)
         {
@@ -402,7 +427,8 @@ namespace Kursova
             {
                 Person.exampl.fam.Remove(2);
             }
-        }//Чекбокс Батько
+        }
+        // Чекбокс відомостей про сім'ю (батько).
 
         private void CheckKid_CheckedChanged(object sender, EventArgs e)
         {
@@ -415,7 +441,8 @@ namespace Kursova
             {
                 Person.exampl.fam.Remove(3);
             }
-        }//Чекбокс Діти
+        }
+        // Чекбокс відомостей про сім'ю (діти).
 
         private void CheckHusb_CheckedChanged(object sender, EventArgs e)
         {
@@ -428,7 +455,8 @@ namespace Kursova
             {
                 Person.exampl.fam.Remove(4);
             }
-        }//Чекбокс Чоловік/Дружина
+        }
+        // Чекбокс відомостей про сім'ю (чоловік/дружина).
 
         private void CheckBro_CheckedChanged(object sender, EventArgs e)
         {
@@ -441,7 +469,8 @@ namespace Kursova
             {
                 Person.exampl.fam.Remove(5);
             }
-        } //Чекбокс Брат/Сетсра
+        }
+        // Чекбокс відомостей про сім'ю (брат/сетсра).
 
         private void CheckNemaRod_CheckedChanged(object sender, EventArgs e)
         {
@@ -456,14 +485,16 @@ namespace Kursova
             {
                 Person.exampl.fam.Remove(6);
             }
-        }//Чекбокс Нема родичів
+        }
+        // Чекбокс відомостей про сім'ю (нема родичів).
 
         //Панель інструментів
         private void AddPrisoner_Click(object sender, EventArgs e)
         {
             AddPrisoner f = new();
             f.ShowDialog();
-        }//Кнопка додавання в'язнів
+        }
+        // Натискання кнопки додавання в'язнів.
 
         private void RemovePrisoner_Click(object sender, EventArgs e)
         {
@@ -482,10 +513,12 @@ namespace Kursova
                 f.ShowDialog();
             }
 
-        }//Кнопка видалення в'язнів
+        }
+        // Натискання кнопки видалення в'язнів.
 
 
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e) =>
             Application.Exit();
+        // Метод для вимкнення форми.
     }
 }

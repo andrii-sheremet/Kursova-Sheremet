@@ -352,7 +352,7 @@
             // 
             statField.DropDownStyle = ComboBoxStyle.DropDownList;
             statField.FormattingEnabled = true;
-            statField.Items.AddRange(new object[] { "Усі", "М", "Ж" });
+            statField.Items.AddRange(new object[] { "Усі", "Ж", "М" });
             statField.Location = new Point(5, 22);
             statField.Name = "statField";
             statField.Size = new Size(51, 23);
@@ -589,9 +589,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(272, 19);
             label8.Name = "label8";
-            label8.Size = new Size(69, 15);
+            label8.Size = new Size(72, 15);
             label8.TabIndex = 6;
-            label8.Text = "Побатькові";
+            label8.Text = "По батькові";
             // 
             // label6
             // 
@@ -607,7 +607,7 @@
             PBTextBox.Location = new Point(272, 37);
             PBTextBox.MaxLength = 100;
             PBTextBox.Name = "PBTextBox";
-            PBTextBox.PlaceholderText = "Побатькові";
+            PBTextBox.PlaceholderText = "По батькові";
             PBTextBox.Size = new Size(131, 23);
             PBTextBox.TabIndex = 3;
             PBTextBox.TextChanged += PBTextBox_TextChanged;
@@ -696,7 +696,7 @@
             findButton.TabIndex = 18;
             findButton.Text = "Пошук";
             findButton.UseVisualStyleBackColor = false;
-            findButton.Click += findButton_Click;
+            findButton.Click += FindButton_Click;
             // 
             // splitContainer1
             // 
@@ -830,6 +830,7 @@
             // 
             // toolStrip1
             // 
+            toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";

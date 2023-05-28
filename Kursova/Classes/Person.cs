@@ -9,21 +9,46 @@ namespace Kursova
     internal class Person
     {
         public static Person exampl = new();
+        // Екземпляр класу, в якому зберігаються усі дані фільтру для пошуку.
 
-        public SortedList<int, string> fam = new() { { 0, "" } }; 
+        public SortedList<int, string> fam = new() { { 0, "" } };
+        // Сортований лист в якому зберігається інформація про родину даного в'язня.
 
         public string FirstName { get; set; } = "";
+        // Властивість для ім'я.
+
         public string SecondName { get; set; } = "";
+        // Властивість для прізвища.
+
         public string ThirdName { get; set; } = "";
+        // Властивість для по батькові.
+
         public DateTime BirthDay { get; set; } = new(1900, 01, 01);
+        // Властивість для дати народження.
+
         public string Gender { get; set; } = "Усі";
+        // Властивість для статі.
+
         public int Article { get; set; } = -1;
+        // Властивість для статті.
+
         public DateTime ImprisDate { get; set; } = new(1900, 01, 01);
+        // Властивість для дати ув'язнення.
+
         public int Term { get; set; } = -1;
+        // Властивість для терміну ув'язнення.
+
         public string Family { get; set; } = "";
+        // Властивість для інформації про родину.
+
         public int NumKam { get; set; } = -1;
+        // Властивість для номера кімнати.
+
         public string Ierarh { get; set; } = "-";
+        // Властивість для інформації про місце в ієрархії.
+
         public string Haract { get; set; } = "-";
+        // Властивість для інформації про особливість характеру.
 
         public Person() { }
 
@@ -92,5 +117,7 @@ namespace Kursova
             }
             return list;
         }
+        // Метод, що здійснює пошук по базі даних та шукає в'язнів, що підходять заданим критеріям.
+
     }//Класс для створення персонажів для в'язниці
 }

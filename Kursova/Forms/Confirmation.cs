@@ -33,16 +33,18 @@ namespace Kursova
             Prizon.Text = name;
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void YesButton_Click(object sender, EventArgs e)
         {
             Data.DelPers(name, dateTime, numKam, term);
 
             this.Close();
         }
+        // Натискання кнопки Так
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void NoButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        // Натискання кнопки Так
     }
 }

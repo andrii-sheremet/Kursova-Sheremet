@@ -64,17 +64,20 @@ namespace Kursova
             if (Wrong == "")
             {
                 Data.AddToData(p);
+                Lobby lobby = new();
+                lobby.Statistic();
                 this.Close();
             }
             else
             {
-                Wrong f4 = new(Wrong);
-                f4.ShowDialog();
+                Wrong wrong = new(Wrong);
+                wrong.ShowDialog();
             }
-        }//Кнопка додавання
+        }
+        // Натискання кнопки додавання.
 
         //СкроллБар
-        private void termBar1_Scroll(object sender, EventArgs e)
+        private void TermBar1_Scroll(object sender, EventArgs e)
         {
             switch (termBar1.Value)
             {
@@ -103,59 +106,69 @@ namespace Kursova
                     p.Term = 15;
                     break;
             }
-        }//Термін ув'язнення
+        }
+        // СкроллБар терміну ув'язнення.
 
         //Чекбокси
-        private void checkMama_CheckedChanged(object sender, EventArgs e)
+        private void CheckMama_CheckedChanged(object sender, EventArgs e)
         {
             if (checkMama.Checked) checkNemaRod.Checked = false;
-        }//Чекбокс Мати
+        }
+        // Чекбокс відомостей про сім'ю (мати).
 
-        private void checkDad_CheckedChanged(object sender, EventArgs e)
+        private void CheckDad_CheckedChanged(object sender, EventArgs e)
         {
             if (checkDad.Checked) checkNemaRod.Checked = false;
-        }//Чекбокс Батько
+        }
+        // Чекбокс відомостей про сім'ю (батько).
 
-        private void checkKid_CheckedChanged(object sender, EventArgs e)
+        private void CheckKid_CheckedChanged(object sender, EventArgs e)
         {
             if (checkKid.Checked) checkNemaRod.Checked = false;
-        }//Чекбокс Діти
+        }
+        // Чекбокс відомостей про сім'ю (діти).
 
-        private void checkHusb_CheckedChanged(object sender, EventArgs e)
+        private void CheckHusb_CheckedChanged(object sender, EventArgs e)
         {
             if (checkHusb.Checked) checkNemaRod.Checked = false;
-        }//Чекбокс Чоловік/Дружина
+        }
+        // Чекбокс відомостей про сім'ю (чоловік/дружина).
 
-        private void checkBro_CheckedChanged(object sender, EventArgs e)
+        private void CheckBro_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBro.Checked) checkNemaRod.Checked = false;
-        } //Чекбокс Брат/Сетсра
+        }
+        // Чекбокс відомостей про сім'ю (брат/сетсра).
 
-        private void checkNemaRod_CheckedChanged(object sender, EventArgs e)
+        private void CheckNemaRod_CheckedChanged(object sender, EventArgs e)
         {
             if (checkNemaRod.Checked) checkMama.Checked =
                     checkDad.Checked = checkKid.Checked
                     = checkHusb.Checked = checkBro.Checked = false;
-        }//Чекбокс Нема родичів
+        }
+        // Чекбокс відомостей про сім'ю (нема родичів).
 
         //Календарі
         private void DataNarTimePicker_ValueChanged(object sender, EventArgs e)
         {
             p.BirthDay = DataNarTimePicker.Value;
-        }//Дата Народження
+        }
+        // Календар дати народження.
 
         private void DataUvyazTimePicker_ValueChanged(object sender, EventArgs e)
         {
             p.ImprisDate = DataUvyazTimePicker.Value;
-        }//Дата Ув'язнення
+        }
+        // Календар дати ув'язнення.
 
         //Полі вводу
         private void KamNum_ValueChanged(object sender, EventArgs e)
         {
             p.NumKam = Convert.ToInt32(KamNum.Value);
-        }//Поле для вводу номера камери
+        }
+        //Поле для вводу номера камери.
 
-        private void statField_SelectedIndexChanged(object sender, EventArgs e)
+        private void StatField_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (statField.SelectedIndex)
             {
@@ -166,9 +179,10 @@ namespace Kursova
                     p.Gender = "M";
                     break;
             }
-        }//Стать
+        }
+        // Поле вводу статі.
 
-        private void ierarhField_SelectedIndexChanged(object sender, EventArgs e)
+        private void IerarhField_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (ierarhField.SelectedIndex)
             {
@@ -188,9 +202,10 @@ namespace Kursova
                     p.Ierarh = "Опущені";
                     break;
             }
-        }//Місце в іерархії
+        }
+        // Поле вводу інформації про місце в іерархії.
 
-        private void haractField_SelectedIndexChanged(object sender, EventArgs e)
+        private void HaractField_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (haractField.SelectedIndex)
             {
@@ -207,12 +222,14 @@ namespace Kursova
                     p.Haract = "Шістка";
                     break;
             }
-        }//Особливість характеру
+        }
+        // Поле вводу інформації про особливості характеру.
 
-        private void statyaField_SelectedIndexChanged(object sender, EventArgs e)
+        private void StatyaField_SelectedIndexChanged(object sender, EventArgs e)
         {
             p.Article = Convert.ToInt32(statyaField.Text[3..]);
-        }//Стат'я
+        }
+        // Поле вводу статт'і.
 
         //Поля вводу ПІБ
         private void PrizvTextBox_TextChanged(object sender, EventArgs e)
@@ -226,7 +243,8 @@ namespace Kursova
             {
                 p.SecondName = "";
             }
-        }//Прізвище
+        }
+        // Поле вводу прізвища.
 
         private void ImyaTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -239,7 +257,8 @@ namespace Kursova
             {
                 p.FirstName = "";
             }
-        }//Ім'я
+        }
+        // Поле вводу ім'я.
 
         private void PBTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -252,6 +271,7 @@ namespace Kursova
             {
                 p.ThirdName = "";
             }
-        }//Побатькові
+        }
+        // Поле вводу по батькові.
     }
 }
